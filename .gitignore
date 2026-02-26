@@ -1,0 +1,4 @@
+node_modules/
+.env
+extract.js
+extract2.js
