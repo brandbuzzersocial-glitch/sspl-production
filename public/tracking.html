@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -2425,6 +2423,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- ─── 3D INTRO ─── -->
@@ -2439,764 +2438,105 @@
     </div>
   </div>
 
-
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
     <button class="mobile-close" onclick="closeMenu()">×</button>
-    <a href="#hero" onclick="closeMenu()">Home</a>
-    <a href="#products" onclick="closeMenu()">Products</a>
-    <a href="about.html" onclick="closeMenu()">About Us</a>
-    <a href="#process" onclick="closeMenu()">Process</a>
+    <a href="surat-sales.html" onclick="closeMenu()">Home</a>
+    <a href="products.html" onclick="closeMenu()">Products</a>
+    <a href="about.html" onclick="closeMenu()">About</a>
+    <a href="process.html" onclick="closeMenu()">Process</a>
     <a href="contact.html" onclick="closeMenu()">Contact</a>
-    <a href="tracking.html" onclick="closeMenu()">Tracking</a>
-  </div>
+    <a href="about.html" onclick="toggleMenu()">About Us</a>
+    </div>
 
   <!-- NAV -->
   <nav id="navbar">
-    <a href="#hero" class="nav-logo">
+    <a href="surat-sales.html" class="nav-logo">
       <img src="images/sspl_logo.jpg" alt="SSPL Logo" style="height:44px; width:auto; border-radius:4px;">
       <div class="nav-logo-name">Surat Sales<span>Private Limited</span></div>
     </a>
     <ul class="nav-links">
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#products">Products</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="#process">Process</a></li>
+      <li><a href="surat-sales.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="process.html">Process</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="tracking.html">Tracking</a></li>
-    </ul>
+      <li><a href="about.html">About Us</a></li>
+        <li><a href="tracking.html">Tracking</a></li>
+      </ul>
     <a href="contact.html" class="btn-nav">Contact Us</a>
     <button class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></button>
   </nav>
-
-
-<section id="hero">
-    <div class="hero-left">
-      <div class="hero-badge"><span class="badge-dot"></span>House of Imported Yarns</div>
-      <h1 class="hero-h1">Reliable Yarn Import &amp;<br><em>Supply Across India</em></h1>
-      <p class="hero-p">Your trusted partner for high-quality yarn solutions, connecting global manufacturers with the
-        Indian market.</p>
-      <div class="hero-btns">
-        <a href="#products" class="btn-primary">View Products →</a>
-        <a href="contact.html" class="btn-outline">Contact Us</a>
-      </div>
-      <div class="hero-stats">
-        <div>
-          <div class="stat-num" data-count="300">0<em>+</em></div>
-          <div class="stat-lbl">Containers / Month</div>
-        </div>
-        <div>
-          <div class="stat-num" data-count="43">0<em>+</em></div>
-          <div class="stat-lbl">Years in Business</div>
-        </div>
-        <div>
-          <div class="stat-num" data-count="8">0<em>+</em></div>
-          <div class="stat-lbl">Countries</div>
-        </div>
-      </div>
-    </div>
-    </div>
-    <div class="hero-right">
-      <video class="hero-img" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?q=80&w=1600&auto=format&fit=crop">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-cargo-ship-sailing-in-the-ocean-26325-large.mp4" type="video/mp4">
-        <source src="https://player.vimeo.com/external/403871142.sd.mp4?s=340c1d109f3b7493a525d8f0761e3860bb4d720b&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="hero-img-fade"></div>
-      </div>
-    </div>
-  </section>
-
-<section id="process">
-    <div class="process-header reveal">
-      <span class="sec-tag">From Polymer to Excellence</span>
-      <h2 class="sec-h2">The Complete <em>Yarn Journey</em></h2>
-      <p class="sec-p">Scroll through the precision engineering of high-purity virgin polymers into premium textile-ready yarn,
-        delivered to your doorstep in India.</p>
-    </div>
-
-    <!-- Sticky progress bar -->
-    <div class="process-sticky-bar" id="processStickyBar">
-      <div class="psb-label"><span class="live-dot"></span>Journey</div>
-      <div class="psb-track">
-        <div class="psb-fill" id="psbFill"></div>
-      </div>
-      <div class="psb-step" id="psbStep">Step 1 of 7</div>
-    </div>
-
-    <!-- Vertical steps -->
-    <div class="journey-steps" id="journeySteps">
-      <div class="journey-line-fill" id="journeyLineFill"></div>
-
-      <!-- Step 1 -->
-      <div class="jstep" data-step="1">
-        <div class="jstep-content">
-          <div class="jstep-step-num">Step 01</div>
-          <div class="jstep-tag"><span style="display:inline-flex;width:13px;height:13px;color:var(--yellow-dark)"><svg
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5" />
-                <path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12" />
-                <path d="m14 16 3-3-3-3" />
-                <path d="m3.5 5.5 2.5 3 3-3" />
-                <path d="M11.5 5.5 9.914 7.956A2 2 0 0 1 8.21 9H7" />
-                <path d="M21 9h-3" />
-                <path d="M17 12h-1" />
-              </svg></span> Quality Focus</div>
-          <div class="jstep-title">The Origin:<br>Virgin Purity</div>
-          <div class="jstep-desc">Our process begins with the selection of high-purity virgin polymer chips. Every batch is rigorously inspected to ensure the highest standards of clarity and molecular consistency.</div>
-        </div>
-        <div class="jstep-mid">
-          <div class="jstep-node" data-emoji="quality" style="color:var(--black);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-</svg></div>
-        </div>
-        <div class="jstep-canvas-wrap">
-          <canvas class="jstep-canvas" id="canvas-1" width="260" height="260"></canvas>
-        </div>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="jstep" data-step="2">
-        <div class="jstep-canvas-wrap">
-          <canvas class="jstep-canvas" id="canvas-2" width="260" height="260"></canvas>
-        </div>
-        <div class="jstep-mid">
-          <div class="jstep-node" data-emoji="flame" style="color:var(--black);"><svg viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path
-                d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
-            </svg></div>
-        </div>
-        <div class="jstep-content">
-          <div class="jstep-step-num">Step 02</div>
-          <div class="jstep-tag"><span style="display:inline-flex;width:13px;height:13px;color:var(--yellow-dark)"><svg
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path
-                  d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
-              </svg></span> Processing</div>
-          <div class="jstep-title">The Alchemy:<br>Melting &amp; Refining</div>
-          <div class="jstep-desc">The selected polymers are melted and refined through advanced filtration. This creates a high-grade liquid polymer of unmatched purity, optimized for precision spinning.</div>
-        </div>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="jstep" data-step="3">
-        <div class="jstep-content">
-          <div class="jstep-step-num">Step 03</div>
-          <div class="jstep-tag"><span style="display:inline-flex;width:13px;height:13px;color:var(--yellow-dark)"><svg
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path
-                  d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-                <circle cx="12" cy="12" r="3" />
-              </svg></span> Engineering</div>
-          <div class="jstep-title">The Spin:<br>Extrusion &amp; Filament</div>
-          <div class="jstep-desc">The refined polymer is extruded through precision machinery. Fine filaments are
-            formed, creating the base fibers that will become yarn.</div>
-        </div>
-        <div class="jstep-mid">
-          <div class="jstep-node" data-emoji="gear" style="color:var(--black);"><svg viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path
-                d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-              <circle cx="12" cy="12" r="3" />
-            </svg></div>
-        </div>
-        <div class="jstep-canvas-wrap">
-          <canvas class="jstep-canvas" id="canvas-3" width="260" height="260"></canvas>
-        </div>
-      </div>
-
-      <!-- Step 4 -->
-      <div class="jstep" data-step="4">
-        <div class="jstep-canvas-wrap">
-          <canvas class="jstep-canvas" id="canvas-4" width="260" height="260"></canvas>
-        </div>
-        <div class="jstep-mid">
-          <div class="jstep-node" data-emoji="spool" style="color:var(--black);"><svg viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10" />
-              <circle cx="12" cy="12" r="3" />
-              <line x1="12" y1="9" x2="12" y2="2" />
-              <line x1="12" y1="15" x2="12" y2="22" />
-              <line x1="9" y1="12" x2="2" y2="12" />
-              <line x1="15" y1="12" x2="22" y2="12" />
-            </svg></div>
-        </div>
-        <div class="jstep-content">
-          <div class="jstep-step-num">Step 04</div>
-          <div class="jstep-tag"><span style="display:inline-flex;width:13px;height:13px;color:var(--yellow-dark)"><svg
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <circle cx="12" cy="12" r="3" />
-                <line x1="12" y1="9" x2="12" y2="2" />
-                <line x1="12" y1="15" x2="12" y2="22" />
-                <line x1="9" y1="12" x2="2" y2="12" />
-                <line x1="15" y1="12" x2="22" y2="12" />
-              </svg></span> Craftsmanship</div>
-          <div class="jstep-title">The Craft:<br>Texturizing &amp; Winding</div>
-          <div class="jstep-desc">The filaments are texturized to add softness, strength, and volume. They are then
-            wound carefully into uniform yarn spools ready for shipping.</div>
-        </div>
-      </div>
-
-      <!-- Step 5 -->
-      <div class="jstep" data-step="5">
-        <div class="jstep-content">
-          <div class="jstep-step-num">Step 05</div>
-          <div class="jstep-tag"><span style="display:inline-flex;width:13px;height:13px;color:var(--yellow-dark)"><svg
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M16.5 9.4 7.55 4.24" />
-                <path
-                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                <polyline points="3.29 7 12 12 20.71 7" />
-                <line x1="12" y1="22" x2="12" y2="12" />
-              </svg></span> Logistics</div>
-          <div class="jstep-title">Packing &amp;<br>Preparation</div>
-          <div class="jstep-desc">The finished yarn is packed securely into boxes and pallets, ensuring maximum
-            protection during transit from factory to your warehouse.</div>
-        </div>
-        <div class="jstep-mid">
-          <div class="jstep-node" data-emoji="package" style="color:var(--black);"><svg viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16.5 9.4 7.55 4.24" />
-              <path
-                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-              <polyline points="3.29 7 12 12 20.71 7" />
-              <line x1="12" y1="22" x2="12" y2="12" />
-            </svg></div>
-        </div>
-        <div class="jstep-canvas-wrap">
-          <canvas class="jstep-canvas" id="canvas-5" width="260" height="260"></canvas>
-        </div>
-      </div>
-
-      <!-- Step 6 -->
-      <div class="jstep" data-step="6">
-        <div class="jstep-canvas-wrap">
-          <canvas class="jstep-canvas" id="canvas-6" width="260" height="260"></canvas>
-        </div>
-        <div class="jstep-mid">
-          <div class="jstep-node" data-emoji="ship" style="color:var(--black);"><svg viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path
-                d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1 .6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
-              <path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76" />
-              <path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6" />
-              <path d="M12 10v4" />
-              <path d="M12 3v4" />
-            </svg></div>
-        </div>
-        <div class="jstep-content">
-          <div class="jstep-step-num">Step 06</div>
-          <div class="jstep-tag"><span style="display:inline-flex;width:13px;height:13px;color:var(--yellow-dark)"><svg
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path
-                  d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1 .6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
-                <path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76" />
-                <path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6" />
-                <path d="M12 10v4" />
-                <path d="M12 3v4" />
-              </svg></span> Shipping</div>
-          <div class="jstep-title">Shipping<br>to India</div>
-          <div class="jstep-desc">The packed yarn is shipped via containers, moving across oceans to reach India.
-            End-to-end logistics managed by our experienced team.</div>
-        </div>
-      </div>
-
-      <!-- Step 7 -->
-      <div class="jstep" data-step="7">
-        <div class="jstep-content">
-          <div class="jstep-step-num">Step 07</div>
-          <div class="jstep-tag"><span style="display:inline-flex;width:13px;height:13px;color:var(--yellow-dark)"><svg
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
-                <path d="M17 18h1" />
-                <path d="M12 18h1" />
-                <path d="M7 18h1" />
-              </svg></span> Delivered</div>
-          <div class="jstep-title">Ready<br>to Weave</div>
-          <div class="jstep-desc">Our first-grade yarn arrives at its destination — ready to be woven into premium high-end textiles and high-quality products across India's textile industry.</div>
-        </div>
-        <div class="jstep-mid">
-          <div class="jstep-node" data-emoji="factory" style="color:var(--black);"><svg viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
-              <path d="M17 18h1" />
-              <path d="M12 18h1" />
-              <path d="M7 18h1" />
-            </svg></div>
-        </div>
-        <div class="jstep-canvas-wrap">
-          <canvas class="jstep-canvas" id="canvas-7" width="260" height="260"></canvas>
-        </div>
-      </div>
-
-    </div>
-  </section>
-<section id="why">
-    <div class="why-grid">
-      <div class="reveal-l">
-        <span class="sec-tag">Why Choose Us</span>
-        <h2 class="sec-h2">Why Choose <em>Surat Sales</em></h2>
-        <p class="sec-p">We don't just supply yarn — we deliver confidence, consistency, and value at every step of your
-          supply chain.</p>
-        <div class="why-feats">
-          <div class="why-feat">
-            <div class="why-icon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg></div>
-            <div>
-              <h4>Consistent Quality</h4>
-              <p>Rigorous multi-stage quality control ensures every batch meets international standards.</p>
-            </div>
-          </div>
-          <div class="why-feat">
-            <div class="why-icon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
-                <path d="M12 18V6" />
-              </svg></div>
-            <div>
-              <h4>Competitive Pricing</h4>
-              <p>Benefit from our efficient direct sourcing to get the best value for your investment.</p>
-            </div>
-          </div>
-          <div class="why-feat">
-            <div class="why-icon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11v14H5z" />
-                <rect x="13" y="8" width="8" height="11" rx="1" />
-                <circle cx="7.5" cy="17" r="1.5" />
-                <circle cx="17.5" cy="17" r="1.5" />
-                <path d="M13 10h4.5l1.5 3" />
-              </svg></div>
-            <div>
-              <h4>Reliable Supply</h4>
-              <p>Strong logistics and inventory management guarantee on-time delivery across India.</p>
-            </div>
-          </div>
-          <div class="why-feat">
-            <div class="why-icon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M2 12h20" />
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-              </svg></div>
-            <div>
-              <h4>Strong Sourcing Network</h4>
-              <p>Direct partnerships with top manufacturers in China for diverse and quality products.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="reveal-r">
-        <div class="stat-cards">
-          <div class="stat-card">
-            <div class="big">300<em>+</em></div>
-            <div class="sm">Containers / Month</div>
-          </div>
-          <div class="stat-card">
-            <div class="big">43<em>+</em></div>
-            <div class="sm">Years in Business</div>
-          </div>
-          <div class="stat-card">
-            <div class="big">8<em>+</em></div>
-            <div class="sm">Countries</div>
-          </div>
-          
-          </div>
-        </div>
-          <div class="stat-card">
-            <div class="big">8<em>+</em></div>
-            <div class="sm">Countries Sourced</div>
-          </div>
-          
-          </div>
-          <div class="stat-card">
-            <div class="big">7–10</div>
-            <div class="sm">Day Lead Time</div>
-          </div>
-        </div>
-        <div class="checklist" style="margin-top:14px;">
-          <h4>Our Commitment to Quality &amp; Consistency</h4>
-          
-          <div class="cl-item">
-            <div class="cl-check" style="display:flex;align-items:center;justify-content:center;"><svg
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg></div>Rigorous Multi-Stage Quality Checks
-          </div>
-          <div class="cl-item">
-            <div class="cl-check" style="display:flex;align-items:center;justify-content:center;"><svg
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg></div>Consistent Yarn Denier &amp; Luster
-          </div>
-          <div class="cl-item">
-            <div class="cl-check" style="display:flex;align-items:center;justify-content:center;"><svg
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg></div>Traceable Supply Chain Transparency
-          </div>
-          <div class="cl-item">
-            <div class="cl-check" style="display:flex;align-items:center;justify-content:center;"><svg
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg></div>Adherence to International Standards
-          </div>
-          <div class="cl-item">
-            <div class="cl-check" style="display:flex;align-items:center;justify-content:center;"><svg
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg></div>Sustainable &amp; Ethical Sourcing Practices
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-<section id="products">
-    <div class="products-top reveal">
-      <div><span class="sec-tag">Our Products</span>
-        <h2 class="sec-h2">Our Core <em>Products</em></h2>
-      </div>
-      <div class="filter-row">
-        <button class="filter-btn active" onclick="filterP(this,'all')">All</button>
-        <button class="filter-btn" onclick="filterP(this,'polyester')">Polyester</button>
-        <button class="filter-btn" onclick="filterP(this,'nylon')">Nylon</button>
-        <button class="filter-btn" onclick="filterP(this,'specialty')">Specialty</button>
-      </div>
-    </div>
-    <div class="pgrid" id="pgrid">
-      <div class="pcard reveal" data-cat="polyester"><img class="pcard-img" src="images/polyester_poy.png" alt="POY" />
-        <div class="pcard-body">
-          <div class="pcard-type">Polyester · POY</div>
-          <div class="pcard-name">Polyester Partially Oriented Yarn</div>
-          <div class="pcard-desc">Versatile raw material for texturizing, suitable for DTY production. Available in Semi Dull and Bright lusters.</div>
-          <div class="specs">
-            <div class="spec">
-              <div class="spec-l">Denier</div>
-              <div class="spec-v">75D – 600D</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Filament</div>
-              <div class="spec-v">36F – 288F</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Luster</div>
-              <div class="spec-v">Semi Dull, Full Dull, Bright</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Intermingle</div>
-              <div class="spec-v">NIM, LIM, HIM</div>
-            </div>
-          </div>
-          <div class="moq-row"><span class="moq">MOQ: 5 Tons</span><span class="moq">Palletized, Cartons</span></div>
-          <button class="pcard-btn" onclick="goContact()">Request Quote →</button>
-        </div>
-      </div>
-      <div class="pcard reveal" data-cat="polyester" style="transition-delay:.08s"><img class="pcard-img"
-          src="images/polyester_fdy.png" alt="FDY" />
-        <div class="pcard-body">
-          <div class="pcard-type">Polyester · FDY</div>
-          <div class="pcard-name">Polyester Fully Drawn Yarn</div>
-          <div class="pcard-desc">Ready-to-use yarn for weaving and knitting. Excellent strength and uniformity. Available in Semi Dull, Full Dull, and Bright lusters.</div>
-          <div class="specs">
-            <div class="spec">
-              <div class="spec-l">Denier</div>
-              <div class="spec-v">50D – 300D</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Filament</div>
-              <div class="spec-v">24F – 144F</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Luster</div>
-              <div class="spec-v">Semi Dull, Full Dull, Bright</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Type</div>
-              <div class="spec-v">Flat, Dope Dyed</div>
-            </div>
-          </div>
-          <div class="moq-row"><span class="moq">MOQ: 5 Tons</span><span class="moq">Palletized, Cartons</span></div>
-          <button class="pcard-btn" onclick="goContact()">Request Quote →</button>
-        </div>
-      </div>
-      <div class="pcard reveal" data-cat="polyester" style="transition-delay:.16s"><img class="pcard-img"
-          src="images/polyester_dty.png" alt="DTY" />
-        <div class="pcard-body">
-          <div class="pcard-type">Polyester · DTY</div>
-          <div class="pcard-name">Polyester Drawn Textured Yarn</div>
-          <div class="pcard-desc">Texturized yarn with high elasticity and soft feel. Ideal for apparel and home textiles. Available in Semi Dull, Full Dull, and Bright lusters.</div>
-          <div class="specs">
-            <div class="spec">
-              <div class="spec-l">Denier</div>
-              <div class="spec-v">75D – 300D</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Filament</div>
-              <div class="spec-v">36F – 288F</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Luster</div>
-              <div class="spec-v">Semi Dull, Full Dull, Bright</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Set</div>
-              <div class="spec-v">NIM, HIM, Set</div>
-            </div>
-          </div>
-          <div class="moq-row"><span class="moq">MOQ: 5 Tons</span><span class="moq">Palletized, Cartons</span></div>
-          <button class="pcard-btn" onclick="goContact()">Request Quote →</button>
-        </div>
-      </div>
-      <div class="pcard reveal" data-cat="specialty" style="transition-delay:.24s"><img class="pcard-img"
-          src="images/fake_cotton_yarn.png" alt="Fake Cotton" />
-        <div class="pcard-body">
-          <div class="pcard-type">Specialty · Fake Cotton</div>
-          <div class="pcard-name">Fake Cotton Yarn</div>
-          <div class="pcard-desc">Premium texturized polyester yarn with a soft, natural hand-feel. Superior durability and easy-care, ideal for elite sportswear and fashion. Available in Semi Dull and Full Dull lusters.</div>
-          <div class="specs">
-            <div class="spec">
-              <div class="spec-l">Denier</div>
-              <div class="spec-v">75D – 150D</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Filament</div>
-              <div class="spec-v">72F – 144F</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Handfeel</div>
-              <div class="spec-v">Cotton-like</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Application</div>
-              <div class="spec-v">Sportswear, Casual</div>
-            </div>
-          </div>
-          <div class="moq-row"><span class="moq">MOQ: 3 Tons</span><span class="moq">Cartons</span></div><button
-            class="pcard-btn" onclick="goContact()">Request Quote →</button>
-        </div>
-      </div>
-      <div class="pcard reveal" data-cat="specialty" style="transition-delay:.32s"><img class="pcard-img"
-          src="images/mother_yarn.png" alt="Mother Yarn" />
-        <div class="pcard-body">
-          <div class="pcard-type">Specialty · Mother Yarn</div>
-          <div class="pcard-name">Mother Yarn (POY Micro-Filament)</div>
-          <div class="pcard-desc">Micro-filament yarn for producing ultra-fine fibers. Used in high-end textiles for
-            softness and drape.</div>
-          <div class="specs">
-            <div class="spec">
-              <div class="spec-l">Denier</div>
-              <div class="spec-v">100D – 300D</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Filament</div>
-              <div class="spec-v">200F – 400F</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Section</div>
-              <div class="spec-v">Orange Peel</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Use</div>
-              <div class="spec-v">Split into Microfibers</div>
-            </div>
-          </div>
-          <div class="moq-row"><span class="moq">MOQ: 5 Tons</span><span class="moq">Palletized, Cartons</span></div>
-          <button class="pcard-btn" onclick="goContact()">Request Quote →</button>
-        </div>
-      </div>
-      <div class="pcard reveal" data-cat="nylon" style="transition-delay:.4s"><img class="pcard-img"
-          src="images/nylon_dty.png" alt="Nylon DTY" />
-        <div class="pcard-body">
-          <div class="pcard-type">Nylon · DTY</div>
-          <div class="pcard-name">Nylon Drawn Textured Yarn</div>
-          <div class="pcard-desc">Strong and resilient yarn offering excellent stretch and recovery for activewear and hosiery. Available in Semi Dull and Bright lusters.</div>
-          <div class="specs">
-            <div class="spec">
-              <div class="spec-l">Denier</div>
-              <div class="spec-v">40D – 140D</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Filament</div>
-              <div class="spec-v">18F – 96F</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Luster</div>
-              <div class="spec-v">Semi Dull, Full Dull, Bright</div>
-            </div>
-            <div class="spec">
-              <div class="spec-l">Type</div>
-              <div class="spec-v">HIM, NIM</div>
-            </div>
-          </div>
-          <div class="moq-row"><span class="moq">MOQ: 3 Tons</span><span class="moq">Cartons</span></div><button
-            class="pcard-btn" onclick="goContact()">Request Quote →</button>
-        </div>
-      </div>
-    </div>
-    
-  <div class="matrix-wrap reveal" style="margin-top: 60px;">
-    <div class="matrix-header" style="text-align: center; margin-bottom: 40px;">
-      <span class="sec-tag">Technical Specifications</span>
-      <h2 class="sec-h2">Yarn Luster &amp; <em>Availability Matrix</em></h2>
-      <p class="sec-p">A quick reference guide for luster availability across our core product range.</p>
-    </div>
-    <div style="overflow-x: auto; background: #fff; border-radius: 12px; box-shadow: var(--shadow); border: 1px solid #eee;">
-      <table style="width: 100%; border-collapse: collapse; min-width: 600px; font-family: 'Plus Jakarta Sans', sans-serif;">
-        <thead>
-          <tr style="background: var(--bg-section); text-align: left;">
-            <th style="padding: 20px; border-bottom: 2px solid #eee; color: var(--black); font-weight: 700;">Yarn Type</th>
-            <th style="padding: 20px; border-bottom: 2px solid #eee; color: var(--black); font-weight: 700;">Semi Dull</th>
-            <th style="padding: 20px; border-bottom: 2px solid #eee; color: var(--black); font-weight: 700;">Full Dull</th>
-            <th style="padding: 20px; border-bottom: 2px solid #eee; color: var(--black); font-weight: 700;">Bright</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom: 1px solid #eee;">
-            <td style="padding: 18px 20px; font-weight: 600; color: var(--black);">POY (Mother Yarn)</td>
-            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
-            <td style="padding: 18px 20px; color: var(--gray); font-size: 13px;">❌ (generally not made)</td>
-            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #eee;">
-            <td style="padding: 18px 20px; font-weight: 600; color: var(--black);">FDY</td>
-            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
-            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
-            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #eee;">
-            <td style="padding: 18px 20px; font-weight: 600; color: var(--black);">DTY</td>
-            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
-            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
-            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
-          </tr>
-          <tr>
-            <td style="padding: 18px 20px; font-weight: 600; color: var(--black);">Fake Cotton (DTY type)</td>
-            <td style="padding: 18px 20px; color: #22C55E;">✅ <span style="font-size: 12px; color: var(--gray);">(most common)</span></td>
-            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
-            <td style="padding: 18px 20px; color: var(--gray); font-size: 13px;">❌ (rare)</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-    <div class="bulk-banner reveal">
-      <div>
-        <h3>Looking for Large Volume Orders?</h3>
-        <p>Surat Sales specializes in global sourcing and reliable supply of yarn for industrial-scale demands. Partner
-          with us for competitive pricing and consistent quality.</p>
-      </div><a href="contact.html" class="btn-dark">Contact Us for Bulk Orders →</a>
-    </div>
-  </section>
-<section id="sourcing">
+  <section style="padding-top: 120px; padding-bottom: 80px; background: var(--bg-section); min-height: 80vh;">
     <div class="container">
-      <div class="reveal"><span class="sec-tag">Global Sourcing</span>
-        <h2 class="sec-h2">Our Global <em>Sourcing Route</em></h2>
-        <p class="sec-p">Our robust supply chain ensures efficient and reliable delivery of yarn from our global
-          partners directly to your doorstep across India.</p>
+      <div style="text-align: center; margin-bottom: 60px;">
+        <span class="sec-tag">Logistics Tools</span>
+        <h1 class="sec-h2" style="font-size: 42px;">Vessel &amp; Container <br><em>Tracking</em></h1>
+        <p class="sec-p" style="margin: 16px auto 0;">Easily track your cargo status in real-time. Please select your shipping line below to access their official tracking portal.</p>
       </div>
-      <div class="route-card reveal">
-        <div class="route-row">
-          <div class="rnode">
-            <div class="ricon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z" />
-                <path d="M17 18h1" />
-                <path d="M12 18h1" />
-                <path d="M7 18h1" />
-              </svg></div>
-            <div class="rcity">China</div>
-            <div class="rsub">Manufacturing Hub</div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto;">
+        
+        <a href="https://ct.shipmentlink.com/servlet/TDB1_CargoTracking.do" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 20px; background: #fff; padding: 24px 30px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--t);">
+          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3-9L9 3l-3 9H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><line x1="6" y1="16" x2="6.01" y2="16"/><line x1="10" y1="16" x2="10.01" y2="16"/></svg></div>
+          <div>
+            <h3 style="font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px;">Evergreen</h3>
+            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment &rarr;</span>
           </div>
-          <div class="rarrow"><span style="display:inline-flex;width:18px;height:18px;color:var(--yellow-dark);"><svg
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path
-                  d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-2-5.5-.5L10 5 1.8 6.2a1 1 0 0 0-.6 1.7l2.3 2.3a1 1 0 0 0 1.1.2l2-1 1.1 2.9-2 2-1-.4a1 1 0 0 0-1.3 1.3l.4 1-2 2a1 1 0 0 0 .2 1.5l2.2 1.3a1 1 0 0 0 1.4-.4l1-2" />
-              </svg></span><small>Air Freight</small></div>
-          <div class="rnode">
-            <div class="ricon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path
-                  d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1 .6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
-                <path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76" />
-                <path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6" />
-                <path d="M12 10v4" />
-                <path d="M12 3v4" />
-              </svg></div>
-            <div class="rcity">Ocean Transit</div>
-            <div class="rsub">Container Shipping</div>
+        </a>
+
+        <a href="https://www.goldstarline.com/tools/track_shipment" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 20px; background: #fff; padding: 24px 30px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--t);">
+          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M4 12v-2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2"/></svg></div>
+          <div>
+            <h3 style="font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px;">Goldstar</h3>
+            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment &rarr;</span>
           </div>
-          <div class="rarrow"><span style="display:inline-flex;width:18px;height:18px;color:var(--yellow-dark);"><svg
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round">
-                <circle cx="12" cy="5" r="3" />
-                <line x1="12" y1="22" x2="12" y2="8" />
-                <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
-              </svg></span><small>Logistics</small></div>
-          <div class="rnode">
-            <div class="ricon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg></div>
-            <div class="rcity">Surat, India</div>
-            <div class="rsub">Gujarat HQ</div>
+        </a>
+
+        <a href="https://www.ekmtc.com/index.html#/cargo-tracking" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 20px; background: #fff; padding: 24px 30px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--t);">
+          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></div>
+          <div>
+            <h3 style="font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px;">KMTC</h3>
+            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment &rarr;</span>
           </div>
-          <div class="rarrow"><span style="display:inline-flex;width:18px;height:18px;color:var(--yellow-dark);"><svg
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11v14H5z" />
-                <rect x="13" y="8" width="8" height="11" rx="1" />
-                <circle cx="7.5" cy="17" r="1.5" />
-                <circle cx="17.5" cy="17" r="1.5" />
-                <path d="M13 10h4.5l1.5 3" />
-              </svg></span><small>Distribution</small></div>
-          <div class="rnode">
-            <div class="ricon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <circle cx="12" cy="12" r="6" />
-                <circle cx="12" cy="12" r="2" />
-              </svg></div>
-            <div class="rcity">Your Mill</div>
-            <div class="rsub">Pan-India</div>
+        </a>
+
+        <a href="https://www.emiratesline.com/track/" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 20px; background: #fff; padding: 24px 30px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--t);">
+          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg></div>
+          <div>
+            <h3 style="font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px;">Emirates</h3>
+            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment &rarr;</span>
           </div>
-        </div>
-      </div>
-      <div class="partners-wrap reveal">
-        <div class="partners-lbl">Our Valued Sourcing Partners</div>
-        <div class="partners">
-          <div class="partner"><img src="https://logo.clearbit.com/zjtkgf.com" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain=zjtkgf.com&sz=128';" alt="Tongkun Group">Tongkun Group</div>
-          <div class="partner"><img src="https://logo.clearbit.com/hengyishihua.com" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain=hengyishihua.com&sz=128';" alt="Hengyi Petrochemical">Hengyi Petrochemical</div>
-          <div class="partner"><img src="https://logo.clearbit.com/hengli.com" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain=hengli.com&sz=128';" alt="Hengli Group">Hengli Group</div>
-          <div class="partner"><img src="https://logo.clearbit.com/xinfengming.com" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain=xinfengming.com&sz=128';" alt="Xinfengming Group">Xinfengming Group</div>
-          <div class="partner"><img src="http://www.wkai.cc/images/logo-wk.png" alt="Wankai">Wankai</div>
-          <div class="partner"><img src="https://logo.clearbit.com/baihong.com" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain=baihong.com&sz=128';" alt="Billion">Billion</div>
-          <div class="partner"><img src="https://logo.clearbit.com/hscc.com" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain=hscc.com&sz=128';" alt="Highsun">Highsun</div>
-          <div class="partner"><img src="https://logo.clearbit.com/whtex.cn" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain=whtex.cn&sz=128';" alt="Wanghong">Wanghong</div>
-          <div class="partner"><img src="https://logo.clearbit.com/fjsjlgx.com" onerror="this.onerror=null;this.src='https://www.google.com/s2/favicons?domain=fjsjlgx.com&sz=128';" alt="Jinlun shanli">Jinlun shanli</div>
-        </div>
+        </a>
+
+        <a href="https://www.msc.com/en/track-a-shipment" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 20px; background: #fff; padding: 24px 30px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--t);">
+          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+          <div>
+            <h3 style="font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px;">MSC</h3>
+            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment &rarr;</span>
+          </div>
+        </a>
+
+        <a href="https://www.cma-cgm.com/ebusiness/tracking" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 20px; background: #fff; padding: 24px 30px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--t);">
+          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg></div>
+          <div>
+            <h3 style="font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px;">CMA CGM</h3>
+            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment &rarr;</span>
+          </div>
+        </a>
+
       </div>
     </div>
   </section>
+
+  <style>
+    /* Add specific hover state for cards inside tracking */
+    a[target="_blank"]:hover {
+      transform: translateY(-4px) !important;
+      border-color: var(--yellow) !important;
+      box-shadow: 0 12px 24px rgba(245,197,24,0.15) !important;
+    }
+  </style>
 <footer>
     <div class="footer-grid">
       <div>
@@ -3737,6 +3077,4 @@
   </script>
 </body>
 
-</html>
-</body>
 </html>
