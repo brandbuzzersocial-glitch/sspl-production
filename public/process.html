@@ -2446,7 +2446,7 @@
     <a href="about.html" onclick="closeMenu()">About</a>
     <a href="process.html" onclick="closeMenu()">Process</a>
     <a href="contact.html" onclick="closeMenu()">Contact</a>
-    <a href="about.html" onclick="toggleMenu()">About Us</a>
+    <a href="about.html" onclick="toggleMenu()">About</a>
     </div>
 
   <!-- NAV -->
@@ -2461,7 +2461,7 @@
       <li><a href="about.html">About</a></li>
       <li><a href="process.html">Process</a></li>
       <li><a href="contact.html">Contact</a></li>
-      <li><a href="about.html">About Us</a></li>
+      <li><a href="about.html">About</a></li>
         <li><a href="tracking.html">Tracking</a></li>
       </ul>
     <a href="contact.html" class="btn-nav">Contact Us</a>
@@ -2734,7 +2734,7 @@
       <div class="fc">
         <h5>Company</h5>
         <ul>
-          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="process.html">Our Process</a></li>
           <li><a href="#sourcing">Global Sourcing</a></li>
           <li><a href="timeline.html">Our Journey</a></li>
@@ -3025,25 +3025,45 @@
         group.add(s1, s2);
         stepScenes[step] = { renderer, scene, camera, group, t: 0, type: 'box', box };
 
-      } else if (step === 6) { // Ship — simplified with torus hull
-        const hullGeo = new THREE.CylinderGeometry(0.4, 0.6, 2.2, 8, 1, false, 0, Math.PI);
+            } else if (step === 6) { // Ship — refined with containers and bridge
+        // Hull
+        const hullGeo = new THREE.CylinderGeometry(0.45, 0.65, 2.5, 12, 1, false, 0, Math.PI);
         const hullMat = new THREE.MeshPhongMaterial({ color: 0x2244AA, shininess: 80, side: THREE.DoubleSide });
         const hull = new THREE.Mesh(hullGeo, hullMat);
         hull.rotation.z = Math.PI / 2;
         group.add(hull);
-        // Container boxes on top
-        for (let i = 0; i < 6; i++) {
-          const cGeo = new THREE.BoxGeometry(0.35, 0.25, 0.3);
-          const colors = [0xE74C3C, 0x3498DB, 0xF5C518, 0x2ECC71, 0xE67E22, 0x9B59B6];
-          const cMesh = new THREE.Mesh(cGeo, new THREE.MeshPhongMaterial({ color: colors[i], shininess: 60 }));
-          cMesh.position.set(-0.5 + i * 0.22, 0.45, 0);
-          group.add(cMesh);
+        
+        // Ship Bridge / Cabin
+        const bridgeGeo = new THREE.BoxGeometry(0.4, 0.5, 0.6);
+        const bridge = new THREE.Mesh(bridgeGeo, new THREE.MeshPhongMaterial({ color: 0xEEEEEE, shininess: 100 }));
+        bridge.position.set(0.85, 0.5, 0);
+        group.add(bridge);
+        const windows = new THREE.Mesh(new THREE.BoxGeometry(0.41, 0.15, 0.5), new THREE.MeshPhongMaterial({ color: 0x333333 }));
+        windows.position.set(0.85, 0.6, 0);
+        group.add(windows);
+
+        // More containers in a stacked arrangement
+        const colors = [0xFF5733, 0xFFC300, 0x2ECC71, 0x3498DB, 0x9B59B6, 0xE74C3C, 0x1ABC9C, 0xF39C12];
+        for (let row = 0; row < 2; row++) {
+          for (let i = 0; i < 6; i++) {
+            const stackH = (i % 2 === 0) ? 2 : 1;
+            for (let h = 0; h < stackH; h++) {
+              const cGeo = new THREE.BoxGeometry(0.24, 0.22, 0.28);
+              const cMesh = new THREE.Mesh(cGeo, new THREE.MeshPhongMaterial({ 
+                color: colors[(i + row + h) % colors.length], 
+                shininess: 60 
+              }));
+              cMesh.position.set(-0.9 + i * 0.26, 0.44 + h * 0.23, -0.15 + row * 0.3);
+              group.add(cMesh);
+            }
+          }
         }
+
         // Water plane
-        const wGeo = new THREE.PlaneGeometry(5, 5, 20, 20);
-        const wMat = new THREE.MeshPhongMaterial({ color: 0x1a6699, transparent: true, opacity: 0.6, shininess: 200 });
+        const wGeo = new THREE.PlaneGeometry(6, 6, 25, 25);
+        const wMat = new THREE.MeshPhongMaterial({ color: 0x1a6699, transparent: true, opacity: 0.7, shininess: 250 });
         const water = new THREE.Mesh(wGeo, wMat);
-        water.rotation.x = -Math.PI / 2; water.position.y = -0.5;
+        water.rotation.x = -Math.PI / 2; water.position.y = -0.52;
         scene.add(water);
         stepScenes[step] = { renderer, scene, camera, group, t: 0, type: 'ship', hull, water };
 
