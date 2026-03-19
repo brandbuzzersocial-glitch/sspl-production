@@ -58,7 +58,7 @@ sectionsToExtract.forEach(id => {
   }
 });
 
-// 2. Combine about and about us page
+// 2. Combine About and About page (labels)
 const oldAboutHTML = extractSection('about');
 const aboutFilePath = 'c:/sspl website/public/about.html';
 if (fs.existsSync(aboutFilePath) && oldAboutHTML) {
@@ -72,7 +72,7 @@ if (fs.existsSync(aboutFilePath) && oldAboutHTML) {
   if (placeholderRegex.test(aboutPage)) {
     aboutPage = aboutPage.replace(placeholderRegex, `<!-- ORIGINAL ABOUT SECTION -->\n${oldAboutHTML}\n\n  `);
     fs.writeFileSync(aboutFilePath, aboutPage, 'utf8');
-    console.log('Combined about & about us page!');
+    console.log('Combined About & About page!');
   } else {
     console.log('Could not find placeholder in about.html to merge original about section.');
   }

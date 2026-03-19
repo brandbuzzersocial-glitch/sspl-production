@@ -69,7 +69,7 @@ function App() {
             </div>
           </section>
 
-          {/* About Us Section */}
+          {/* About Section */}
           <section id="about" className="about-section section-padding bg-dark">
             <div className="container about-grid">
               <div className="about-img">

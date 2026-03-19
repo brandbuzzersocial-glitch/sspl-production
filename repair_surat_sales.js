@@ -27,7 +27,7 @@ const nav = `
     <button class="mobile-close" onclick="closeMenu()">×</button>
     <a href="#hero" onclick="closeMenu()">Home</a>
     <a href="#products" onclick="closeMenu()">Products</a>
-    <a href="about.html" onclick="closeMenu()">About Us</a>
+    <a href="about.html" onclick="closeMenu()">About</a>
     <a href="#process" onclick="closeMenu()">Process</a>
     <a href="contact.html" onclick="closeMenu()">Contact</a>
     <a href="tracking.html" onclick="closeMenu()">Tracking</a>
@@ -42,7 +42,7 @@ const nav = `
     <ul class="nav-links">
       <li><a href="#hero">Home</a></li>
       <li><a href="#products">Products</a></li>
-      <li><a href="about.html">About Us</a></li>
+      <li><a href="about.html">About</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><a href="tracking.html">Tracking</a></li>
