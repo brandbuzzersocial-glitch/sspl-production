@@ -2417,77 +2417,152 @@
       }
     }
   
-    /* Improved Hero Image */
-    .hero-img { filter: brightness(1) contrast(1.1) saturate(1.2) !important; }
-    .hero-img-fade { background: linear-gradient(to right, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 50%) !important; }
-    
-    /* Footer Styling Improvements */
+     Footer Styling Improvements */
     footer { background: #0A0A0A !important; color: #f5f5f5 !important; border-top: none !important; }
     footer h5 { color: #F5C518 !important; }
     footer ul li a { color: #ccc !important; }
     footer ul li a:hover { color: #fff !important; }
-    /* Form input alignment */
-    .contact-form .fg { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; }
-    .contact-form textarea { min-height: 120px; }
-    .form-row { display: flex; gap: 16px; flex-wrap: wrap; }
-    .form-row > * { flex: 1; min-width: 250px; }
-    
-    /* Process Flow Color Tweaks */
+     Process Flow Color Tweaks */
     .psb-fill { background: linear-gradient(90deg, #F5C518, #FF512F) !important; }
     .journey-line-fill { background: linear-gradient(to bottom, #F5C518, #FF512F) !important; }
     .jstep-node.active .jstep-icon { background: #F5C518 !important; color: #111 !important; box-shadow: 0 0 15px rgba(245,197,24,0.5) !important; }
     
-    /* Global Adjustments */
-    .fb-desc, .cd-v { color: #d0d0d0 !important; }
+    
+  /* Premium Homepage Enhancements */
+  #hero { position: relative; background: radial-gradient(circle at 80% 20%, rgba(245,197,24,0.05) 0%, transparent 40%), radial-gradient(circle at 20% 80%, rgba(245,197,24,0.05) 0%, transparent 40%); }
+  #hero::before {
+    content: ''; position: absolute; inset: 0; background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="2" cy="2" r="1.5" fill="rgba(0,0,0,0.02)"/%3E%3C/svg%3E');
+    opacity: 0.6; z-index: -1; pointer-events: none;
+  }
+  .hero-card { transform-style: preserve-3d; animation: floatPremium 5s ease-in-out infinite; border-left: 4px solid #D4A800; }
+  @keyframes floatPremium { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-12px) scale(1.02); } }
+
   
-    /* Improved Hero Image */
-    .hero-img { filter: brightness(1) contrast(1.1) saturate(1.2) !important; }
-    .hero-img-fade { background: linear-gradient(to right, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 50%) !important; }
-    
-    /* Footer Styling Improvements */
-    footer { background: #0A0A0A !important; color: #f5f5f5 !important; border-top: none !important; }
-    footer h5 { color: #F5C518 !important; }
-    footer ul li a { color: #ccc !important; }
-    footer ul li a:hover { color: #fff !important; }
-    /* Form input alignment */
-    .contact-form .fg { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; }
-    .contact-form textarea { min-height: 120px; }
-    .form-row { display: flex; gap: 16px; flex-wrap: wrap; }
-    .form-row > * { flex: 1; min-width: 250px; }
-    
-    /* Process Flow Color Tweaks */
-    .psb-fill { background: linear-gradient(90deg, #F5C518, #FF512F) !important; }
-    .journey-line-fill { background: linear-gradient(to bottom, #F5C518, #FF512F) !important; }
-    .jstep-node.active .jstep-icon { background: #F5C518 !important; color: #111 !important; box-shadow: 0 0 15px rgba(245,197,24,0.5) !important; }
-    
-    /* Global Adjustments */
-    .fb-desc, .cd-v { color: #d0d0d0 !important; }
+  /* Process Flow Premium Gradients - Vibrant Sunset */
+  .psb-fill { background: linear-gradient(90deg, #F5C518, #FF512F, #DD2476) !important; box-shadow: 0 0 15px rgba(255,81,47,0.5) !important; }
+  .journey-line-fill { background: linear-gradient(to bottom, #F5C518, #FF512F, #DD2476) !important; box-shadow: 0 0 15px rgba(255,81,47,0.5) !important; }
+  .jstep-node.active { background: linear-gradient(135deg, #F5C518, #FF512F, #DD2476) !important; color: #fff !important; transform: scale(1.15) !important; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; box-shadow: 0 4px 20px rgba(221,36,118,0.6) !important; border: 2px solid rgba(255,255,255,0.2) !important; }
+  .jstep-node.active .jstep-icon { background: transparent !important; color: #fff !important; }
+
+  /* 3D INTERACTIVE BUTTONS */
+  .btn-primary, .btn-nav, .pcard-btn, button[type="submit"] {
+    background: linear-gradient(180deg, #FAD961 0%, #F5C518 100%) !important;
+    color: #1a1a1a !important;
+    border: none !important;
+    box-shadow: 0 4px 0 #C49800, 0 8px 15px rgba(245, 197, 24, 0.3) !important;
+    border-radius: 8px !important;
+    transition: all 0.15s ease-in-out !important;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.4);
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    position: relative;
+    top: 0;
+  }
   
-    /* Improved Hero Image */
-    .hero-img { filter: brightness(1) contrast(1.1) saturate(1.2) !important; }
-    .hero-img-fade { background: linear-gradient(to right, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 50%) !important; }
+  .btn-primary:hover, .btn-nav:hover, .pcard-btn:hover, button[type="submit"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 0 #C49800, 0 12px 20px rgba(245, 197, 24, 0.4) !important;
+    background: linear-gradient(180deg, #FBE283 0%, #F5C518 100%) !important;
+  }
+  
+  .btn-primary:active, .btn-nav:active, .pcard-btn:active, button[type="submit"]:active {
+    transform: translateY(4px) !important;
+    box-shadow: 0 0 0 #C49800, 0 2px 5px rgba(245, 197, 24, 0.2) !important;
+  }
+  
+  .btn-outline {
+    position: relative;
+    background-color: #111 !important;
+    color: #F5C518 !important;
+    border: 2px solid #FAD961 !important;
+    box-shadow: 0 4px 0 #C49800, 0 8px 15px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.15s ease-in-out !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    top: 0;
+  }
+  
+  .btn-outline:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 0 #C49800, 0 12px 20px rgba(0, 0, 0, 0.4) !important;
+    background-color: #1a1a1a !important;
+    color: #FBE283 !important;
+    border-color: #FBE283 !important;
+  }
+  
+  .btn-outline:active {
+    transform: translateY(4px) !important;
+    box-shadow: 0 0 0 #C49800, 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  /* Prevent outline shifting links strangely */
+  a.btn-primary, a.btn-outline, a.btn-nav, a.pcard-btn {
+      display: inline-block;
+  }
+</style>
+
+  <style id="tickerCSS">
+    .top-ticker {
+      background: #F5C518;
+      color: #111;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 99999;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .ticker-wrap {
+      width: 100%;
+      overflow: hidden;
+    }
+    .ticker-content {
+      display: inline-block;
+      white-space: nowrap;
+      animation: bannerTicker 25s linear infinite;
+    }
+    .ticker-content span {
+      display: inline-block;
+      padding-right: 50px;
+    }
+    @keyframes bannerTicker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
     
-    /* Footer Styling Improvements */
-    footer { background: #0A0A0A !important; color: #f5f5f5 !important; border-top: none !important; }
-    footer h5 { color: #F5C518 !important; }
-    footer ul li a { color: #ccc !important; }
-    footer ul li a:hover { color: #fff !important; }
-    /* Form input alignment */
-    .contact-form .fg { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; }
-    .contact-form textarea { min-height: 120px; }
-    .form-row { display: flex; gap: 16px; flex-wrap: wrap; }
-    .form-row > * { flex: 1; min-width: 250px; }
-    
-    /* Process Flow Color Tweaks */
-    .psb-fill { background: linear-gradient(90deg, #F5C518, #FF512F) !important; }
-    .journey-line-fill { background: linear-gradient(to bottom, #F5C518, #FF512F) !important; }
-    .jstep-node.active .jstep-icon { background: #F5C518 !important; color: #111 !important; box-shadow: 0 0 15px rgba(245,197,24,0.5) !important; }
-    
-    /* Global Adjustments */
-    .fb-desc, .cd-v { color: #d0d0d0 !important; }
+    /* Adjust fixed elements for the 30px ticker */
+    nav#navbar { top: 30px !important; }
+    #hero { padding-top: 96px !important; }
+    .process-sticky-bar { top: 96px !important; }
+    .mobile-menu { top: 30px !important; }
   </style>
 </head>
 <body>
+  <div class="top-ticker" id="topTicker">
+    <div class="ticker-wrap">
+      <div class="ticker-content">
+        <span>Leading Yarn Importers &amp; Suppliers</span>
+        <span>100% Trusted &amp; Reliable</span>
+        <span>Leading Yarn Importers &amp; Suppliers</span>
+        <span>100% Trusted &amp; Reliable</span>
+        <span>Leading Yarn Importers &amp; Suppliers</span>
+        <span>100% Trusted &amp; Reliable</span>
+        <span>Leading Yarn Importers &amp; Suppliers</span>
+        <span>100% Trusted &amp; Reliable</span>
+        <span>Leading Yarn Importers &amp; Suppliers</span>
+        <span>100% Trusted &amp; Reliable</span>
+      </div>
+    </div>
+  </div>
+
 
   <!-- ─── 3D INTRO ─── -->
   <div id="intro">
@@ -2505,7 +2580,7 @@
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
     <button class="mobile-close" onclick="closeMenu()">×</button>
-    <a href="#hero" onclick="closeMenu()">Home</a>
+    <a href="surat-sales.html" onclick="closeMenu()">Home</a>
     <a href="#products" onclick="closeMenu()">Products</a>
     <a href="about.html" onclick="closeMenu()">About</a>
     <a href="process.html" onclick="closeMenu()">Process</a>
@@ -2520,7 +2595,7 @@
       <div class="nav-logo-name">Surat Sales<span>Private Limited</span></div>
     </a>
     <ul class="nav-links">
-      <li><a href="#hero">Home</a></li>
+      <li><a href="surat-sales.html">Home</a></li>
       <li><a href="#products">Products</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="process.html">Process</a></li>
@@ -2805,18 +2880,22 @@
       <div class="fc">
         <h5>Contact</h5>
         <ul>
-          <li><div style="display:flex; gap:10px; align-items:flex-start;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:3px; color:var(--yellow); flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> <span style="flex:1;">128, 4th Floor, Ring Road, Reshamwala Market, Surat, Gujarat – 395002</span></div></li>
-          <li><div style="display:flex; gap:10px; align-items:flex-start;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:3px; color:var(--yellow); flex-shrink:0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> <span><a href="tel:+919374713687">93747 13687</a></span></div></li>
-          <li><div style="display:flex; gap:10px; align-items:flex-start;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:3px; color:var(--yellow); flex-shrink:0;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> <span><a href="mailto:imports.suratsales@gmail.com">imports.suratsales@gmail.com</a></span></div></li>
-          <li><div style="display:flex; gap:10px; align-items:flex-start;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:3px; color:var(--yellow); flex-shrink:0;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <span>Mon–Sat: 10:00 AM – 8:00 PM | Sunday: Closed</span></div></li>
+          <li><div style="display:flex; gap:10px; align-items:flex-start;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px; color:var(--yellow); flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> <span style="flex:1;">128, 4th Floor, Ring Road, Reshamwala Market, Surat, Gujarat – 395002</span></div></li>
+          <li><div style="display:flex; gap:10px; align-items:flex-start;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px; color:var(--yellow); flex-shrink:0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> <span><a href="tel:+919374713687">93747 13687</a></span></div></li>
+          <li><div style="display:flex; gap:10px; align-items:flex-start;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px; color:var(--yellow); flex-shrink:0;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> <span><a href="mailto:imports.suratsales@gmail.com">imports.suratsales@gmail.com</a></span></div></li>
+          <li><div style="display:flex; gap:10px; align-items:flex-start;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px; color:var(--yellow); flex-shrink:0;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <span>Mon–Sat: 10:00 AM – 8:00 PM | Sunday: Closed</span></div></li>
           
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="footer-bottom" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
       <p>© 2026 Surat Sales Private Limited. All rights reserved.</p>
       
-    </div>
+    
+        <p class="brand-credits" style="font-size: 11px; color: #666; margin-top: 0;">
+          Designed &amp; Developed by <a href="https://brandbuzzersocial.com" target="_blank" style="color: #F5C518; text-decoration: none; font-weight: 700; letter-spacing: 1px;">BRAND BUZZER</a>
+        </p>
+      </div>
   </footer>
 
   <!-- WHATSAPP -->
