@@ -2418,10 +2418,16 @@
     }
   
      Footer Styling Improvements */
-    footer { background: #0A0A0A !important; color: #f5f5f5 !important; border-top: none !important; }
+    footer { background: #FFFFFF !important; color: #1a1a1a !important; border-top: 1px solid #E8E8E8 !important; margin-top: 120px !important; padding-top: 80px !important; }
     footer h5 { color: #F5C518 !important; }
-    footer ul li a { color: #ccc !important; }
-    footer ul li a:hover { color: #fff !important; }
+    footer ul li a { color: #444 !important; }
+    footer ul li span { color: #666 !important; }
+    footer ul li a:hover { color: #000 !important; }
+    .fb-desc { color: #666 !important; }
+    .social { background: #f5f5f5 !important; color: #1a1a1a !important; border: 1px solid #eee !important; }
+    .fb-name { color: #1a1a1a !important; }
+    .fb-name span { color: #666 !important; }
+    .footer-bottom { border-top: 1px solid #eee !important; padding-top: 20px !important; color: #666 !important; }
      Process Flow Color Tweaks */
     .psb-fill { background: linear-gradient(90deg, #F5C518, #FF512F) !important; }
     .journey-line-fill { background: linear-gradient(to bottom, #F5C518, #FF512F) !important; }
@@ -2544,7 +2550,44 @@
     .process-sticky-bar { top: 96px !important; }
     .mobile-menu { top: 30px !important; }
   </style>
-</head>
+<style id="white-footer">
+  /* White Footer Override */
+  footer { 
+      background-color: #FFFFFF !important; 
+      color: #1a1a1a !important; 
+      border-top: 1px solid #E8E8E8 !important; 
+  }
+  footer * {
+      /* Reset any dark background overrides if there are any inline */
+  }
+  footer .fb-name { color: #1a1a1a !important; }
+  footer .fb-name span { color: #666 !important; }
+  footer .fb-desc { color: #666 !important; }
+  footer .social { 
+      background: #f5f5f5 !important; 
+      color: #1a1a1a !important; 
+      border: 1px solid #ddd !important; 
+  }
+  footer .social:hover {
+      background: #F5C518 !important;
+      color: #111 !important;
+      border-color: #F5C518 !important;
+  }
+  footer .fc h5 { color: #1a1a1a !important; font-weight: 800 !important; }
+  footer .fc ul li, footer .fc ul li a, footer .fc ul li span { color: #555 !important; }
+  footer .fc ul li a:hover { color: #F5C518 !important; }
+  footer .footer-bottom { 
+      border-top: 1px solid #eee !important; 
+      color: #666 !important; 
+  }
+  footer .footer-bottom p { color: #666 !important; }
+  footer .footer-gstin { color: #555 !important; font-weight: 600 !important; }
+  footer svg { color: #1a1a1a !important; }
+  
+  /* Make sure the main phone/email icons in the footer contact list are visible */
+  footer .fc ul li svg { color: #F5C518 !important; } /* Yellow icons */
+  footer .fb-logo svg { color: #F5C518 !important; }
+</style></head>
 
 <body>
   <div class="top-ticker" id="topTicker">
@@ -2565,17 +2608,6 @@
   </div>
 
 
-  <!-- ─── 3D INTRO ─── -->
-  <div id="intro">
-    <canvas id="intro-canvas-3d"></canvas>
-    <div class="intro-text-wrap">
-      <div class="intro-name">Surat Sales<span>Private Limited</span></div>
-      <div class="intro-tag">Reliable Yarn Import &amp; Supply Across India</div>
-      <div class="intro-progress">
-        <div class="intro-bar"></div>
-      </div>
-    </div>
-  </div>
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
@@ -2603,17 +2635,18 @@
       
         <li><a href="tracking.html">Tracking</a></li>
       </ul>
-    <a href="contact.html" class="btn-nav">Contact Us</a>
     <button class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></button>
   </nav>
 
-<section id="why">
-    <div class="why-grid">
-      <div class="reveal-l">
-        <span class="sec-tag">Why Choose Us</span>
-        <h2 class="sec-h2">Why Choose <em>Surat Sales</em></h2>
-        <p class="sec-p">We don't just supply yarn — we deliver confidence, consistency, and value at every step of your
-          supply chain.</p>
+  <!-- WHY HERO REFINED -->
+  <section style="position: relative; padding: 160px 0 100px; background: url('https://images.unsplash.com/photo-1510672981848-a1c4f1cb5ccf?q=80&amp;w=2072&amp;auto=format&amp;fit=crop') center/cover no-repeat; text-align: center; color: #fff;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0.4), rgba(0,0,0,0.85)); z-index: 1;"></div>
+    <div class="container" style="position: relative; z-index: 2;">
+      <span class="sec-tag" style="color: #F5C518; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Why Choose Us</span>
+      <h1 class="sec-h2" style="margin-bottom: 20px; color: #fff; text-shadow: 0 4px 10px rgba(0,0,0,0.5);">Why Choose <em>Surat Sales</em></h1>
+      <p class="sec-p" style="margin: 0 auto; color: #eee; max-width: 700px; font-size: 18px; text-shadow: 0 2px 5px rgba(0,0,0,0.3);">We don't just supply yarn — we deliver confidence, consistency, and value at every step of your supply chain.</p>
+    </div>
+  </section>
         <div class="why-feats">
           <div class="why-feat">
             <div class="why-icon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -2660,7 +2693,7 @@
             </div>
           </div>
         </div>
-      </div>
+      
       <div class="reveal-r">
         <div class="stat-cards">
           <div class="stat-card">
@@ -2683,7 +2716,7 @@
             <div class="sm">Countries Sourced</div>
           </div>
           
-          </div>
+          
           <div class="stat-card">
             <div class="big">7–10</div>
             <div class="sm">Day Lead Time</div>
@@ -2720,9 +2753,9 @@
         </div>
       
     
-  </section>
+  
 
-<footer>
+<footer style="">
     <div class="footer-grid">
       <div>
         <div class="fb-logo"><img src="images/sspl_logo.jpg" alt="SSPL Logo" style="height:44px; width:auto; border-radius:4px;">
@@ -2797,132 +2830,10 @@
     // ══════════════════════════════════════════
     //  3D INTRO — Three.js Yarn Spool
     // ══════════════════════════════════════════
-    (function initIntro3D() {
-      const intro = document.getElementById('intro');
-      if (sessionStorage.getItem('introPlayed')) {
-        if (intro) intro.style.display = 'none';
-        if (typeof startCounters === 'function') {
-           // Small delay to ensure other scripts are ready
-           setTimeout(startCounters, 100);
-        }
-        return;
-      }
-      
-      const canvas = document.getElementById('intro-canvas-3d');
-      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-      renderer.setSize(280, 280);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.setClearColor(0xffffff, 1);
-
-      const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0xffffff);
-      const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
-      camera.position.set(0, 0, 5);
-
-      // Lighting
-      const ambient = new THREE.AmbientLight(0xffffff, 0.6);
-      scene.add(ambient);
-      const dirLight = new THREE.DirectionalLight(0xF5C518, 1.2);
-      dirLight.position.set(3, 4, 5);
-      scene.add(dirLight);
-      const backLight = new THREE.DirectionalLight(0xffeebb, 0.4);
-      backLight.position.set(-3, -2, -3);
-      scene.add(backLight);
-      const pointLight = new THREE.PointLight(0xF5C518, 1.5, 20);
-      pointLight.position.set(0, 3, 3);
-      scene.add(pointLight);
-
-      // Spool group
-      const spoolGroup = new THREE.Group();
-      scene.add(spoolGroup);
-
-      // Materials
-      const matGold = new THREE.MeshPhongMaterial({ color: 0xF5C518, shininess: 120, specular: 0xffd700 });
-      const matDarkGold = new THREE.MeshPhongMaterial({ color: 0xD4A800, shininess: 80 });
-      const matYarn = new THREE.MeshPhongMaterial({ color: 0xF5C518, shininess: 30, opacity: 0.9, transparent: true });
-      const matCore = new THREE.MeshPhongMaterial({ color: 0x1A1A1A, shininess: 40 });
-
-      // Spool flanges (top and bottom discs)
-      const flangeGeo = new THREE.CylinderGeometry(1.1, 1.1, 0.18, 48);
-      const flange1 = new THREE.Mesh(flangeGeo, matGold);
-      const flange2 = new THREE.Mesh(flangeGeo, matGold);
-      flange1.position.y = 0.72;
-      flange2.position.y = -0.72;
-      spoolGroup.add(flange1, flange2);
-
-      // Core cylinder
-      const coreGeo = new THREE.CylinderGeometry(0.42, 0.42, 1.44, 36);
-      const core = new THREE.Mesh(coreGeo, matCore);
-      spoolGroup.add(core);
-
-      // Hole through middle
-      const holeGeo = new THREE.CylinderGeometry(0.18, 0.18, 1.8, 24);
-      const holeMat = new THREE.MeshPhongMaterial({ color: 0xffffff, shininess: 30 });
-      const hole = new THREE.Mesh(holeGeo, holeMat);
-      spoolGroup.add(hole);
-
-      // Yarn wound around core — toroidal rings
-      const yarnGroup = new THREE.Group();
-      spoolGroup.add(yarnGroup);
-      for (let i = 0; i < 18; i++) {
-        const y = -0.6 + (i / 17) * 1.2;
-        const r = 0.46 + Math.sin(i * 0.8) * 0.08;
-        const torusGeo = new THREE.TorusGeometry(r, 0.055, 10, 48);
-        const col = i % 3 === 0 ? 0xF5C518 : (i % 3 === 1 ? 0xFFDE59 : 0xD4A800);
-        const m = new THREE.MeshPhongMaterial({ color: col, shininess: 40 });
-        const torus = new THREE.Mesh(torusGeo, m);
-        torus.rotation.x = Math.PI / 2;
-        torus.position.y = y;
-        yarnGroup.add(torus);
-      }
-
-      // Floating yarn strand particles
-      const strandCount = 60;
-      const strandGeo = new THREE.BufferGeometry();
-      const strandPositions = new Float32Array(strandCount * 3);
-      for (let i = 0; i < strandCount; i++) {
-        const angle = (i / strandCount) * Math.PI * 2;
-        const r = 1.4 + Math.random() * 0.5;
-        strandPositions[i * 3] = Math.cos(angle) * r;
-        strandPositions[i * 3 + 1] = (Math.random() - 0.5) * 2;
-        strandPositions[i * 3 + 2] = Math.sin(angle) * r;
-      }
-      strandGeo.setAttribute('position', new THREE.BufferAttribute(strandPositions, 3));
-      const strandMat = new THREE.PointsMaterial({ color: 0xF5C518, size: 0.06, transparent: true, opacity: 0.7 });
-      const strands = new THREE.Points(strandGeo, strandMat);
-      scene.add(strands);
-
-      // Orbit ring
-      const orbitRingGeo = new THREE.TorusGeometry(1.7, 0.015, 8, 80);
-      const orbitRingMat = new THREE.MeshBasicMaterial({ color: 0xF5C518, transparent: true, opacity: 0.3 });
-      const orbitRing = new THREE.Mesh(orbitRingGeo, orbitRingMat);
-      orbitRing.rotation.x = Math.PI / 2;
-      scene.add(orbitRing);
-
-      let t = 0;
-      function animate() {
-        requestAnimationFrame(animate);
-        t += 0.02;
-        spoolGroup.rotation.y = t * 0.8;
-        spoolGroup.rotation.x = Math.sin(t * 0.3) * 0.15;
-        strands.rotation.y = t * 0.3;
-        orbitRing.rotation.z = t * 0.5;
-        pointLight.position.x = Math.cos(t) * 4;
-        pointLight.position.z = Math.sin(t) * 4;
-        renderer.render(scene, camera);
-      }
-      animate();
-
-      // Dismiss on complete
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-          const intro = document.getElementById('intro');
-          intro.style.transition = 'opacity .9s ease';
-          intro.style.opacity = '0';
-          setTimeout(() => { intro.style.display = 'none'; sessionStorage.setItem('introPlayed', 'true'); startCounters(); }, 950);
-        }, 3200);
-      });
-    })();
+    // Start counters immediately on load
+    window.addEventListener('load', () => {
+      if (typeof startCounters === 'function') startCounters();
+    });
 
 
     // ══════════════════════════════════════════

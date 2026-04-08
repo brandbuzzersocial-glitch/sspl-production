@@ -1754,7 +1754,8 @@
     .ms-card-desc {
       font-size: 13px;
       line-height: 1.78;
-      color: #666;
+      color: #fff;
+      font-weight: 500;
       opacity: 0;
       transform: translateY(12px);
       transition: opacity .5s ease .52s, transform .5s ease .52s;
@@ -2418,10 +2419,16 @@
     }
   
      Footer Styling Improvements */
-    footer { background: #0A0A0A !important; color: #f5f5f5 !important; border-top: none !important; }
+    footer { background: #FFFFFF !important; color: #1a1a1a !important; border-top: 1px solid #E8E8E8 !important; margin-top: 120px !important; padding-top: 80px !important; }
     footer h5 { color: #F5C518 !important; }
-    footer ul li a { color: #ccc !important; }
-    footer ul li a:hover { color: #fff !important; }
+    footer ul li a { color: #444 !important; }
+    footer ul li span { color: #666 !important; }
+    footer ul li a:hover { color: #000 !important; }
+    .fb-desc { color: #666 !important; }
+    .social { background: #f5f5f5 !important; color: #1a1a1a !important; border: 1px solid #eee !important; }
+    .fb-name { color: #1a1a1a !important; }
+    .fb-name span { color: #666 !important; }
+    .footer-bottom { border-top: 1px solid #eee !important; padding-top: 20px !important; color: #666 !important; }
      Process Flow Color Tweaks */
     .psb-fill { background: linear-gradient(90deg, #F5C518, #FF512F) !important; }
     .journey-line-fill { background: linear-gradient(to bottom, #F5C518, #FF512F) !important; }
@@ -2540,12 +2547,14 @@ div.partners-wrap div.partners div.partner, div.partners div.partner {
 .hero-h1 {
   background: linear-gradient(135deg, var(--black) 0%, #333 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1.15;
 }
 .hero-h1 em {
   background: linear-gradient(135deg, var(--yellow-dark), #FF8C00);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0px 8px 24px rgba(245,197,24,0.35);
   font-weight: 800;
@@ -2591,6 +2600,7 @@ div.partners-wrap div.partners div.partner, div.partners div.partner {
   font-size: 42px !important;
   background: linear-gradient(135deg, var(--black), #444);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: -1px;
 }
@@ -2698,7 +2708,44 @@ body::before {
     .process-sticky-bar { top: 96px !important; }
     .mobile-menu { top: 30px !important; }
   </style>
-</head>
+<style id="white-footer">
+  /* White Footer Override */
+  footer { 
+      background-color: #FFFFFF !important; 
+      color: #1a1a1a !important; 
+      border-top: 1px solid #E8E8E8 !important; 
+  }
+  footer * {
+      /* Reset any dark background overrides if there are any inline */
+  }
+  footer .fb-name { color: #1a1a1a !important; }
+  footer .fb-name span { color: #666 !important; }
+  footer .fb-desc { color: #666 !important; }
+  footer .social { 
+      background: #f5f5f5 !important; 
+      color: #1a1a1a !important; 
+      border: 1px solid #ddd !important; 
+  }
+  footer .social:hover {
+      background: #F5C518 !important;
+      color: #111 !important;
+      border-color: #F5C518 !important;
+  }
+  footer .fc h5 { color: #1a1a1a !important; font-weight: 800 !important; }
+  footer .fc ul li, footer .fc ul li a, footer .fc ul li span { color: #555 !important; }
+  footer .fc ul li a:hover { color: #F5C518 !important; }
+  footer .footer-bottom { 
+      border-top: 1px solid #eee !important; 
+      color: #666 !important; 
+  }
+  footer .footer-bottom p { color: #666 !important; }
+  footer .footer-gstin { color: #555 !important; font-weight: 600 !important; }
+  footer svg { color: #1a1a1a !important; }
+  
+  /* Make sure the main phone/email icons in the footer contact list are visible */
+  footer .fc ul li svg { color: #F5C518 !important; } /* Yellow icons */
+  footer .fb-logo svg { color: #F5C518 !important; }
+</style></head>
 <body>
   <div class="top-ticker" id="topTicker">
     <div class="ticker-wrap">
@@ -2718,17 +2765,6 @@ body::before {
   </div>
 
 
-  <!-- ─── 3D INTRO ─── -->
-  <div id="intro">
-    <canvas id="intro-canvas-3d"></canvas>
-    <div class="intro-text-wrap">
-      <div class="intro-name">Surat Sales<span>Private Limited</span></div>
-      <div class="intro-tag">Reliable Yarn Import &amp; Supply Across India</div>
-      <div class="intro-progress">
-        <div class="intro-bar"></div>
-      </div>
-    </div>
-  </div>
 
 
   <!-- MOBILE MENU -->
@@ -2756,7 +2792,6 @@ body::before {
       <li><a href="contact.html">Contact</a></li>
       <li><a href="tracking.html">Tracking</a></li>
     </ul>
-    <a href="contact.html" class="btn-nav">Contact Us</a>
     <button class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></button>
   </nav>
 
@@ -2787,13 +2822,9 @@ body::before {
     </div>
     
     <div class="hero-right">
-      <video class="hero-img" autoplay="" muted="" loop="" playsinline="" poster="https://images.unsplash.com/photo-1494412519320-aa613dfb7738?q=80&amp;w=1600&amp;auto=format&amp;fit=crop">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-cargo-ship-sailing-in-the-ocean-26325-large.mp4" type="video/mp4">
-        <source src="https://player.vimeo.com/external/403871142.sd.mp4?s=340c1d109f3b7493a525d8f0761e3860bb4d720b&amp;profile_id=164&amp;oauth2_token_id=57447761" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <img class="hero-img" src="https://images.unsplash.com/photo-1636986056375-184676d8ca14?q=80&amp;w=2000&amp;auto=format&amp;fit=crop" alt="Modern Yarn Factory">
       <div class="hero-img-fade"></div>
-      </div>
+    </div>
     
   </section>
 
@@ -3421,8 +3452,8 @@ body::before {
     <div class="container">
       <div class="tl-center reveal">
         <span class="sec-tag">Our Journey &amp; Milestones</span>
-        <h2 class="sec-h2">Two Decades of <em>Growth</em></h2>
-        <p class="sec-p">From a local textile trader to a pan-India leader in yarn import — every year a new chapter of ambition, quality, and trust.</p>
+        <h2 class="sec-h2">Journey of <em>Surat Sales Pvt. Ltd.</em></h2>
+        <p class="sec-p">The foundation of the business was laid in 1984, when the promoters moved to Surat and started Surat Sales Corporation, primarily engaged in textile trading.</p>
       </div>
 
       <div class="tl-milestones" id="tlMilestones">
@@ -3430,11 +3461,33 @@ body::before {
           <div class="tl-spine-fill" id="tlSpineFill"></div>
         </div>
 
-        <!-- 2005 — year LEFT, card RIGHT -->
-        <div class="ms-item" data-year="2005" data-side="left">
+        <!-- 1984 — year LEFT, card RIGHT -->
+        <div class="ms-item" data-year="1984" data-side="left">
+          <div class="ms-year">
+            <div class="ms-year-num">1984</div>
+            <div class="ms-year-label">Foundation</div>
+          </div>
+          <div class="ms-mid">
+            <div class="ms-dot"></div>
+          </div>
+          <div class="ms-card">
+            <div class="ms-card-inner">
+              <div class="ms-ghost-year">1984</div>
+              <div class="ms-milestone-tag"><span style="display:inline-flex;width:12px;height:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                  </svg></span> Establishment</div>
+              <div class="ms-card-title">Surat Sales Corporation</div>
+              <div class="ms-card-desc">The foundation was laid in 1984, when the promoters moved to Surat and started Surat Sales Corporation, primarily engaged in textile trading.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2005 — card LEFT, year RIGHT -->
+        <div class="ms-item" data-year="2005" data-side="right">
           <div class="ms-year">
             <div class="ms-year-num">2005</div>
-            <div class="ms-year-label">The Beginning</div>
+            <div class="ms-year-label">Expansion</div>
           </div>
           <div class="ms-mid">
             <div class="ms-dot"></div>
@@ -3443,72 +3496,41 @@ body::before {
             <div class="ms-card-inner">
               <div class="ms-ghost-year">2005</div>
               <div class="ms-milestone-tag"><span style="display:inline-flex;width:12px;height:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M7 20h10"></path>
-                    <path d="M10 20c5.5-2.5.8-6.4 3-10"></path>
-                    <path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"></path>
-                    <path d="M14.1 6a7 7 0 0 1 1.1 7.9c-1.6-1.5-2.5-4.1-2-7.3 1 0 1 0-.1-.6z"></path>
-                  </svg></span> Foundation</div>
-              <div class="ms-card-title">Company Foundation</div>
-              <div class="ms-card-desc">Surat Sales Private Limited was established with a singular mission — to bring
-                the finest global yarns to India's thriving textile industry, starting with the local Surat market.
-              </div>
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="9" y1="3" x2="9" y2="21"></line>
+                  </svg></span> Markets</div>
+              <div class="ms-card-title">Real Estate &amp; Trading</div>
+              <div class="ms-card-desc">Business expanded into real estate while simultaneously building a strong presence in suit and dress material trading, with products reaching a wide domestic market.</div>
             </div>
           </div>
         </div>
 
-        <!-- 2010 — card LEFT, year RIGHT -->
-        <div class="ms-item" data-year="2010" data-side="right">
+        <!-- 2008 — year LEFT, card RIGHT -->
+        <div class="ms-item" data-year="2008" data-side="left">
           <div class="ms-year">
-            <div class="ms-year-num">2010</div>
-            <div class="ms-year-label">Expanding Horizons</div>
+            <div class="ms-year-num">2008</div>
+            <div class="ms-year-label">Growth</div>
           </div>
           <div class="ms-mid">
             <div class="ms-dot"></div>
           </div>
           <div class="ms-card">
             <div class="ms-card-inner">
-              <div class="ms-ghost-year">2010</div>
+              <div class="ms-ghost-year">2008</div>
               <div class="ms-milestone-tag"><span style="display:inline-flex;width:12px;height:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon>
-                    <line x1="9" y1="3" x2="9" y2="18"></line>
-                    <line x1="15" y1="6" x2="15" y2="21"></line>
-                  </svg></span> Expansion</div>
-              <div class="ms-card-title">Inter-State Expansion</div>
-              <div class="ms-card-desc">Expanded operations to supply yarn across multiple states in India, building a
-                strong domestic distribution network and cementing relationships with manufacturers nationwide.</div>
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                  </svg></span> Portfolio</div>
+              <div class="ms-card-title">Fabric Trading</div>
+              <div class="ms-card-desc">Recognizing market demands, fabrics were strategically added to our product portfolio, further strengthening our foothold in the textile industry.</div>
             </div>
           </div>
         </div>
 
-        <!-- 2015 — year LEFT, card RIGHT -->
-        <div class="ms-item" data-year="2015" data-side="left">
+        <!-- 2012 — card LEFT, year RIGHT -->
+        <div class="ms-item" data-year="2012" data-side="right">
           <div class="ms-year">
-            <div class="ms-year-num">2015</div>
-            <div class="ms-year-label">Going Global</div>
-          </div>
-          <div class="ms-mid">
-            <div class="ms-dot"></div>
-          </div>
-          <div class="ms-card">
-            <div class="ms-card-inner">
-              <div class="ms-ghost-year">2015</div>
-              <div class="ms-milestone-tag"><span style="display:inline-flex;width:12px;height:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M2 12h20"></path>
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                  </svg></span> Global Reach</div>
-              <div class="ms-card-title">Global Sourcing Network</div>
-              <div class="ms-card-desc">Initiated direct global sourcing from China, establishing strong partnerships
-                with leading yarn manufacturers — unlocking unprecedented quality and pricing advantages for our
-                clients.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 2019 — card LEFT, year RIGHT -->
-        <div class="ms-item" data-year="2019" data-side="right">
-          <div class="ms-year">
-            <div class="ms-year-num">2019</div>
+            <div class="ms-year-num">2012</div>
             <div class="ms-year-label">Diversifying</div>
           </div>
           <div class="ms-mid">
@@ -3516,53 +3538,64 @@ body::before {
           </div>
           <div class="ms-card">
             <div class="ms-card-inner">
-              <div class="ms-ghost-year">2019</div>
+              <div class="ms-ghost-year">2012</div>
               <div class="ms-milestone-tag"><span style="display:inline-flex;width:12px;height:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <circle cx="12" cy="12" r="3"></circle>
-                    <line x1="12" y1="9" x2="12" y2="2"></line>
-                    <line x1="12" y1="15" x2="12" y2="22"></line>
-                    <line x1="9" y1="12" x2="2" y2="12"></line>
-                    <line x1="15" y1="12" x2="22" y2="12"></line>
-                  </svg></span> Products</div>
-              <div class="ms-card-title">Product Diversification</div>
-              <div class="ms-card-desc">Expanded our product portfolio to include POY, FDY, DTY, Fake Cotton, Mother
-                and Yarn — becoming a comprehensive one-stop solution for India's textile manufacturers.
-              </div>
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                    <path d="M3 6h18"></path>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                  </svg></span> Apparel</div>
+              <div class="ms-card-title">Saree Trading</div>
+              <div class="ms-card-desc">The company entered the saree trading segment, identifying key opportunities in ethnic wear and catering to a massive nationwide customer base.</div>
             </div>
           </div>
         </div>
 
-        <!-- 2022 — year LEFT, card RIGHT -->
-        <div class="ms-item" data-year="2022" data-side="left">
+        <!-- 2016 — year LEFT, card RIGHT -->
+        <div class="ms-item" data-year="2016" data-side="left">
           <div class="ms-year">
-            <div class="ms-year-num">2022</div>
-            <div class="ms-year-label">Certified Excellence</div>
+            <div class="ms-year-num">2016</div>
+            <div class="ms-year-label">Launch</div>
           </div>
           <div class="ms-mid">
             <div class="ms-dot"></div>
           </div>
           <div class="ms-card">
             <div class="ms-card-inner">
-              <div class="ms-ghost-year">2022</div>
+              <div class="ms-ghost-year">2016</div>
               <div class="ms-milestone-tag"><span style="display:inline-flex;width:12px;height:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 9H4a2 2 0 0 1-2-2V5h4"></path>
-                    <path d="M18 9h2a2 2 0 0 0 2-2V5h-4"></path>
-                    <path d="M6 9a6 6 0 0 0 12 0"></path>
-                    <path d="M12 15v4"></path>
-                    <path d="M8 19h8"></path>
-                    <path d="M6 3h12"></path>
-                  </svg></span> ISO Certified</div>
-              <div class="ms-card-title">ISO 9001 Certification</div>
-              <div class="ms-card-desc">Achieved ISO 9001:2015 certification — formalizing our unwavering commitment to
-                quality management, traceable supply chains, and complete customer satisfaction at every touchpoint.
-              </div>
+                    <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.62 1.96V17a2 2 0 002 2h16a2 2 0 002-2V5.42a2 2 0 00-1.62-1.96z"></path>
+                    <path d="M12 5v14"></path>
+                  </svg></span> Apparel</div>
+              <div class="ms-card-title">Shirting Business</div>
+              <div class="ms-card-desc">The shirting business was successfully launched, adding another vital dimension to our textile operations and market presence.</div>
             </div>
           </div>
         </div>
 
-        <!-- 2024 — card LEFT, year RIGHT -->
-        <div class="ms-item" data-year="2024" data-side="right">
+        <!-- 2018 — card LEFT, year RIGHT -->
+        <div class="ms-item" data-year="2018" data-side="right">
+          <div class="ms-year">
+            <div class="ms-year-num">2018</div>
+            <div class="ms-year-label">Innovation</div>
+          </div>
+          <div class="ms-mid">
+            <div class="ms-dot"></div>
+          </div>
+          <div class="ms-card">
+            <div class="ms-card-inner">
+              <div class="ms-ghost-year">2018</div>
+              <div class="ms-milestone-tag"><span style="display:inline-flex;width:12px;height:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v20"></path>
+                    <path d="M5 12h14"></path>
+                  </svg></span> Pharma</div>
+              <div class="ms-card-title">Veterinary Medicines</div>
+              <div class="ms-card-desc">The company diversified into veterinary medicines trading, showcasing our ability to navigate and succeed in entirely new and dynamic sectors.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2022-Present — year LEFT, card RIGHT -->
+        <div class="ms-item" data-year="2024" data-side="left">
           <div class="ms-year">
             <div class="ms-year-num">2024</div>
             <div class="ms-year-label">Market Leaders</div>
@@ -3574,13 +3607,12 @@ body::before {
             <div class="ms-card-inner">
               <div class="ms-ghost-year">2024</div>
               <div class="ms-milestone-tag"><span style="display:inline-flex;width:12px;height:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7z"></path>
-                    <path d="M5 20h14"></path>
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M2 12h20"></path>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                   </svg></span> Leadership</div>
-              <div class="ms-card-title">Market Leadership</div>
-              <div class="ms-card-desc">Became a preferred supplier for numerous large-scale textile manufacturers
-                across India — recognized and trusted for unmatched reliability, quality consistency, and competitive
-                pricing.</div>
+              <div class="ms-card-title">Yarn Import &amp; Export</div>
+              <div class="ms-card-desc">Established a strong foothold in the import and export of yarns with AEO T1 certification. Emerging as a significant player committed to quality and reliability.</div>
             </div>
           </div>
         </div>
@@ -3589,7 +3621,7 @@ body::before {
     </div>
   </section>
 
-<footer>
+<footer style="">
     <div class="footer-grid">
       <div>
         <div class="fb-logo"><img src="images/sspl_logo.jpg" alt="SSPL Logo" style="height:44px; width:auto; border-radius:4px;">
@@ -3664,132 +3696,10 @@ body::before {
     // ══════════════════════════════════════════
     //  3D INTRO — Three.js Yarn Spool
     // ══════════════════════════════════════════
-    (function initIntro3D() {
-      const intro = document.getElementById('intro');
-      if (sessionStorage.getItem('introPlayed')) {
-        if (intro) intro.style.display = 'none';
-        if (typeof startCounters === 'function') {
-           // Small delay to ensure other scripts are ready
-           setTimeout(startCounters, 100);
-        }
-        return;
-      }
-      
-      const canvas = document.getElementById('intro-canvas-3d');
-      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-      renderer.setSize(280, 280);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.setClearColor(0xffffff, 1);
-
-      const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0xffffff);
-      const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
-      camera.position.set(0, 0, 5);
-
-      // Lighting
-      const ambient = new THREE.AmbientLight(0xffffff, 0.6);
-      scene.add(ambient);
-      const dirLight = new THREE.DirectionalLight(0xF5C518, 1.2);
-      dirLight.position.set(3, 4, 5);
-      scene.add(dirLight);
-      const backLight = new THREE.DirectionalLight(0xffeebb, 0.4);
-      backLight.position.set(-3, -2, -3);
-      scene.add(backLight);
-      const pointLight = new THREE.PointLight(0xF5C518, 1.5, 20);
-      pointLight.position.set(0, 3, 3);
-      scene.add(pointLight);
-
-      // Spool group
-      const spoolGroup = new THREE.Group();
-      scene.add(spoolGroup);
-
-      // Materials
-      const matGold = new THREE.MeshPhongMaterial({ color: 0xF5C518, shininess: 120, specular: 0xffd700 });
-      const matDarkGold = new THREE.MeshPhongMaterial({ color: 0xD4A800, shininess: 80 });
-      const matYarn = new THREE.MeshPhongMaterial({ color: 0xF5C518, shininess: 30, opacity: 0.9, transparent: true });
-      const matCore = new THREE.MeshPhongMaterial({ color: 0x1A1A1A, shininess: 40 });
-
-      // Spool flanges (top and bottom discs)
-      const flangeGeo = new THREE.CylinderGeometry(1.1, 1.1, 0.18, 48);
-      const flange1 = new THREE.Mesh(flangeGeo, matGold);
-      const flange2 = new THREE.Mesh(flangeGeo, matGold);
-      flange1.position.y = 0.72;
-      flange2.position.y = -0.72;
-      spoolGroup.add(flange1, flange2);
-
-      // Core cylinder
-      const coreGeo = new THREE.CylinderGeometry(0.42, 0.42, 1.44, 36);
-      const core = new THREE.Mesh(coreGeo, matCore);
-      spoolGroup.add(core);
-
-      // Hole through middle
-      const holeGeo = new THREE.CylinderGeometry(0.18, 0.18, 1.8, 24);
-      const holeMat = new THREE.MeshPhongMaterial({ color: 0xffffff, shininess: 30 });
-      const hole = new THREE.Mesh(holeGeo, holeMat);
-      spoolGroup.add(hole);
-
-      // Yarn wound around core — toroidal rings
-      const yarnGroup = new THREE.Group();
-      spoolGroup.add(yarnGroup);
-      for (let i = 0; i < 18; i++) {
-        const y = -0.6 + (i / 17) * 1.2;
-        const r = 0.46 + Math.sin(i * 0.8) * 0.08;
-        const torusGeo = new THREE.TorusGeometry(r, 0.055, 10, 48);
-        const col = i % 3 === 0 ? 0xF5C518 : (i % 3 === 1 ? 0xFFDE59 : 0xD4A800);
-        const m = new THREE.MeshPhongMaterial({ color: col, shininess: 40 });
-        const torus = new THREE.Mesh(torusGeo, m);
-        torus.rotation.x = Math.PI / 2;
-        torus.position.y = y;
-        yarnGroup.add(torus);
-      }
-
-      // Floating yarn strand particles
-      const strandCount = 60;
-      const strandGeo = new THREE.BufferGeometry();
-      const strandPositions = new Float32Array(strandCount * 3);
-      for (let i = 0; i < strandCount; i++) {
-        const angle = (i / strandCount) * Math.PI * 2;
-        const r = 1.4 + Math.random() * 0.5;
-        strandPositions[i * 3] = Math.cos(angle) * r;
-        strandPositions[i * 3 + 1] = (Math.random() - 0.5) * 2;
-        strandPositions[i * 3 + 2] = Math.sin(angle) * r;
-      }
-      strandGeo.setAttribute('position', new THREE.BufferAttribute(strandPositions, 3));
-      const strandMat = new THREE.PointsMaterial({ color: 0xF5C518, size: 0.06, transparent: true, opacity: 0.7 });
-      const strands = new THREE.Points(strandGeo, strandMat);
-      scene.add(strands);
-
-      // Orbit ring
-      const orbitRingGeo = new THREE.TorusGeometry(1.7, 0.015, 8, 80);
-      const orbitRingMat = new THREE.MeshBasicMaterial({ color: 0xF5C518, transparent: true, opacity: 0.3 });
-      const orbitRing = new THREE.Mesh(orbitRingGeo, orbitRingMat);
-      orbitRing.rotation.x = Math.PI / 2;
-      scene.add(orbitRing);
-
-      let t = 0;
-      function animate() {
-        requestAnimationFrame(animate);
-        t += 0.02;
-        spoolGroup.rotation.y = t * 0.8;
-        spoolGroup.rotation.x = Math.sin(t * 0.3) * 0.15;
-        strands.rotation.y = t * 0.3;
-        orbitRing.rotation.z = t * 0.5;
-        pointLight.position.x = Math.cos(t) * 4;
-        pointLight.position.z = Math.sin(t) * 4;
-        renderer.render(scene, camera);
-      }
-      animate();
-
-      // Dismiss on complete
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-          const intro = document.getElementById('intro');
-          intro.style.transition = 'opacity .9s ease';
-          intro.style.opacity = '0';
-          setTimeout(() => { intro.style.display = 'none'; sessionStorage.setItem('introPlayed', 'true'); startCounters(); }, 950);
-        }, 3200);
-      });
-    })();
+    // Start counters immediately on load
+    window.addEventListener('load', () => {
+      if (typeof startCounters === 'function') startCounters();
+    });
 
 
     // ══════════════════════════════════════════
