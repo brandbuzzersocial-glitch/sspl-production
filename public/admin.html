@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSPL Admin — Site Settings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --yellow: #F5C518;
+      --yellow-dark: #D4A800;
+      --black: #111;
+      --gray: #6B6B6B;
+      --border: #E0E0E0;
+      --bg: #F7F7F8;
+      --white: #fff;
+      --red: #ef4444;
+      --green: #22c55e;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--black);
+      min-height: 100vh;
+    }
+
+    /* ── Login Screen ── */
+    #login-screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    }
+    .login-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+    .login-logo {
+      width: 64px;
+      height: 64px;
+      background: var(--yellow);
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 24px;
+    }
+    .login-card h1 { font-size: 24px; font-weight: 800; margin-bottom: 6px; }
+    .login-card p  { font-size: 14px; color: var(--gray); margin-bottom: 32px; }
+    .login-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+      margin-bottom: 14px;
+      transition: border-color .2s;
+      outline: none;
+    }
+    .login-input:focus { border-color: var(--yellow); }
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--yellow);
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+    }
+    .login-btn:hover { background: var(--yellow-dark); }
+    .login-btn:active { transform: scale(.98); }
+    .login-error {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--red);
+      display: none;
+    }
+
+    /* ── Admin Shell ── */
+    #admin-shell { display: none; min-height: 100vh; }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      left: 0; top: 0; bottom: 0;
+      width: 250px;
+      background: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+    }
+    .sidebar-logo {
+      padding: 28px 24px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .sidebar-logo .brand {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .sidebar-logo .sub {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 3px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .sidebar-nav { padding: 20px 12px; flex: 1; }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      color: rgba(255,255,255,0.6);
+      transition: all .2s;
+      margin-bottom: 2px;
+      user-select: none;
+    }
+    .nav-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
+    .nav-item.active { background: var(--yellow); color: #111; font-weight: 700; }
+    .nav-item .icon { font-size: 18px; width: 22px; text-align: center; }
+    .sidebar-footer {
+      padding: 16px 24px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+    .logout-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.5);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      cursor: pointer;
+      margin-top: 8px;
+      width: 100%;
+      font-family: inherit;
+      transition: all .2s;
+    }
+    .logout-btn:hover { border-color: var(--red); color: var(--red); }
+
+    /* Main Content */
+    .main {
+      margin-left: 250px;
+      padding: 36px 40px;
+      min-height: 100vh;
+    }
+    .page-header {
+      margin-bottom: 32px;
+    }
+    .page-header h2 { font-size: 26px; font-weight: 800; }
+    .page-header p  { font-size: 14px; color: var(--gray); margin-top: 4px; }
+
+    /* Panels */
+    .panel {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .panel-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .panel-body { padding: 24px; }
+
+    /* Form fields */
+    .field-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .field-grid.one-col { grid-template-columns: 1fr; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .field input, .field textarea {
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color .2s;
+      resize: vertical;
+    }
+    .field input:focus, .field textarea:focus { border-color: var(--yellow); }
+    .field .field-hint { font-size: 11px; color: var(--gray); }
+
+    /* Image preview */
+    .img-field { display: flex; align-items: center; gap: 16px; }
+    .img-preview {
+      width: 72px;
+      height: 72px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      background: var(--bg);
+    }
+    .img-preview-box img { width: 100%; }
+
+    /* Save bar */
+    .save-bar {
+      position: fixed;
+      bottom: 0; left: 250px; right: 0;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 50;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+    }
+    .save-status { font-size: 13px; color: var(--gray); }
+    .save-status.success { color: var(--green); font-weight: 600; }
+    .save-status.error   { color: var(--red); font-weight: 600; }
+    .save-btn {
+      background: var(--yellow);
+      border: none;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+    }
+    .save-btn:hover { background: var(--yellow-dark); }
+    .save-btn:active { transform: scale(.97); }
+    .save-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+    /* Tabs */
+    .tab-pages > .tab-page { display: none; }
+    .tab-pages > .tab-page.active { display: block; }
+
+    /* Password change */
+    .pw-section { max-width: 480px; }
+
+    /* Ticker tags */
+    .ticker-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .ticker-tag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .ticker-tag button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--red);
+      font-size: 16px;
+      line-height: 1;
+      padding: 0;
+    }
+    .add-ticker-row {
+      display: flex;
+      gap: 10px;
+    }
+    .add-ticker-row input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+    }
+    .add-ticker-row input:focus { border-color: var(--yellow); }
+    .add-btn {
+      padding: 10px 20px;
+      background: var(--yellow);
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    /* Mobile sidebar toggle */
+    @media(max-width: 768px) {
+      .sidebar { transform: translateX(-100%); transition: transform .3s; }
+      .sidebar.open { transform: translateX(0); }
+      .main { margin-left: 0; padding: 20px; }
+      .save-bar { left: 0; }
+      .field-grid { grid-template-columns: 1fr; }
+      .mobile-toggle {
+        position: fixed;
+        top: 16px; left: 16px;
+        z-index: 200;
+        background: var(--yellow);
+        border: none;
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-size: 18px;
+        cursor: pointer;
+        display: flex;
+      }
+    }
+    @media(min-width: 769px) { .mobile-toggle { display: none; } }
+  </style>
+</head>
+<body>
+
+<!-- Mobile toggle -->
+<button class="mobile-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+
+<!-- ─── LOGIN ─── -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">⚙️</div>
+    <h1>Admin Panel</h1>
+    <p>Surat Sales Private Limited — Site Settings</p>
+    <input type="password" class="login-input" id="loginPw" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">Sign In →</button>
+    <div class="login-error" id="loginErr">Incorrect password. Please try again.</div>
+  </div>
+</div>
+
+<!-- ─── ADMIN SHELL ─── -->
+<div id="admin-shell">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <div class="brand">SSPL Admin</div>
+      <div class="sub">Site Manager</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-item active" data-tab="contact" onclick="switchTab(this)">
+        <span class="icon">📞</span> Contact Info
+      </div>
+      <div class="nav-item" data-tab="address" onclick="switchTab(this)">
+        <span class="icon">📍</span> Address
+      </div>
+      <div class="nav-item" data-tab="company" onclick="switchTab(this)">
+        <span class="icon">🏢</span> Company Info
+      </div>
+      <div class="nav-item" data-tab="stats" onclick="switchTab(this)">
+        <span class="icon">📊</span> Stats & Numbers
+      </div>
+      <div class="nav-item" data-tab="ticker" onclick="switchTab(this)">
+        <span class="icon">📢</span> Ticker Banner
+      </div>
+      <div class="nav-item" data-tab="social" onclick="switchTab(this)">
+        <span class="icon">🔗</span> Social Links
+      </div>
+      <div class="nav-item" data-tab="password" onclick="switchTab(this)">
+        <span class="icon">🔑</span> Change Password
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <div>Logged in as Admin</div>
+      <button class="logout-btn" onclick="doLogout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+    <div class="page-header">
+      <h2 id="tabTitle">Contact Information</h2>
+      <p id="tabDesc">Update phone numbers, WhatsApp, and email address</p>
+    </div>
+
+    <div class="tab-pages">
+
+      <!-- Contact Tab -->
+      <div class="tab-page active" id="tab-contact">
+        <div class="panel">
+          <div class="panel-header">📞 Phone & WhatsApp</div>
+          <div class="panel-body">
+            <div class="field-grid">
+              <div class="field">
+                <label>Primary Phone</label>
+                <input type="text" id="cf-contact.phone" placeholder="e.g. 93747 13687">
+              </div>
+              <div class="field">
+                <label>Secondary Phone (optional)</label>
+                <input type="text" id="cf-contact.phone2" placeholder="Leave blank if none">
+              </div>
+              <div class="field">
+                <label>WhatsApp Number (with country code)</label>
+                <input type="text" id="cf-contact.whatsapp" placeholder="e.g. 917990978282">
+                <span class="field-hint">No + or spaces, just digits. Used in wa.me/... links.</span>
+              </div>
+              <div class="field">
+                <label>WhatsApp Display Text</label>
+                <input type="text" id="cf-contact.whatsappDisplay" placeholder="e.g. +91-7990978282">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header">✉️ Email Addresses</div>
+          <div class="panel-body">
+            <div class="field-grid">
+              <div class="field">
+                <label>Primary Email</label>
+                <input type="email" id="cf-contact.email" placeholder="e.g. imports.suratsales@gmail.com">
+              </div>
+              <div class="field">
+                <label>Secondary Email (optional)</label>
+                <input type="email" id="cf-contact.email2" placeholder="Leave blank if none">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Address Tab -->
+      <div class="tab-page" id="tab-address">
+        <div class="panel">
+          <div class="panel-header">📍 Business Address</div>
+          <div class="panel-body">
+            <div class="field-grid">
+              <div class="field">
+                <label>Address Line 1</label>
+                <input type="text" id="cf-address.line1" placeholder="e.g. 128, 4th Floor, Ring Road">
+              </div>
+              <div class="field">
+                <label>Address Line 2</label>
+                <input type="text" id="cf-address.line2" placeholder="e.g. Reshamwala Market">
+              </div>
+              <div class="field">
+                <label>City</label>
+                <input type="text" id="cf-address.city" placeholder="e.g. Surat">
+              </div>
+              <div class="field">
+                <label>State</label>
+                <input type="text" id="cf-address.state" placeholder="e.g. Gujarat">
+              </div>
+              <div class="field">
+                <label>PIN Code</label>
+                <input type="text" id="cf-address.pin" placeholder="e.g. 395002">
+              </div>
+              <div class="field">
+                <label>Country</label>
+                <input type="text" id="cf-address.country" placeholder="e.g. India">
+              </div>
+            </div>
+            <div class="field" style="margin-top:18px;">
+              <label>Full Address (shown on Contact Page)</label>
+              <textarea id="cf-address.full" rows="2" placeholder="Full formatted address line"></textarea>
+              <span class="field-hint">This exact text appears on the Contact page. Update after changing fields above.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Company Tab -->
+      <div class="tab-page" id="tab-company">
+        <div class="panel">
+          <div class="panel-header">🏢 Company Details</div>
+          <div class="panel-body">
+            <div class="field-grid">
+              <div class="field">
+                <label>Full Company Name</label>
+                <input type="text" id="cf-company.name">
+              </div>
+              <div class="field">
+                <label>Short Name</label>
+                <input type="text" id="cf-company.shortName">
+              </div>
+              <div class="field one-col" style="grid-column: 1/-1;">
+                <label>Tagline / Hero Subtext</label>
+                <input type="text" id="cf-company.tagline">
+              </div>
+              <div class="field">
+                <label>Established Year</label>
+                <input type="text" id="cf-company.estYear" placeholder="2009">
+              </div>
+              <div class="field">
+                <label>Logo URL / Path</label>
+                <input type="text" id="cf-company.logo" placeholder="images/sspl_logo.jpg">
+                <span class="field-hint">Relative path from /public or full URL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Tab -->
+      <div class="tab-page" id="tab-stats">
+        <div class="panel">
+          <div class="panel-header">📊 Key Stats (shown on Contact & Home pages)</div>
+          <div class="panel-body">
+            <div class="field-grid">
+              <div class="field">
+                <label>Years of Experience</label>
+                <input type="text" id="cf-stats.years" placeholder="15+">
+              </div>
+              <div class="field">
+                <label>Countries Served</label>
+                <input type="text" id="cf-stats.countries" placeholder="8+">
+              </div>
+              <div class="field">
+                <label>Lead Time (Days)</label>
+                <input type="text" id="cf-stats.leadTime" placeholder="7–10">
+              </div>
+              <div class="field">
+                <label>Happy Clients</label>
+                <input type="text" id="cf-stats.clients" placeholder="200+">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ticker Tab -->
+      <div class="tab-page" id="tab-ticker">
+        <div class="panel">
+          <div class="panel-header">📢 Top Ticker Messages</div>
+          <div class="panel-body">
+            <p style="font-size:13px;color:var(--gray);margin-bottom:16px;">These messages scroll across the top banner of every page.</p>
+            <div class="ticker-tags" id="tickerTags"></div>
+            <div class="add-ticker-row">
+              <input type="text" id="newTickerText" placeholder="Type a new ticker message…" onkeydown="if(event.key==='Enter')addTicker()">
+              <button class="add-btn" onclick="addTicker()">+ Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Tab -->
+      <div class="tab-page" id="tab-social">
+        <div class="panel">
+          <div class="panel-header">🔗 Social Media Links</div>
+          <div class="panel-body">
+            <div class="field-grid">
+              <div class="field">
+                <label>Instagram URL</label>
+                <input type="url" id="cf-social.instagram" placeholder="https://instagram.com/...">
+              </div>
+              <div class="field">
+                <label>LinkedIn URL</label>
+                <input type="url" id="cf-social.linkedin" placeholder="https://linkedin.com/...">
+              </div>
+              <div class="field">
+                <label>Facebook URL</label>
+                <input type="url" id="cf-social.facebook" placeholder="https://facebook.com/...">
+              </div>
+              <div class="field">
+                <label>Twitter / X URL</label>
+                <input type="url" id="cf-social.twitter" placeholder="https://twitter.com/...">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Password Tab -->
+      <div class="tab-page" id="tab-password">
+        <div class="panel pw-section">
+          <div class="panel-header">🔑 Change Admin Password</div>
+          <div class="panel-body">
+            <div class="field" style="margin-bottom:14px;">
+              <label>Current Password</label>
+              <input type="password" id="pwCurrent" placeholder="Enter current password">
+            </div>
+            <div class="field" style="margin-bottom:14px;">
+              <label>New Password</label>
+              <input type="password" id="pwNew" placeholder="Enter new password">
+            </div>
+            <div class="field" style="margin-bottom:20px;">
+              <label>Confirm New Password</label>
+              <input type="password" id="pwConfirm" placeholder="Repeat new password">
+            </div>
+            <button class="save-btn" onclick="changePassword()">Update Password</button>
+            <div id="pwMsg" style="margin-top:12px;font-size:13px;"></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /tab-pages -->
+  </div><!-- /main -->
+
+  <!-- Save Bar -->
+  <div class="save-bar">
+    <div class="save-status" id="saveStatus">All changes saved.</div>
+    <button class="save-btn" id="saveBtn" onclick="saveConfig()">Save Changes</button>
+  </div>
+</div><!-- /admin-shell -->
+
+<script>
+  /* ── Helpers ── */
+  function deepGet(obj, path) {
+    return path.split('.').reduce((o, k) => (o && o[k] !== undefined ? o[k] : ''), obj);
+  }
+  function deepSet(obj, path, val) {
+    const keys = path.split('.');
+    let cur = obj;
+    keys.slice(0, -1).forEach(k => { if (!cur[k]) cur[k] = {}; cur = cur[k]; });
+    cur[keys[keys.length - 1]] = val;
+  }
+
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  // Session token (simple)
+  let SESSION_TOKEN = sessionStorage.getItem('sspl_admin_token') || '';
+  let CFG = {};
+
+  /* ── Login ── */
+  async function doLogin() {
+    const pw = document.getElementById('loginPw').value;
+    if (!pw) return;
+    const hash = await sha256(pw);
+    const res = await fetch('/api/admin/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ hash })
+    });
+    if (res.ok) {
+      const data = await res.json();
+      SESSION_TOKEN = data.token;
+      sessionStorage.setItem('sspl_admin_token', SESSION_TOKEN);
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('admin-shell').style.display = 'block';
+      loadConfig();
+    } else {
+      document.getElementById('loginErr').style.display = 'block';
+    }
+  }
+
+  function doLogout() {
+    sessionStorage.removeItem('sspl_admin_token');
+    location.reload();
+  }
+
+  /* ── Load Config ── */
+  async function loadConfig() {
+    const res = await fetch('/api/config');
+    CFG = await res.json();
+    populateFields();
+    renderTicker();
+  }
+
+  function populateFields() {
+    document.querySelectorAll('[id^="cf-"]').forEach(el => {
+      const key = el.id.replace('cf-', '');
+      el.value = deepGet(CFG, key);
+    });
+  }
+
+  /* ── Ticker ── */
+  function renderTicker() {
+    const container = document.getElementById('tickerTags');
+    container.innerHTML = '';
+    (CFG.ticker || []).forEach((msg, i) => {
+      const tag = document.createElement('div');
+      tag.className = 'ticker-tag';
+      tag.innerHTML = `<span>${msg}</span><button onclick="removeTicker(${i})">✕</button>`;
+      container.appendChild(tag);
+    });
+  }
+
+  function addTicker() {
+    const input = document.getElementById('newTickerText');
+    const val = input.value.trim();
+    if (!val) return;
+    CFG.ticker = CFG.ticker || [];
+    CFG.ticker.push(val);
+    input.value = '';
+    renderTicker();
+    setStatus('Ticker updated — click Save to apply.', 'normal');
+  }
+
+  function removeTicker(i) {
+    CFG.ticker.splice(i, 1);
+    renderTicker();
+    setStatus('Ticker updated — click Save to apply.', 'normal');
+  }
+
+  /* ── Save ── */
+  async function saveConfig() {
+    // Collect all field values
+    document.querySelectorAll('[id^="cf-"]').forEach(el => {
+      const key = el.id.replace('cf-', '');
+      deepSet(CFG, key, el.value);
+    });
+
+    document.getElementById('saveBtn').disabled = true;
+    setStatus('Saving…', 'normal');
+
+    const res = await fetch('/api/admin/config', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Admin-Token': SESSION_TOKEN
+      },
+      body: JSON.stringify(CFG)
+    });
+
+    document.getElementById('saveBtn').disabled = false;
+
+    if (res.ok) {
+      setStatus('✓ All changes saved successfully!', 'success');
+      setTimeout(() => setStatus('All changes saved.', 'normal'), 3000);
+    } else if (res.status === 401) {
+      setStatus('Session expired. Please log in again.', 'error');
+      setTimeout(doLogout, 2000);
+    } else {
+      setStatus('❌ Save failed. Please try again.', 'error');
+    }
+  }
+
+  function setStatus(msg, type) {
+    const el = document.getElementById('saveStatus');
+    el.textContent = msg;
+    el.className = 'save-status' + (type !== 'normal' ? ` ${type}` : '');
+  }
+
+  /* ── Password Change ── */
+  async function changePassword() {
+    const cur = document.getElementById('pwCurrent').value;
+    const nw  = document.getElementById('pwNew').value;
+    const cfm = document.getElementById('pwConfirm').value;
+    const msg = document.getElementById('pwMsg');
+
+    if (!cur || !nw || !cfm) { msg.textContent = 'Please fill all fields.'; msg.style.color = 'var(--red)'; return; }
+    if (nw !== cfm)           { msg.textContent = 'New passwords do not match.'; msg.style.color = 'var(--red)'; return; }
+
+    const curHash = await sha256(cur);
+    const nwHash  = await sha256(nw);
+
+    const res = await fetch('/api/admin/password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': SESSION_TOKEN },
+      body: JSON.stringify({ currentHash: curHash, newHash: nwHash })
+    });
+
+    if (res.ok) {
+      msg.textContent = '✓ Password updated successfully!';
+      msg.style.color = 'var(--green)';
+      document.getElementById('pwCurrent').value = '';
+      document.getElementById('pwNew').value = '';
+      document.getElementById('pwConfirm').value = '';
+    } else {
+      const d = await res.json().catch(() => ({}));
+      msg.textContent = d.error || 'Failed. Check current password.';
+      msg.style.color = 'var(--red)';
+    }
+  }
+
+  /* ── Tab switching ── */
+  const tabMeta = {
+    contact:  { title: 'Contact Information', desc: 'Update phone numbers, WhatsApp, and email address' },
+    address:  { title: 'Business Address',    desc: 'Edit your office address displayed across the site' },
+    company:  { title: 'Company Info',        desc: 'Update company name, tagline, logo, and branding' },
+    stats:    { title: 'Stats & Numbers',     desc: 'Edit key stats shown on the homepage and contact page' },
+    ticker:   { title: 'Ticker Banner',       desc: 'Manage scrolling messages shown at the top of every page' },
+    social:   { title: 'Social Links',        desc: 'Add or update your social media profile URLs' },
+    password: { title: 'Change Password',     desc: 'Update the admin panel login password' }
+  };
+
+  function switchTab(el) {
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    el.classList.add('active');
+    const tab = el.getAttribute('data-tab');
+    document.querySelectorAll('.tab-page').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    document.getElementById('tabTitle').textContent = tabMeta[tab].title;
+    document.getElementById('tabDesc').textContent  = tabMeta[tab].desc;
+  }
+
+  /* ── Auto-check existing session on load ── */
+  window.addEventListener('DOMContentLoaded', () => {
+    if (SESSION_TOKEN) {
+      fetch('/api/admin/verify', { headers: { 'X-Admin-Token': SESSION_TOKEN } })
+        .then(r => r.ok ? (document.getElementById('login-screen').style.display = 'none', document.getElementById('admin-shell').style.display = 'block', loadConfig()) : null)
+        .catch(() => {});
+    }
+  });
+</script>
+</body>
+</html>

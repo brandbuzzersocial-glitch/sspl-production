@@ -1,0 +1,45 @@
+{
+  "company": {
+    "name": "Surat Sales Private Limited",
+    "shortName": "Surat Sales",
+    "tagline": "Reliable Yarn Import & Export Across Globe",
+    "estYear": "2009",
+    "logo": "images/sspl_logo.jpg"
+  },
+  "contact": {
+    "phone": "93747 13687",
+    "phone2": "",
+    "whatsapp": "917990978282",
+    "whatsappDisplay": "+91-7990978282",
+    "email": "imports.suratsales@gmail.com",
+    "email2": ""
+  },
+  "address": {
+    "line1": "128, 4th Floor, Ring Road",
+    "line2": "Reshamwala Market",
+    "city": "Surat",
+    "state": "Gujarat",
+    "pin": "395002",
+    "country": "India",
+    "full": "128, 4th Floor, Ring Road, Reshamwala Market, Surat, Gujarat – 395002"
+  },
+  "social": {
+    "instagram": "",
+    "linkedin": "",
+    "facebook": "",
+    "twitter": ""
+  },
+  "stats": {
+    "years": "15+",
+    "countries": "8+",
+    "leadTime": "7–10",
+    "clients": "200+"
+  },
+  "ticker": [
+    "Leading Yarn Importers & Suppliers",
+    "100% Trusted & Reliable",
+    "Serving Clients Across 8+ Countries",
+    "Premium Quality Guaranteed"
+  ],
+  "adminPasswordHash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
+}
