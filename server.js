@@ -2,9 +2,36 @@ const express  = require('express');
 const path     = require('path');
 const fs       = require('fs');
 const crypto   = require('crypto');
+const multer   = require('multer');
 
 const app  = express();
 const PORT = process.env.PORT || 3000;
+
+// ── Multer – image uploads ────────────────────────────────────────
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const dest = req.query.folder === 'partners'
+      ? path.join(__dirname, 'public', 'images', 'partners')
+      : path.join(__dirname, 'public', 'images');
+    cb(null, dest);
+  },
+  filename: (req, file, cb) => {
+    // Keep original filename if provided, else use the field name + ext
+    const custom = req.query.filename;
+    const ext    = path.extname(file.originalname);
+    cb(null, custom ? custom : file.originalname);
+  }
+});
+const upload = multer({
+  storage,
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB max
+  fileFilter: (req, file, cb) => {
+    const allowed = /jpeg|jpg|png|gif|webp|svg/;
+    const ok = allowed.test(path.extname(file.originalname).toLowerCase())
+             && allowed.test(file.mimetype);
+    ok ? cb(null, true) : cb(new Error('Only image files are allowed.'));
+  }
+});
 
 const CONFIG_PATH = path.join(__dirname, 'site-config.json');
 
@@ -119,7 +146,53 @@ app.post('/api/admin/password', requireAuth, (req, res) => {
   res.json({ ok: true });
 });
 
-// ── Root route → serve the HTML file ─────────────────────────────
+// POST /api/admin/upload — upload a single image (field name: "image")
+app.post('/api/admin/upload', requireAuth, (req, res) => {
+  upload.single('image')(req, res, (err) => {
+    if (err) return res.status(400).json({ error: err.message });
+    if (!req.file) return res.status(400).json({ error: 'No file received.' });
+    const folder = req.query.folder === 'partners' ? 'images/partners/' : 'images/';
+    const url = '/' + folder + req.file.filename;
+    console.log(`\x1b[33m  🖼  Image uploaded: ${req.file.filename}\x1b[0m`);
+    res.json({ ok: true, url, filename: req.file.filename });
+  });
+});
+
+// GET /api/admin/images — list all images in /public/images (and /partners sub-folder)
+app.get('/api/admin/images', requireAuth, (req, res) => {
+  const imgDir     = path.join(__dirname, 'public', 'images');
+  const partnerDir = path.join(__dirname, 'public', 'images', 'partners');
+  const exts = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+
+  function listDir(dir, prefix) {
+    try {
+      return fs.readdirSync(dir)
+        .filter(f => exts.includes(path.extname(f).toLowerCase()))
+        .map(f => ({ filename: f, url: prefix + f, size: fs.statSync(path.join(dir, f)).size }));
+    } catch { return []; }
+  }
+
+  res.json({
+    main:     listDir(imgDir, '/images/'),
+    partners: listDir(partnerDir, '/images/partners/')
+  });
+});
+
+// DELETE /api/admin/images/:filename — delete an image
+app.delete('/api/admin/images/:filename', requireAuth, (req, res) => {
+  const folder = req.query.folder === 'partners' ? 'partners' : '';
+  const filePath = folder
+    ? path.join(__dirname, 'public', 'images', 'partners', req.params.filename)
+    : path.join(__dirname, 'public', 'images', req.params.filename);
+
+  // Safety: don't delete non-image or non-existing files
+  if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'File not found.' });
+  fs.unlinkSync(filePath);
+  console.log(`\x1b[31m  🗑  Image deleted: ${req.params.filename}\x1b[0m`);
+  res.json({ ok: true });
+});
+
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'surat-sales.html'));
 });

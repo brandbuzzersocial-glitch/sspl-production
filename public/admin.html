@@ -321,6 +321,108 @@
       cursor: pointer;
     }
 
+    /* Image Gallery */
+    .img-section-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      color: var(--gray);
+      margin: 24px 0 14px;
+    }
+    .img-section-title:first-child { margin-top: 0; }
+    .img-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+    .img-card {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .img-card:hover { border-color: var(--yellow); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .img-card img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      display: block;
+    }
+    .img-card-footer {
+      padding: 8px;
+      font-size: 11px;
+      color: var(--gray);
+      word-break: break-all;
+      line-height: 1.3;
+    }
+    .img-card-actions {
+      display: flex;
+      gap: 6px;
+      padding: 0 8px 8px;
+    }
+    .img-action-btn {
+      flex: 1;
+      padding: 5px 4px;
+      font-size: 11px;
+      font-family: inherit;
+      font-weight: 600;
+      border-radius: 5px;
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      background: #fff;
+      transition: all .15s;
+    }
+    .img-action-btn.copy:hover { border-color: var(--yellow); color: var(--yellow-dark); }
+    .img-action-btn.del:hover  { border-color: var(--red); color: var(--red); background: #fff5f5; }
+    .upload-zone {
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 32px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .upload-zone:hover, .upload-zone.drag { border-color: var(--yellow); background: #fffdf0; }
+    .upload-zone input[type=file] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+    }
+    .upload-zone .uz-icon { font-size: 36px; margin-bottom: 8px; }
+    .upload-zone .uz-text { font-size: 14px; font-weight: 600; color: var(--black); }
+    .upload-zone .uz-hint { font-size: 12px; color: var(--gray); margin-top: 4px; }
+    .upload-progress {
+      display: none;
+      background: var(--yellow-light);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      color: var(--yellow-dark);
+    }
+    .img-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .img-tab {
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+      background: #fff;
+      transition: all .2s;
+      font-family: inherit;
+    }
+    .img-tab.active { background: var(--yellow); border-color: var(--yellow); color: #111; }
+
     /* Mobile sidebar toggle */
     @media(max-width: 768px) {
       .sidebar { transform: translateX(-100%); transition: transform .3s; }
@@ -384,6 +486,9 @@
       </div>
       <div class="nav-item" data-tab="ticker" onclick="switchTab(this)">
         <span class="icon">📢</span> Ticker Banner
+      </div>
+      <div class="nav-item" data-tab="images" onclick="switchTab(this)">
+        <span class="icon">🖼️</span> Images
       </div>
       <div class="nav-item" data-tab="social" onclick="switchTab(this)">
         <span class="icon">🔗</span> Social Links
@@ -591,6 +696,33 @@
         </div>
       </div>
 
+      <!-- Images Tab -->
+      <div class="tab-page" id="tab-images">
+        <div class="panel">
+          <div class="panel-header">🖼️ Image Manager</div>
+          <div class="panel-body">
+
+            <!-- Sub-tabs -->
+            <div class="img-tabs">
+              <button class="img-tab active" id="itab-main" onclick="switchImgTab('main')">Product & General Images</button>
+              <button class="img-tab" id="itab-partners" onclick="switchImgTab('partners')">Partner Logos</button>
+            </div>
+
+            <!-- Upload zone -->
+            <div class="upload-zone" id="uploadZone">
+              <input type="file" id="uploadInput" accept="image/*" onchange="handleUpload(event)">
+              <div class="uz-icon">☁️</div>
+              <div class="uz-text">Click or drag to upload a new image</div>
+              <div class="uz-hint" id="uploadHint">JPG, PNG, WebP, GIF — max 10MB. Filename will match exactly as uploaded.</div>
+            </div>
+            <div class="upload-progress" id="uploadProgress">⏳ Uploading…</div>
+
+            <!-- Gallery -->
+            <div id="imgGallery"><p style="color:var(--gray);font-size:13px;">Loading images…</p></div>
+          </div>
+        </div>
+      </div>
+
       <!-- Password Tab -->
       <div class="tab-page" id="tab-password">
         <div class="panel pw-section">
@@ -787,6 +919,114 @@
     }
   }
 
+  /* ── Image Manager ── */
+  let currentImgFolder = 'main'; // 'main' or 'partners'
+  let allImages = { main: [], partners: [] };
+
+  function switchImgTab(folder) {
+    currentImgFolder = folder;
+    document.getElementById('itab-main').classList.toggle('active', folder === 'main');
+    document.getElementById('itab-partners').classList.toggle('active', folder === 'partners');
+    document.getElementById('uploadHint').textContent =
+      folder === 'partners'
+        ? 'Upload partner/supplier logos. Filename e.g. Hengli.png'
+        : 'Upload product images. Filename must match existing ones to replace (e.g. fake_cotton_yarn.png)';
+    renderGallery();
+  }
+
+  async function loadImages() {
+    try {
+      const res = await fetch('/api/admin/images', { headers: { 'X-Admin-Token': SESSION_TOKEN } });
+      allImages = await res.json();
+      renderGallery();
+    } catch { document.getElementById('imgGallery').innerHTML = '<p style="color:var(--red)">Failed to load images.</p>'; }
+  }
+
+  function renderGallery() {
+    const imgs = allImages[currentImgFolder] || [];
+    const gallery = document.getElementById('imgGallery');
+    if (!imgs.length) { gallery.innerHTML = '<p style="color:var(--gray);font-size:13px;">No images found. Upload one above.</p>'; return; }
+    gallery.innerHTML = '<div class="img-gallery">' +
+      imgs.map(img => `
+        <div class="img-card">
+          <img src="${img.url}?t=${Date.now()}" alt="${img.filename}" onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23f0f0f0\'/><text x=\'50%\' y=\'50%\' text-anchor=\'middle\' fill=\'%23aaa\' font-size=\'12\'>No preview</text></svg>'">
+          <div class="img-card-footer">${img.filename}<br><span style="font-size:10px;">${(img.size/1024).toFixed(0)} KB</span></div>
+          <div class="img-card-actions">
+            <button class="img-action-btn copy" onclick="copyImgUrl('${img.url}')">Copy URL</button>
+            <button class="img-action-btn del" onclick="deleteImg('${img.filename}')">Delete</button>
+          </div>
+        </div>`).join('') +
+    '</div>';
+  }
+
+  function copyImgUrl(url) {
+    navigator.clipboard.writeText(url).then(() => {
+      setStatus('✓ Image URL copied to clipboard!', 'success');
+      setTimeout(() => setStatus('All changes saved.', 'normal'), 2000);
+    });
+  }
+
+  async function deleteImg(filename) {
+    if (!confirm(`Delete "${filename}"? This cannot be undone.`)) return;
+    const folder = currentImgFolder === 'partners' ? '?folder=partners' : '';
+    const res = await fetch(`/api/admin/images/${encodeURIComponent(filename)}${folder}`, {
+      method: 'DELETE',
+      headers: { 'X-Admin-Token': SESSION_TOKEN }
+    });
+    if (res.ok) {
+      setStatus('🗑 Image deleted.', 'success');
+      await loadImages();
+    } else {
+      setStatus('❌ Delete failed.', 'error');
+    }
+  }
+
+  async function handleUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const progress = document.getElementById('uploadProgress');
+    progress.style.display = 'block';
+    progress.textContent = `⏳ Uploading "${file.name}"…`;
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    const folder = currentImgFolder === 'partners' ? '?folder=partners' : '';
+    const res = await fetch(`/api/admin/upload${folder}`, {
+      method: 'POST',
+      headers: { 'X-Admin-Token': SESSION_TOKEN },
+      body: formData
+    });
+
+    progress.style.display = 'none';
+    event.target.value = ''; // reset input
+
+    if (res.ok) {
+      const data = await res.json();
+      setStatus(`✓ Uploaded: ${data.filename}`, 'success');
+      setTimeout(() => setStatus('All changes saved.', 'normal'), 3000);
+      await loadImages();
+    } else {
+      const d = await res.json().catch(() => ({}));
+      setStatus(`❌ Upload failed: ${d.error || 'Unknown error'}`, 'error');
+    }
+  }
+
+  // Drag-and-drop support
+  function initDragDrop() {
+    const zone = document.getElementById('uploadZone');
+    zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag'); });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag'));
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.classList.remove('drag');
+      const file = e.dataTransfer.files[0];
+      if (!file) return;
+      const fakeEvent = { target: { files: [file], value: '' } };
+      handleUpload(fakeEvent);
+    });
+  }
+
   /* ── Tab switching ── */
   const tabMeta = {
     contact:  { title: 'Contact Information', desc: 'Update phone numbers, WhatsApp, and email address' },
@@ -794,6 +1034,7 @@
     company:  { title: 'Company Info',        desc: 'Update company name, tagline, logo, and branding' },
     stats:    { title: 'Stats & Numbers',     desc: 'Edit key stats shown on the homepage and contact page' },
     ticker:   { title: 'Ticker Banner',       desc: 'Manage scrolling messages shown at the top of every page' },
+    images:   { title: 'Image Manager',       desc: 'Upload, preview, and manage all images used on the website' },
     social:   { title: 'Social Links',        desc: 'Add or update your social media profile URLs' },
     password: { title: 'Change Password',     desc: 'Update the admin panel login password' }
   };
@@ -806,10 +1047,12 @@
     document.getElementById('tab-' + tab).classList.add('active');
     document.getElementById('tabTitle').textContent = tabMeta[tab].title;
     document.getElementById('tabDesc').textContent  = tabMeta[tab].desc;
+    if (tab === 'images') loadImages();
   }
 
   /* ── Auto-check existing session on load ── */
   window.addEventListener('DOMContentLoaded', () => {
+    initDragDrop();
     if (SESSION_TOKEN) {
       fetch('/api/admin/verify', { headers: { 'X-Admin-Token': SESSION_TOKEN } })
         .then(r => r.ok ? (document.getElementById('login-screen').style.display = 'none', document.getElementById('admin-shell').style.display = 'block', loadConfig()) : null)
