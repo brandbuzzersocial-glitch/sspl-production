@@ -377,7 +377,8 @@
       transition: all .15s;
     }
     .img-action-btn.copy:hover { border-color: var(--yellow); color: var(--yellow-dark); }
-    .img-action-btn.del:hover  { border-color: var(--red); color: var(--red); background: #fff5f5; }
+    .img-action-btn.del:hover     { border-color: var(--red); color: var(--red); background: #fff5f5; }
+    .img-action-btn.replace:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
     .upload-zone {
       border: 2px dashed var(--border);
       border-radius: 12px;
@@ -948,15 +949,60 @@
     if (!imgs.length) { gallery.innerHTML = '<p style="color:var(--gray);font-size:13px;">No images found. Upload one above.</p>'; return; }
     gallery.innerHTML = '<div class="img-gallery">' +
       imgs.map(img => `
-        <div class="img-card">
+        <div class="img-card" id="card-${CSS.escape(img.filename)}">
           <img src="${img.url}?t=${Date.now()}" alt="${img.filename}" onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\'><rect width=\'100%\' height=\'100%\' fill=\'%23f0f0f0\'/><text x=\'50%\' y=\'50%\' text-anchor=\'middle\' fill=\'%23aaa\' font-size=\'12\'>No preview</text></svg>'">
           <div class="img-card-footer">${img.filename}<br><span style="font-size:10px;">${(img.size/1024).toFixed(0)} KB</span></div>
           <div class="img-card-actions">
+            <button class="img-action-btn replace" onclick="replaceImg('${img.filename}')">Replace</button>
             <button class="img-action-btn copy" onclick="copyImgUrl('${img.url}')">Copy URL</button>
             <button class="img-action-btn del" onclick="deleteImg('${img.filename}')">Delete</button>
           </div>
         </div>`).join('') +
     '</div>';
+  }
+
+
+  function replaceImg(filename) {
+    // Create a temporary hidden file input, trigger it, and upload with the exact same filename
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.style.display = 'none';
+    document.body.appendChild(input);
+    input.addEventListener('change', async () => {
+      const file = input.files[0];
+      document.body.removeChild(input);
+      if (!file) return;
+      await handleReplaceUpload(file, filename);
+    });
+    input.click();
+  }
+
+  async function handleReplaceUpload(file, targetFilename) {
+    const progress = document.getElementById('uploadProgress');
+    progress.style.display = 'block';
+    progress.textContent = `⏳ Replacing "${targetFilename}" with "${file.name}"…`;
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    const folderParam = currentImgFolder === 'partners' ? '&folder=partners' : '';
+    const res = await fetch(`/api/admin/upload?filename=${encodeURIComponent(targetFilename)}${folderParam}`, {
+      method: 'POST',
+      headers: { 'X-Admin-Token': SESSION_TOKEN },
+      body: formData
+    });
+
+    progress.style.display = 'none';
+
+    if (res.ok) {
+      setStatus(`✓ Replaced: ${targetFilename}`, 'success');
+      setTimeout(() => setStatus('All changes saved.', 'normal'), 3000);
+      await loadImages();
+    } else {
+      const d = await res.json().catch(() => ({}));
+      setStatus(`❌ Replace failed: ${d.error || 'Unknown error'}`, 'error');
+    }
   }
 
   function copyImgUrl(url) {
