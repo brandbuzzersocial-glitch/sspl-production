@@ -2587,7 +2587,181 @@
   /* Make sure the main phone/email icons in the footer contact list are visible */
   footer .fc ul li svg { color: #F5C518 !important; } /* Yellow icons */
   footer .fb-logo svg { color: #F5C518 !important; }
-</style></head>
+</style>
+<style id="marquee-override">
+  .partners-lbl {
+    font-size: 28px !important;
+    font-weight: 900 !important;
+    color: var(--black, #1a1a1a) !important;
+    margin-bottom: 32px !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase;
+  }
+  
+  .partners-wrap {
+    overflow: hidden !important;
+    width: 100% !important;
+    position: relative;
+    padding: 10px 0;
+  }
+  
+  /* Fade edges for the scrolling container */
+  .partners-wrap::before, .partners-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .partners-wrap::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255,255,255,1), transparent);
+  }
+  .partners-wrap::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255,255,255,1), transparent);
+  }
+  
+  div.partners-wrap div.partners, div.partners {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 30px !important;
+    width: max-content !important;
+    overflow: visible !important;
+    padding-bottom: 20px !important;
+    animation: partnerScroll 40s linear infinite !important;
+  }
+  
+  /* Stop animation on hover */
+  div.partners:hover {
+    animation-play-state: paused !important;
+  }
+
+  div.partners div.partner {
+    flex: 0 0 auto !important; 
+    width: 200px !important; 
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    padding: 24px 20px;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-weight: 700;
+  }
+  
+  div.partners div.partner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(245, 197, 24, 0.2);
+    border-color: #F5C518;
+  }
+
+  @keyframes partnerScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 15px)); }
+  }
+  
+  div.partners::-webkit-scrollbar { display: none !important; }
+</style>
+
+<style id="mobile-fixes">
+  /* --- GLOBAL MOBILE RESPONSIVENESS FIXES --- */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    box-sizing: border-box;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  .container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+  
+  /* Restrict marquee width to viewport so it doesn't cause page scroll */
+  .partners-wrap {
+    max-width: 100vw !important;
+  }
+
+  @media (max-width: 800px) {
+    /* Scale down oversized text and spacing */
+    section[style*="padding: 160px"] {
+      padding-top: 110px !important;
+      padding-bottom: 60px !important;
+    }
+    
+    section[style*="padding: 100px"] {
+      padding: 60px 20px !important;
+    }
+
+    .sec-h2, .hero-h1, .intro-name {
+      font-size: clamp(32px, 8vw, 42px) !important;
+      line-height: 1.2 !important;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    h3 { font-size: 26px !important; }
+    
+    .sec-p { 
+      font-size: 16px !important; 
+      padding: 0 5px !important;
+    }
+    
+    /* Convert rigid multi-column grids to single column stacks */
+    .contact-grid, .footer-grid, .pgrid {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 30px !important;
+      width: 100% !important;
+    }
+
+    /* Target specific hardcoded inline grids (like minmax 400px columns) */
+    div[style*="grid-template-columns: repeat"] {
+      grid-template-columns: 1fr !important;
+      gap: 30px !important;
+    }
+    
+    /* Fix Contact Form width */
+    .form-wrap {
+      padding: 24px !important;
+    }
+
+    /* Shrink the scrolling partner cards to fit small screens */
+    div.partners div.partner {
+      width: 150px !important;
+      padding: 15px !important;
+    }
+    
+    .partners-lbl {
+      font-size: 22px !important;
+      margin-bottom: 20px !important;
+      line-height: 1.3 !important;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+    }
+    .sec-h2, .hero-h1 {
+      font-size: 32px !important;
+    }
+  }
+</style>
+</head>
 
 <body>
   <div class="top-ticker" id="topTicker">
@@ -2639,7 +2813,7 @@
   </nav>
 
   <!-- CONTACT HERO REFINED -->
-  <section style="position: relative; padding: 160px 0 100px; background: url('https://images.unsplash.com/photo-1586528116311-ad8ed7c83fbb?q=80&amp;w=2071&amp;auto=format&amp;fit=crop') center/cover no-repeat; text-align: center; color: #fff;">
+  <section style="position: relative; padding: 160px 0 100px; background: url('https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&amp;w=2071&amp;auto=format&amp;fit=crop') center/cover no-repeat; text-align: center; color: #fff;">
     <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0.4), rgba(0,0,0,0.85)); z-index: 1;"></div>
     <div class="container" style="position: relative; z-index: 2;">
       <span class="sec-tag" style="color: #F5C518; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Contact Us</span>
@@ -3132,7 +3306,7 @@
       btn.classList.add('active');
       document.querySelectorAll('.pcard').forEach(c => { c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'block' : 'none'; });
     }
-    function goContact() { document.getElementById('contact').scrollIntoView({ behavior: 'smooth' }); }
+    function goContact() { window.location.href = 'contact.html'; }
 
 
 
