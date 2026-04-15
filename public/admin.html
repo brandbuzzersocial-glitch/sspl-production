@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SSPL Admin — Site Settings</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- SEO Metadata -->
+  <meta name="description" content="Surat Sales Private Limited - Reliable Yarn Import & Supply Across India. Delivering premium yarn solutions, POY, FDY, DTY, PSF, connecting global manufacturers with a strong global sourcing network.">
+  <meta name="keywords" content="Surat Sales, yarn import India, textile raw material, POY, FDY, DTY, PSF, polyester yarn, nylon yarn, Wankai PET chips, global yarn sourcing">
+  
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SSPL Admin — Site Settings">
+  <meta property="og:description" content="Surat Sales Private Limited - Reliable Yarn Import & Supply Across India. Delivering premium yarn solutions, POY, FDY, DTY, PSF, connecting global manufacturers with a strong global sourcing network.">
+  <meta property="og:image" content="https://yourdomain.com/images/sspl_logo.webp">
+  <meta property="og:site_name" content="Surat Sales Private Limited">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SSPL Admin — Site Settings">
+  <meta name="twitter:description" content="Surat Sales Private Limited - Reliable Yarn Import & Supply Across India. Delivering premium yarn solutions, POY, FDY, DTY, PSF, connecting global manufacturers with a strong global sourcing network.">
+  <meta name="twitter:image" content="https://yourdomain.com/images/sspl_logo.webp">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <style>
     :root {
       --yellow: #F5C518;
@@ -446,6 +461,8 @@
     }
     @media(min-width: 769px) { .mobile-toggle { display: none; } }
   </style>
+
+
 </head>
 <body>
 
@@ -483,7 +500,7 @@
         <span class="icon">🏢</span> Company Info
       </div>
       <div class="nav-item" data-tab="stats" onclick="switchTab(this)">
-        <span class="icon">📊</span> Stats & Numbers
+        <span class="icon">📊</span> Stats &amp; Numbers
       </div>
       <div class="nav-item" data-tab="ticker" onclick="switchTab(this)">
         <span class="icon">📢</span> Ticker Banner
@@ -516,7 +533,7 @@
       <!-- Contact Tab -->
       <div class="tab-page active" id="tab-contact">
         <div class="panel">
-          <div class="panel-header">📞 Phone & WhatsApp</div>
+          <div class="panel-header">📞 Phone &amp; WhatsApp</div>
           <div class="panel-body">
             <div class="field-grid">
               <div class="field">
@@ -620,7 +637,7 @@
               </div>
               <div class="field">
                 <label>Logo URL / Path</label>
-                <input type="text" id="cf-company.logo" placeholder="images/sspl_logo.jpg">
+                <input type="text" id="cf-company.logo" placeholder="images/sspl_logo.webp">
                 <span class="field-hint">Relative path from /public or full URL</span>
               </div>
             </div>
@@ -631,7 +648,7 @@
       <!-- Stats Tab -->
       <div class="tab-page" id="tab-stats">
         <div class="panel">
-          <div class="panel-header">📊 Key Stats (shown on Contact & Home pages)</div>
+          <div class="panel-header">📊 Key Stats (shown on Contact &amp; Home pages)</div>
           <div class="panel-body">
             <div class="field-grid">
               <div class="field">
@@ -705,7 +722,7 @@
 
             <!-- Sub-tabs -->
             <div class="img-tabs">
-              <button class="img-tab active" id="itab-main" onclick="switchImgTab('main')">Product & General Images</button>
+              <button class="img-tab active" id="itab-main" onclick="switchImgTab('main')">Product &amp; General Images</button>
               <button class="img-tab" id="itab-partners" onclick="switchImgTab('partners')">Partner Logos</button>
             </div>
 
@@ -930,8 +947,8 @@
     document.getElementById('itab-partners').classList.toggle('active', folder === 'partners');
     document.getElementById('uploadHint').textContent =
       folder === 'partners'
-        ? 'Upload partner/supplier logos. Filename e.g. Hengli.png'
-        : 'Upload product images. Filename must match existing ones to replace (e.g. fake_cotton_yarn.png)';
+        ? 'Upload partner/supplier logos. Filename e.g. Hengli.webp'
+        : 'Upload product images. Filename must match existing ones to replace (e.g. fake_cotton_yarn.webp)';
     renderGallery();
   }
 
@@ -1106,5 +1123,6 @@
     }
   });
 </script>
-</body>
-</html>
+
+
+</body></html>
