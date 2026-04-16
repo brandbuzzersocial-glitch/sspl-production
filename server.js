@@ -34,6 +34,14 @@ const upload = multer({
 });
 
 const CONFIG_PATH = path.join(__dirname, 'site-config.json');
+const BLOGS_PATH  = path.join(__dirname, 'blogs.json');
+
+function readBlogs() {
+  try { return JSON.parse(fs.readFileSync(BLOGS_PATH, 'utf-8')); } catch { return []; }
+}
+function writeBlogs(data) {
+  fs.writeFileSync(BLOGS_PATH, JSON.stringify(data, null, 2), 'utf-8');
+}
 
 // ── Middleware ────────────────────────────────────────────────────
 app.use(express.json());
@@ -192,6 +200,48 @@ app.delete('/api/admin/images/:filename', requireAuth, (req, res) => {
   res.json({ ok: true });
 });
 
+
+
+// ── BLOG API ──────────────────────────────────────────────────────
+
+// GET /api/blogs — public list (only published posts)
+app.get('/api/blogs', (req, res) => {
+  const blogs = readBlogs().filter(b => b.status === 'published');
+  blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+  res.json(blogs);
+});
+
+// POST /api/admin/blogs — create a new post
+app.post('/api/admin/blogs', requireAuth, (req, res) => {
+  const blogs = readBlogs();
+  const post = { ...req.body, id: String(Date.now()) };
+  blogs.push(post);
+  writeBlogs(blogs);
+  console.log(`\x1b[33m  ✍  Blog post created: ${post.title}\x1b[0m`);
+  res.json({ ok: true, post });
+});
+
+// PUT /api/admin/blogs/:id — update existing post
+app.put('/api/admin/blogs/:id', requireAuth, (req, res) => {
+  const blogs = readBlogs();
+  const idx = blogs.findIndex(b => b.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: 'Post not found.' });
+  blogs[idx] = { ...blogs[idx], ...req.body, id: req.params.id };
+  writeBlogs(blogs);
+  console.log(`\x1b[33m  ✍  Blog post updated: ${blogs[idx].title}\x1b[0m`);
+  res.json({ ok: true, post: blogs[idx] });
+});
+
+// DELETE /api/admin/blogs/:id — delete a post
+app.delete('/api/admin/blogs/:id', requireAuth, (req, res) => {
+  let blogs = readBlogs();
+  const idx = blogs.findIndex(b => b.id === req.params.id);
+  if (idx === -1) return res.status(404).json({ error: 'Post not found.' });
+  const removed = blogs.splice(idx, 1)[0];
+  writeBlogs(blogs);
+  console.log(`\x1b[31m  🗑  Blog post deleted: ${removed.title}\x1b[0m`);
+  res.json({ ok: true });
+});
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'surat-sales.html'));

@@ -1,0 +1,389 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog & Insights — Surat Sales Private Limited</title>
+  <meta name="description" content="Stay updated with the latest insights on yarn sourcing, textile industry trends, and product guides from Surat Sales Private Limited.">
+  <meta name="keywords" content="yarn blog, textile industry news, POY FDY DTY guide, polyester yarn sourcing, Surat Sales blog">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Blog & Insights — Surat Sales Private Limited">
+  <meta property="og:description" content="Expert insights on yarn sourcing, textile trends, and product guides from India's trusted yarn importers.">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="images/favicon.jpg" type="image/jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --yellow: #F5C518; --yellow-dark: #D4A800; --yellow-light: #FFF4C2; --yellow-bg: #FFFBEB;
+      --black: #1A1A1A; --gray-dark: #444; --gray: #6B6B6B; --gray-light: #ABABAB;
+      --border: #E8E8E8; --bg: #FFFFFF; --bg-light: #F9F9F9; --bg-section: #F4F4F4;
+      --radius: 10px; --radius-sm: 6px; --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.14); --t: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;overflow-x:hidden;}
+    body{background:var(--bg);color:var(--black);font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden;}
+    img{max-width:100%;display:block;}
+    a{text-decoration:none;color:inherit;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.97);border-bottom:1px solid var(--border);padding:0 60px;height:66px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(10px);transition:box-shadow var(--t);}
+    nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.08);}
+    .nav-logo{display:flex;align-items:center;gap:10px;}
+    .nav-logo-name{font-size:17px;font-weight:800;color:var(--black);line-height:1.1;}
+    .nav-logo-name span{display:block;font-size:10px;font-weight:400;letter-spacing:2px;color:var(--gray);text-transform:uppercase;}
+    .nav-links{display:flex;gap:32px;list-style:none;}
+    .nav-links a{font-size:13px;font-weight:500;color:var(--gray-dark);transition:color var(--t);position:relative;padding-bottom:2px;}
+    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--yellow);border-radius:2px;transition:width var(--t);}
+    .nav-links a:hover{color:var(--black);}
+    .nav-links a:hover::after,.nav-links a.active-link::after{width:100%;}
+    .nav-links a.active-link{color:var(--black);font-weight:700;}
+    .btn-nav{background:var(--yellow);color:var(--black);padding:9px 20px;border-radius:var(--radius-sm);font-size:13px;font-weight:700;transition:var(--t);}
+    .btn-nav:hover{background:var(--yellow-dark);}
+    .hamburger{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:4px;}
+    .hamburger span{width:22px;height:2px;background:var(--black);border-radius:2px;}
+    .mobile-menu{display:none;position:fixed;inset:0;z-index:998;background:rgba(255,255,255,.99);flex-direction:column;align-items:center;justify-content:center;gap:32px;}
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{font-size:28px;font-weight:700;color:var(--black);}
+    .mobile-close{position:absolute;top:20px;right:24px;background:none;border:none;font-size:32px;cursor:pointer;}
+
+    /* HERO */
+    .blog-hero{padding:140px 60px 80px;background:linear-gradient(135deg,#1A1A1A 0%,#2d2d2d 100%);color:#fff;text-align:center;position:relative;overflow:hidden;}
+    .blog-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(245,197,24,.15) 0%,transparent 60%);pointer-events:none;}
+    .blog-hero .sec-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--yellow);margin-bottom:16px;}
+    .blog-hero h1{font-size:clamp(32px,4vw,54px);font-weight:800;line-height:1.15;margin-bottom:18px;}
+    .blog-hero h1 em{color:var(--yellow);font-style:normal;}
+    .blog-hero p{font-size:16px;color:rgba(255,255,255,.7);max-width:560px;margin:0 auto 36px;}
+
+    /* SEARCH */
+    .blog-search-wrap{max-width:480px;margin:0 auto;position:relative;}
+    .blog-search{width:100%;padding:14px 52px 14px 20px;border-radius:100px;border:none;font-size:15px;font-family:inherit;outline:none;}
+    .blog-search-icon{position:absolute;right:18px;top:50%;transform:translateY(-50%);color:var(--gray);}
+
+    /* FILTER */
+    .blog-filter-wrap{padding:40px 60px 0;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+    .filt-btn{padding:8px 22px;border-radius:100px;border:1.5px solid var(--border);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;background:#fff;color:var(--gray-dark);transition:var(--t);}
+    .filt-btn:hover{border-color:var(--yellow-dark);color:var(--yellow-dark);}
+    .filt-btn.active{background:var(--yellow);border-color:var(--yellow);color:var(--black);}
+
+    /* GRID */
+    .blog-main{padding:40px 60px 100px;max-width:1280px;margin:0 auto;}
+    .blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:28px;margin-top:32px;}
+    .blog-card{border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;background:#fff;transition:var(--t);cursor:pointer;}
+    .blog-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--yellow);}
+    .blog-card-img{width:100%;height:200px;object-fit:cover;}
+    .blog-card-img-placeholder{width:100%;height:200px;background:linear-gradient(135deg,var(--yellow-bg),var(--yellow-light));display:flex;align-items:center;justify-content:center;font-size:48px;}
+    .blog-card-body{padding:22px;}
+    .blog-card-cat{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--yellow-dark);margin-bottom:10px;}
+    .blog-card-title{font-size:18px;font-weight:800;line-height:1.3;margin-bottom:10px;color:var(--black);}
+    .blog-card-excerpt{font-size:13px;color:var(--gray);line-height:1.65;margin-bottom:16px;}
+    .blog-card-meta{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--gray-light);}
+    .blog-card-meta span{display:flex;align-items:center;gap:4px;}
+    .read-more{font-size:13px;font-weight:700;color:var(--yellow-dark);display:flex;align-items:center;gap:4px;transition:gap var(--t);}
+    .blog-card:hover .read-more{gap:8px;}
+
+    /* EMPTY STATE */
+    .blog-empty{text-align:center;padding:80px 20px;color:var(--gray);}
+    .blog-empty .icon{font-size:48px;margin-bottom:16px;}
+    .blog-empty h3{font-size:20px;font-weight:700;color:var(--black);margin-bottom:8px;}
+
+    /* MODAL */
+    .modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px;}
+    .modal-overlay.open{display:flex;}
+    .modal{background:#fff;border-radius:16px;max-width:800px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.35);}
+    .modal-hero-img{width:100%;height:320px;object-fit:cover;border-radius:16px 16px 0 0;}
+    .modal-body{padding:36px 40px 48px;}
+    .modal-cat{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--yellow-dark);margin-bottom:12px;}
+    .modal-title{font-size:clamp(22px,3vw,32px);font-weight:800;line-height:1.2;margin-bottom:16px;}
+    .modal-meta{display:flex;gap:20px;font-size:13px;color:var(--gray);margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .modal-content{font-size:15px;line-height:1.85;color:var(--gray-dark);}
+    .modal-content h3{font-size:18px;font-weight:800;color:var(--black);margin:28px 0 12px;}
+    .modal-content p{margin-bottom:16px;}
+    .modal-content strong{color:var(--black);}
+    .modal-close{position:absolute;top:24px;right:28px;background:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);z-index:10;}
+    .modal-wrap{position:relative;}
+    .modal-cta{margin-top:32px;padding:24px;background:var(--yellow-bg);border-radius:var(--radius);border:1px solid rgba(245,197,24,.3);text-align:center;}
+    .modal-cta p{font-size:15px;color:var(--gray-dark);margin-bottom:14px;}
+    .btn-primary{background:var(--yellow);color:var(--black);padding:13px 28px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;border:none;cursor:pointer;transition:var(--t);display:inline-flex;align-items:center;gap:8px;font-family:inherit;}
+    .btn-primary:hover{background:var(--yellow-dark);transform:translateY(-2px);}
+
+    /* COUNT */
+    .blog-count{font-size:13px;color:var(--gray);margin-top:8px;}
+
+    /* FOOTER */
+    footer{background:#fff;border-top:1px solid var(--border);padding:60px 60px 30px;}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:40px;max-width:1240px;margin:0 auto 40px;}
+    .fb-logo{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+    .fb-name{font-size:16px;font-weight:800;line-height:1.1;}
+    .fb-name span{display:block;font-size:10px;font-weight:400;letter-spacing:2px;color:var(--gray);text-transform:uppercase;}
+    .fb-desc{font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:16px;}
+    .fb-socials{display:flex;gap:10px;}
+    .social{width:34px;height:34px;border-radius:8px;background:var(--bg-light);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:var(--t);color:var(--gray-dark);}
+    .social:hover{background:var(--yellow);border-color:var(--yellow);color:var(--black);}
+    .fc h5{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
+    .fc ul{list-style:none;}
+    .fc ul li{font-size:13px;color:var(--gray);margin-bottom:8px;}
+    .fc ul li a:hover{color:var(--yellow-dark);}
+    .footer-bottom{max-width:1240px;margin:0 auto;border-top:1px solid var(--border);padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--gray);}
+
+    /* TICKER */
+    .top-ticker{background:#F5C518;color:#111;font-weight:800;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:8px 0;overflow:hidden;white-space:nowrap;position:fixed;top:0;left:0;width:100%;z-index:99999;box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+    .ticker-wrap{width:100%;overflow:hidden;}
+    .ticker-content{display:inline-block;white-space:nowrap;animation:bannerTicker 50s linear infinite;}
+    .ticker-content span{display:inline-block;padding-right:50px;}
+    @keyframes bannerTicker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+    nav#navbar{top:30px!important;}
+    .blog-hero{padding-top:160px!important;}
+    @media(max-width:768px){
+      .top-ticker{padding:5px 0;font-size:9px;letter-spacing:1px;}
+      nav{padding:0 20px;}
+      nav#navbar{top:24px!important;}
+      .nav-links{display:none;}
+      .hamburger{display:flex;}
+      .blog-hero{padding:140px 24px 60px!important;}
+      .blog-filter-wrap{padding:24px 24px 0;}
+      .blog-main{padding:24px 20px 80px;}
+      .blog-grid{grid-template-columns:1fr;}
+      .modal-body{padding:24px 20px 36px;}
+      .footer-grid{grid-template-columns:1fr 1fr;}
+      footer{padding:40px 24px 24px;}
+    }
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
+    .reveal.visible{opacity:1;transform:none;}
+  </style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="top-ticker"><div class="ticker-wrap"><div class="ticker-content">
+  <span>Global Yarn Sourcing &nbsp;&nbsp;&nbsp; Trusted Quality &amp; Consistent Supply</span>
+  <span>Global Yarn Sourcing &nbsp;&nbsp;&nbsp; Trusted Quality &amp; Consistent Supply</span>
+  <span>Global Yarn Sourcing &nbsp;&nbsp;&nbsp; Trusted Quality &amp; Consistent Supply</span>
+  <span>Global Yarn Sourcing &nbsp;&nbsp;&nbsp; Trusted Quality &amp; Consistent Supply</span>
+  <span>Global Yarn Sourcing &nbsp;&nbsp;&nbsp; Trusted Quality &amp; Consistent Supply</span>
+  <span>Global Yarn Sourcing &nbsp;&nbsp;&nbsp; Trusted Quality &amp; Consistent Supply</span>
+</div></div></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="document.getElementById('mobileMenu').classList.remove('open')">×</button>
+  <a href="surat-sales.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="process.html">Process</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="surat-sales.html" class="nav-logo">
+    <img src="images/sspl_logo.webp" alt="SSPL Logo" style="height:44px;width:auto;border-radius:4px;">
+    <div class="nav-logo-name">Surat Sales<span>Private Limited</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="surat-sales.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="process.html">Process</a></li>
+    <li><a href="blog.html" class="active-link">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.add('open')"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO -->
+<section class="blog-hero">
+  <span class="sec-tag">Knowledge Hub</span>
+  <h1>Yarn Insights & <em>Industry Guides</em></h1>
+  <p>Expert articles on yarn sourcing, textile trends, product guides, and market insights from Surat Sales.</p>
+  <div class="blog-search-wrap">
+    <input class="blog-search" id="searchInput" type="text" placeholder="Search articles…" oninput="filterBlogs()">
+    <span class="blog-search-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </span>
+  </div>
+</section>
+
+<!-- FILTER -->
+<div class="blog-filter-wrap" id="filterWrap">
+  <button class="filt-btn active" onclick="setCategory('all',this)">All</button>
+  <button class="filt-btn" onclick="setCategory('Product Guide',this)">Product Guide</button>
+  <button class="filt-btn" onclick="setCategory('Industry Insight',this)">Industry Insight</button>
+  <button class="filt-btn" onclick="setCategory('Sourcing Tips',this)">Sourcing Tips</button>
+  <button class="filt-btn" onclick="setCategory('Industry Trends',this)">Industry Trends</button>
+</div>
+
+<!-- BLOG GRID -->
+<div class="blog-main">
+  <div id="blogCount" class="blog-count"></div>
+  <div id="blogGrid" class="blog-grid">
+    <div class="blog-empty"><div class="icon">⏳</div><h3>Loading articles…</h3></div>
+  </div>
+</div>
+
+<!-- ARTICLE MODAL -->
+<div class="modal-overlay" id="articleModal" onclick="closeModal(event)">
+  <div class="modal-wrap">
+    <button class="modal-close" onclick="document.getElementById('articleModal').classList.remove('open')">×</button>
+    <div class="modal" id="modalContent"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="fb-logo">
+        <img src="images/sspl_logo.webp" alt="SSPL Logo" style="height:44px;width:auto;border-radius:4px;">
+        <div class="fb-name">Surat Sales<span>Private Limited</span></div>
+      </div>
+      <div class="fb-desc">Reliable Yarn Import &amp; Supply Across India from Global Sourcing.</div>
+      <div class="fb-socials">
+        <a href="https://www.linkedin.com/company/surat-sales-private-limited/" target="_blank" class="social"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://www.instagram.com/surat__sales/" target="_blank" class="social"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      </div>
+    </div>
+    <div class="fc"><h5>Products</h5><ul>
+      <li><a href="products.html">POY – SD, FD, Bright</a></li>
+      <li><a href="products.html">FDY – SD, FD, Bright</a></li>
+      <li><a href="products.html">DTY – Draw Textured</a></li>
+      <li><a href="products.html">Nylon Mother Yarn</a></li>
+    </ul></div>
+    <div class="fc"><h5>Company</h5><ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="process.html">Our Process</a></li>
+      <li><a href="sourcing.html">Global Sourcing</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul></div>
+    <div class="fc"><h5>Contact</h5><ul>
+      <li><span>128, 4th Floor, Ring Road, Reshamwala Market, Surat, Gujarat – 395002</span></li>
+      <li><a href="tel:+919374713687">93747 13687</a></li>
+      <li><a href="mailto:imports.suratsales@gmail.com">imports.suratsales@gmail.com</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Surat Sales Private Limited. All rights reserved.</p>
+    <p style="font-size:11px;">Designed &amp; Developed by <a href="https://brandbuzzersocial.com" target="_blank" style="color:var(--yellow-dark);font-weight:700;">BRAND BUZZER</a></p>
+  </div>
+</footer>
+
+<script>
+  let allBlogs = [];
+  let activeCategory = 'all';
+
+  const catEmojis = {
+    'Product Guide': '📦',
+    'Industry Insight': '🏭',
+    'Sourcing Tips': '🌐',
+    'Industry Trends': '📈'
+  };
+
+  async function loadBlogs() {
+    try {
+      const res = await fetch('/api/blogs');
+      allBlogs = await res.json();
+    } catch {
+      allBlogs = [];
+    }
+    filterBlogs();
+  }
+
+  function setCategory(cat, btn) {
+    activeCategory = cat;
+    document.querySelectorAll('.filt-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterBlogs();
+  }
+
+  function filterBlogs() {
+    const q = (document.getElementById('searchInput').value || '').toLowerCase();
+    let list = allBlogs;
+    if (activeCategory !== 'all') list = list.filter(b => b.category === activeCategory);
+    if (q) list = list.filter(b => b.title.toLowerCase().includes(q) || b.excerpt.toLowerCase().includes(q) || b.category.toLowerCase().includes(q));
+    renderBlogs(list);
+  }
+
+  function renderBlogs(list) {
+    const grid = document.getElementById('blogGrid');
+    const count = document.getElementById('blogCount');
+    count.textContent = list.length ? `${list.length} article${list.length !== 1 ? 's' : ''} found` : '';
+
+    if (!list.length) {
+      grid.innerHTML = `<div class="blog-empty"><div class="icon">🔍</div><h3>No articles found</h3><p>Try a different search or category.</p></div>`;
+      return;
+    }
+
+    grid.innerHTML = list.map(post => `
+      <div class="blog-card reveal" onclick="openArticle('${post.id}')">
+        ${post.image
+          ? `<img class="blog-card-img" src="${post.image}" alt="${post.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+             <div class="blog-card-img-placeholder" style="display:none;">${catEmojis[post.category]||'📰'}</div>`
+          : `<div class="blog-card-img-placeholder">${catEmojis[post.category]||'📰'}</div>`
+        }
+        <div class="blog-card-body">
+          <div class="blog-card-cat">${post.category || 'Article'}</div>
+          <h2 class="blog-card-title">${post.title}</h2>
+          <p class="blog-card-excerpt">${post.excerpt}</p>
+          <div class="blog-card-meta">
+            <span>📅 ${formatDate(post.date)}</span>
+            <span class="read-more">Read more →</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    // Reveal animation
+    setTimeout(() => {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        obs.observe(el);
+      });
+    }, 50);
+  }
+
+  function formatDate(d) {
+    if (!d) return '';
+    return new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  function openArticle(id) {
+    const post = allBlogs.find(b => b.id === id);
+    if (!post) return;
+    document.getElementById('modalContent').innerHTML = `
+      ${post.image ? `<img class="modal-hero-img" src="${post.image}" alt="${post.title}" onerror="this.style.display='none'">` : ''}
+      <div class="modal-body">
+        <div class="modal-cat">${catEmojis[post.category]||''} ${post.category}</div>
+        <h2 class="modal-title">${post.title}</h2>
+        <div class="modal-meta">
+          <span>📅 ${formatDate(post.date)}</span>
+          <span>✍️ ${post.author || 'Surat Sales Team'}</span>
+          ${post.readTime ? `<span>⏱ ${post.readTime}</span>` : ''}
+        </div>
+        <div class="modal-content">${post.body || post.excerpt}</div>
+        <div class="modal-cta">
+          <p>Interested in sourcing yarn? Get in touch with our team for pricing and availability.</p>
+          <a href="contact.html" class="btn-primary">📩 Contact Us →</a>
+        </div>
+      </div>
+    `;
+    document.getElementById('articleModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('articleModal')) {
+      document.getElementById('articleModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', scrollY > 50);
+  });
+
+  loadBlogs();
+</script>
+</body></html>

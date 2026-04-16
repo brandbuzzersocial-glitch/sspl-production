@@ -511,6 +511,9 @@
       <div class="nav-item" data-tab="social" onclick="switchTab(this)">
         <span class="icon">🔗</span> Social Links
       </div>
+      <div class="nav-item" data-tab="blogs" onclick="switchTab(this)">
+        <span class="icon">📝</span> Blog Manager
+      </div>
       <div class="nav-item" data-tab="password" onclick="switchTab(this)">
         <span class="icon">🔑</span> Change Password
       </div>
@@ -737,6 +740,75 @@
 
             <!-- Gallery -->
             <div id="imgGallery"><p style="color:var(--gray);font-size:13px;">Loading images…</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog Tab -->
+      <div class="tab-page" id="tab-blogs">
+        <div class="panel">
+          <div class="panel-header">📝 Blog Posts</div>
+          <div class="panel-body">
+            <div style="display:flex;justify-content:flex-end;margin-bottom:20px;">
+              <button class="add-btn" onclick="openBlogForm(null)" style="padding:10px 22px;font-size:14px;">+ New Post</button>
+            </div>
+            <div id="blogList"><p style="color:var(--gray);font-size:13px;">Loading posts…</p></div>
+          </div>
+        </div>
+
+        <!-- Blog Edit Form -->
+        <div class="panel" id="blogFormPanel" style="display:none;">
+          <div class="panel-header" id="blogFormTitle">📝 New Post</div>
+          <div class="panel-body">
+            <div class="field-grid" style="margin-bottom:16px;">
+              <div class="field" style="grid-column:1/-1;">
+                <label>Title *</label>
+                <input type="text" id="bf-title" placeholder="Post title">
+              </div>
+              <div class="field">
+                <label>Category</label>
+                <select id="bf-category" style="padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;">
+                  <option>Product Guide</option>
+                  <option>Industry Insight</option>
+                  <option>Sourcing Tips</option>
+                  <option>Industry Trends</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Status</label>
+                <select id="bf-status" style="padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;">
+                  <option value="published">Published</option>
+                  <option value="draft">Draft</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Date</label>
+                <input type="date" id="bf-date">
+              </div>
+              <div class="field">
+                <label>Read Time</label>
+                <input type="text" id="bf-readTime" placeholder="e.g. 5 min read">
+              </div>
+              <div class="field" style="grid-column:1/-1;">
+                <label>Image Path (relative to /public)</label>
+                <input type="text" id="bf-image" placeholder="images/polyester_poy.webp">
+                <span class="field-hint">Use an existing image path or leave blank.</span>
+              </div>
+              <div class="field" style="grid-column:1/-1;">
+                <label>Excerpt (short summary)</label>
+                <textarea id="bf-excerpt" rows="3" placeholder="1–2 sentence summary shown on the blog card"></textarea>
+              </div>
+              <div class="field" style="grid-column:1/-1;">
+                <label>Body (HTML allowed)</label>
+                <textarea id="bf-body" rows="14" placeholder="&lt;p&gt;Full article content. You can use HTML tags like &lt;strong&gt;, &lt;h3&gt;, &lt;p&gt; etc.&lt;/p&gt;"></textarea>
+                <span class="field-hint">Supports basic HTML: &lt;p&gt; &lt;h3&gt; &lt;strong&gt; &lt;br&gt; &lt;ul&gt; &lt;li&gt;</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+              <button class="save-btn" onclick="saveBlogPost()" id="blogSaveBtn">Save Post</button>
+              <button onclick="closeBlogForm()" style="padding:12px 24px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;background:#fff;font-family:inherit;">Cancel</button>
+            </div>
+            <div id="blogFormMsg" style="margin-top:12px;font-size:13px;"></div>
           </div>
         </div>
       </div>
@@ -1099,6 +1171,7 @@
     ticker:   { title: 'Ticker Banner',       desc: 'Manage scrolling messages shown at the top of every page' },
     images:   { title: 'Image Manager',       desc: 'Upload, preview, and manage all images used on the website' },
     social:   { title: 'Social Links',        desc: 'Add or update your social media profile URLs' },
+    blogs:    { title: 'Blog Manager',        desc: 'Create, edit, and delete blog posts shown on the website' },
     password: { title: 'Change Password',     desc: 'Update the admin panel login password' }
   };
 
@@ -1111,6 +1184,134 @@
     document.getElementById('tabTitle').textContent = tabMeta[tab].title;
     document.getElementById('tabDesc').textContent  = tabMeta[tab].desc;
     if (tab === 'images') loadImages();
+    if (tab === 'blogs')  loadBlogList();
+  }
+
+  /* ── Blog Manager ── */
+  let editingBlogId = null;
+  let blogData = [];
+
+  async function loadBlogList() {
+    try {
+      const res = await fetch('/api/blogs', { headers: { 'X-Admin-Token': SESSION_TOKEN } });
+      // use admin route to get ALL posts (including drafts)
+      const allRes = await fetch('/api/admin/blogs/all', { headers: { 'X-Admin-Token': SESSION_TOKEN } });
+      // fallback to public endpoint if admin-all not available
+      blogData = allRes.ok ? await allRes.json() : await res.json();
+    } catch { blogData = []; }
+    renderBlogList();
+  }
+
+  function renderBlogList() {
+    const container = document.getElementById('blogList');
+    if (!blogData.length) {
+      container.innerHTML = '<p style="color:var(--gray);font-size:13px;">No posts yet. Click "+ New Post" to add one.</p>';
+      return;
+    }
+    container.innerHTML = `
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="background:var(--bg);text-align:left;">
+            <th style="padding:10px 14px;border-bottom:1.5px solid var(--border);font-weight:700;">Title</th>
+            <th style="padding:10px 14px;border-bottom:1.5px solid var(--border);font-weight:700;">Category</th>
+            <th style="padding:10px 14px;border-bottom:1.5px solid var(--border);font-weight:700;">Date</th>
+            <th style="padding:10px 14px;border-bottom:1.5px solid var(--border);font-weight:700;">Status</th>
+            <th style="padding:10px 14px;border-bottom:1.5px solid var(--border);font-weight:700;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${blogData.map(p => `
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:12px 14px;font-weight:600;max-width:280px;">${p.title}</td>
+              <td style="padding:12px 14px;color:var(--gray);">${p.category||'-'}</td>
+              <td style="padding:12px 14px;color:var(--gray);">${p.date||'-'}</td>
+              <td style="padding:12px 14px;">
+                <span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;
+                  background:${p.status==='published'?'#dcfce7':'#fef9c3'};
+                  color:${p.status==='published'?'#15803d':'#854d0e'}">
+                  ${p.status||'draft'}
+                </span>
+              </td>
+              <td style="padding:12px 14px;">
+                <button onclick="openBlogForm('${p.id}')" style="margin-right:6px;padding:5px 14px;border:1.5px solid var(--border);border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;font-family:inherit;">Edit</button>
+                <button onclick="deleteBlogPost('${p.id}')" style="padding:5px 14px;border:1.5px solid #fca5a5;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:var(--red);font-family:inherit;">Delete</button>
+              </td>
+            </tr>`).join('')}
+        </tbody>
+      </table>`;
+  }
+
+  function openBlogForm(id) {
+    editingBlogId = id;
+    const post = id ? blogData.find(p => p.id === id) : null;
+    document.getElementById('blogFormTitle').textContent = id ? '✏️ Edit Post' : '📝 New Post';
+    document.getElementById('bf-title').value    = post?.title    || '';
+    document.getElementById('bf-excerpt').value  = post?.excerpt  || '';
+    document.getElementById('bf-body').value     = post?.body     || '';
+    document.getElementById('bf-image').value    = post?.image    || '';
+    document.getElementById('bf-readTime').value = post?.readTime || '';
+    document.getElementById('bf-date').value     = post?.date     || new Date().toISOString().split('T')[0];
+    document.getElementById('bf-category').value = post?.category || 'Product Guide';
+    document.getElementById('bf-status').value   = post?.status   || 'published';
+    document.getElementById('blogFormMsg').textContent = '';
+    document.getElementById('blogFormPanel').style.display = 'block';
+    document.getElementById('blogFormPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function closeBlogForm() {
+    document.getElementById('blogFormPanel').style.display = 'none';
+    editingBlogId = null;
+  }
+
+  async function saveBlogPost() {
+    const title = document.getElementById('bf-title').value.trim();
+    if (!title) { document.getElementById('blogFormMsg').textContent = 'Title is required.'; document.getElementById('blogFormMsg').style.color='var(--red)'; return; }
+
+    const payload = {
+      title,
+      excerpt:  document.getElementById('bf-excerpt').value.trim(),
+      body:     document.getElementById('bf-body').value.trim(),
+      image:    document.getElementById('bf-image').value.trim(),
+      readTime: document.getElementById('bf-readTime').value.trim(),
+      date:     document.getElementById('bf-date').value,
+      category: document.getElementById('bf-category').value,
+      status:   document.getElementById('bf-status').value,
+      author:   'Surat Sales Team'
+    };
+
+    const btn = document.getElementById('blogSaveBtn');
+    btn.disabled = true; btn.textContent = 'Saving…';
+
+    const url    = editingBlogId ? `/api/admin/blogs/${editingBlogId}` : '/api/admin/blogs';
+    const method = editingBlogId ? 'PUT' : 'POST';
+
+    const res = await fetch(url, {
+      method,
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': SESSION_TOKEN },
+      body: JSON.stringify(payload)
+    });
+
+    btn.disabled = false; btn.textContent = 'Save Post';
+
+    if (res.ok) {
+      document.getElementById('blogFormMsg').textContent = '✓ Post saved!';
+      document.getElementById('blogFormMsg').style.color = 'var(--green)';
+      setTimeout(closeBlogForm, 800);
+      await loadBlogList();
+    } else {
+      document.getElementById('blogFormMsg').textContent = '❌ Save failed. Please try again.';
+      document.getElementById('blogFormMsg').style.color = 'var(--red)';
+    }
+  }
+
+  async function deleteBlogPost(id) {
+    if (!confirm('Delete this blog post? This cannot be undone.')) return;
+    const res = await fetch(`/api/admin/blogs/${id}`, {
+      method: 'DELETE',
+      headers: { 'X-Admin-Token': SESSION_TOKEN }
+    });
+    if (res.ok) { setStatus('🗑 Blog post deleted.', 'success'); await loadBlogList(); }
+    else setStatus('❌ Delete failed.', 'error');
   }
 
   /* ── Auto-check existing session on load ── */
