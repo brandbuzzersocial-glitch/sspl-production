@@ -34,8 +34,7 @@
     .nav-links a{font-size:13px;font-weight:500;color:var(--gray-dark);transition:color var(--t);position:relative;padding-bottom:2px;}
     .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--yellow);border-radius:2px;transition:width var(--t);}
     .nav-links a:hover{color:var(--black);}
-    .nav-links a:hover::after,.nav-links a.active-link::after{width:100%;}
-    .nav-links a.active-link{color:var(--black);font-weight:700;}
+    .nav-links a:hover::after{width:100%;}
     .btn-nav{background:var(--yellow);color:var(--black);padding:9px 20px;border-radius:var(--radius-sm);font-size:13px;font-weight:700;transition:var(--t);}
     .btn-nav:hover{background:var(--yellow-dark);}
     .hamburger{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:4px;}
@@ -45,27 +44,8 @@
     .mobile-menu a{font-size:28px;font-weight:700;color:var(--black);}
     .mobile-close{position:absolute;top:20px;right:24px;background:none;border:none;font-size:32px;cursor:pointer;}
 
-    /* HERO */
-    .blog-hero{padding:140px 60px 80px;background:linear-gradient(135deg,#1A1A1A 0%,#2d2d2d 100%);color:#fff;text-align:center;position:relative;overflow:hidden;}
-    .blog-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(245,197,24,.15) 0%,transparent 60%);pointer-events:none;}
-    .blog-hero .sec-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--yellow);margin-bottom:16px;}
-    .blog-hero h1{font-size:clamp(32px,4vw,54px);font-weight:800;line-height:1.15;margin-bottom:18px;}
-    .blog-hero h1 em{color:var(--yellow);font-style:normal;}
-    .blog-hero p{font-size:16px;color:rgba(255,255,255,.7);max-width:560px;margin:0 auto 36px;}
-
-    /* SEARCH */
-    .blog-search-wrap{max-width:480px;margin:0 auto;position:relative;}
-    .blog-search{width:100%;padding:14px 52px 14px 20px;border-radius:100px;border:none;font-size:15px;font-family:inherit;outline:none;}
-    .blog-search-icon{position:absolute;right:18px;top:50%;transform:translateY(-50%);color:var(--gray);}
-
-    /* FILTER */
-    .blog-filter-wrap{padding:40px 60px 0;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
-    .filt-btn{padding:8px 22px;border-radius:100px;border:1.5px solid var(--border);font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;background:#fff;color:var(--gray-dark);transition:var(--t);}
-    .filt-btn:hover{border-color:var(--yellow-dark);color:var(--yellow-dark);}
-    .filt-btn.active{background:var(--yellow);border-color:var(--yellow);color:var(--black);}
-
     /* GRID */
-    .blog-main{padding:40px 60px 100px;max-width:1280px;margin:0 auto;}
+    .blog-main{padding:140px 60px 100px;max-width:1280px;margin:0 auto;}
     .blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:28px;margin-top:32px;}
     .blog-card{border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;background:#fff;transition:var(--t);cursor:pointer;}
     .blog-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--yellow);}
@@ -138,9 +118,7 @@
       nav#navbar{top:24px!important;}
       .nav-links{display:none;}
       .hamburger{display:flex;}
-      .blog-hero{padding:140px 24px 60px!important;}
-      .blog-filter-wrap{padding:24px 24px 0;}
-      .blog-main{padding:24px 20px 80px;}
+      .blog-main{padding:100px 20px 80px;}
       .blog-grid{grid-template-columns:1fr;}
       .modal-body{padding:24px 20px 36px;}
       .footer-grid{grid-template-columns:1fr 1fr;}
@@ -185,33 +163,13 @@
     <li><a href="products.html">Products</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="process.html">Process</a></li>
-    <li><a href="blog.html" class="active-link">Blog</a></li>
+    <li><a href="blog.html">Blog</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.add('open')"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- HERO -->
-<section class="blog-hero">
-  <span class="sec-tag">Knowledge Hub</span>
-  <h1>Yarn Insights & <em>Industry Guides</em></h1>
-  <p>Expert articles on yarn sourcing, textile trends, product guides, and market insights from Surat Sales.</p>
-  <div class="blog-search-wrap">
-    <input class="blog-search" id="searchInput" type="text" placeholder="Search articles…" oninput="filterBlogs()">
-    <span class="blog-search-icon">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    </span>
-  </div>
-</section>
 
-<!-- FILTER -->
-<div class="blog-filter-wrap" id="filterWrap">
-  <button class="filt-btn active" onclick="setCategory('all',this)">All</button>
-  <button class="filt-btn" onclick="setCategory('Product Guide',this)">Product Guide</button>
-  <button class="filt-btn" onclick="setCategory('Industry Insight',this)">Industry Insight</button>
-  <button class="filt-btn" onclick="setCategory('Sourcing Tips',this)">Sourcing Tips</button>
-  <button class="filt-btn" onclick="setCategory('Industry Trends',this)">Industry Trends</button>
-</div>
 
 <!-- BLOG GRID -->
 <div class="blog-main">
@@ -236,8 +194,8 @@
       <div class="fb-logo">
         <img src="images/sspl_logo.webp" alt="SSPL Logo" style="height:44px;width:auto;border-radius:4px;">
         <div class="fb-name">Surat Sales<span>Private Limited</span></div>
-      </div>
-      <div class="fb-desc">Reliable Yarn Import &amp; Supply Across India from Global Sourcing.</div>
+      </a>
+        <div class="fb-desc">Reliable Yarn Import &amp; Supply Across India from Global Sourcing.</div>
       <div class="fb-socials">
         <a href="https://www.linkedin.com/company/surat-sales-private-limited/" target="_blank" class="social"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
         <a href="https://www.instagram.com/surat__sales/" target="_blank" class="social"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
@@ -280,7 +238,7 @@
 
   async function loadBlogs() {
     try {
-      const res = await fetch('/api/blogs');
+      const res = await fetch('https://sspl-production-production.up.railway.app/api/blogs');
       allBlogs = await res.json();
     } catch {
       allBlogs = [];
@@ -289,18 +247,11 @@
   }
 
   function setCategory(cat, btn) {
-    activeCategory = cat;
-    document.querySelectorAll('.filt-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    filterBlogs();
+    // Deprecated with UI removal
   }
 
   function filterBlogs() {
-    const q = (document.getElementById('searchInput').value || '').toLowerCase();
-    let list = allBlogs;
-    if (activeCategory !== 'all') list = list.filter(b => b.category === activeCategory);
-    if (q) list = list.filter(b => b.title.toLowerCase().includes(q) || b.excerpt.toLowerCase().includes(q) || b.category.toLowerCase().includes(q));
-    renderBlogs(list);
+    renderBlogs(allBlogs);
   }
 
   function renderBlogs(list) {

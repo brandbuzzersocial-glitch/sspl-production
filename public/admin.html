@@ -872,7 +872,7 @@
     const pw = document.getElementById('loginPw').value;
     if (!pw) return;
     const hash = await sha256(pw);
-    const res = await fetch('/api/admin/login', {
+    const res = await fetch('https://sspl-production-production.up.railway.app/api/admin/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ hash })
@@ -896,7 +896,7 @@
 
   /* ── Load Config ── */
   async function loadConfig() {
-    const res = await fetch('/api/config');
+    const res = await fetch('https://sspl-production-production.up.railway.app/api/config');
     CFG = await res.json();
     populateFields();
     renderTicker();
@@ -949,7 +949,7 @@
     document.getElementById('saveBtn').disabled = true;
     setStatus('Saving…', 'normal');
 
-    const res = await fetch('/api/admin/config', {
+    const res = await fetch('https://sspl-production-production.up.railway.app/api/admin/config', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -990,7 +990,7 @@
     const curHash = await sha256(cur);
     const nwHash  = await sha256(nw);
 
-    const res = await fetch('/api/admin/password', {
+    const res = await fetch('https://sspl-production-production.up.railway.app/api/admin/password', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Admin-Token': SESSION_TOKEN },
       body: JSON.stringify({ currentHash: curHash, newHash: nwHash })
@@ -1026,7 +1026,7 @@
 
   async function loadImages() {
     try {
-      const res = await fetch('/api/admin/images', { headers: { 'X-Admin-Token': SESSION_TOKEN } });
+      const res = await fetch('https://sspl-production-production.up.railway.app/api/admin/images', { headers: { 'X-Admin-Token': SESSION_TOKEN } });
       allImages = await res.json();
       renderGallery();
     } catch { document.getElementById('imgGallery').innerHTML = '<p style="color:var(--red)">Failed to load images.</p>'; }
@@ -1076,7 +1076,7 @@
     formData.append('image', file);
 
     const folderParam = currentImgFolder === 'partners' ? '&folder=partners' : '';
-    const res = await fetch(`/api/admin/upload?filename=${encodeURIComponent(targetFilename)}${folderParam}`, {
+    const res = await fetch(`https://sspl-production-production.up.railway.app/api/admin/upload?filename=${encodeURIComponent(targetFilename)}${folderParam}`, {
       method: 'POST',
       headers: { 'X-Admin-Token': SESSION_TOKEN },
       body: formData
@@ -1104,7 +1104,7 @@
   async function deleteImg(filename) {
     if (!confirm(`Delete "${filename}"? This cannot be undone.`)) return;
     const folder = currentImgFolder === 'partners' ? '?folder=partners' : '';
-    const res = await fetch(`/api/admin/images/${encodeURIComponent(filename)}${folder}`, {
+    const res = await fetch(`https://sspl-production-production.up.railway.app/api/admin/images/${encodeURIComponent(filename)}${folder}`, {
       method: 'DELETE',
       headers: { 'X-Admin-Token': SESSION_TOKEN }
     });
@@ -1127,7 +1127,7 @@
     formData.append('image', file);
 
     const folder = currentImgFolder === 'partners' ? '?folder=partners' : '';
-    const res = await fetch(`/api/admin/upload${folder}`, {
+    const res = await fetch(`https://sspl-production-production.up.railway.app/api/admin/upload${folder}`, {
       method: 'POST',
       headers: { 'X-Admin-Token': SESSION_TOKEN },
       body: formData
@@ -1193,13 +1193,24 @@
 
   async function loadBlogList() {
     try {
-      const res = await fetch('/api/blogs', { headers: { 'X-Admin-Token': SESSION_TOKEN } });
-      // use admin route to get ALL posts (including drafts)
-      const allRes = await fetch('/api/admin/blogs/all', { headers: { 'X-Admin-Token': SESSION_TOKEN } });
-      // fallback to public endpoint if admin-all not available
-      blogData = allRes.ok ? await allRes.json() : await res.json();
-    } catch { blogData = []; }
-    renderBlogList();
+      const res = await fetch('https://sspl-production-production.up.railway.app/api/blogs', { headers: { 'X-Admin-Token': SESSION_TOKEN } });
+      const allRes = await fetch('https://sspl-production-production.up.railway.app/api/admin/blogs/all', { headers: { 'X-Admin-Token': SESSION_TOKEN } });
+      
+      if (allRes.ok) {
+        blogData = await allRes.json();
+      } else if (res.ok) {
+        blogData = await res.json();
+      } else {
+        throw new Error('API endpoints not found. The backend server needs to be completely restarted.');
+      }
+      
+      if (!Array.isArray(blogData)) throw new Error('Invalid data format received.');
+      
+      renderBlogList();
+    } catch (err) {
+      console.error('Blog load error:', err);
+      document.getElementById('blogList').innerHTML = `<div style="padding: 16px; background: #fee2e2; border: 1px solid #f87171; border-radius: 8px; color: #b91c1c; font-size: 14px;"><strong>Connection Error:</strong> ${err.message}<br><br>Please stop your running Node server (press <code>Ctrl + C</code> multiple times in your terminal until it exits) and then run <code>node server.js</code> again to sync the new backend options!</div>`;
+    }
   }
 
   function renderBlogList() {
@@ -1282,7 +1293,7 @@
     const btn = document.getElementById('blogSaveBtn');
     btn.disabled = true; btn.textContent = 'Saving…';
 
-    const url    = editingBlogId ? `/api/admin/blogs/${editingBlogId}` : '/api/admin/blogs';
+    const url    = editingBlogId ? `https://sspl-production-production.up.railway.app/api/admin/blogs/${editingBlogId}` : 'https://sspl-production-production.up.railway.app/api/admin/blogs';
     const method = editingBlogId ? 'PUT' : 'POST';
 
     const res = await fetch(url, {
@@ -1306,7 +1317,7 @@
 
   async function deleteBlogPost(id) {
     if (!confirm('Delete this blog post? This cannot be undone.')) return;
-    const res = await fetch(`/api/admin/blogs/${id}`, {
+    const res = await fetch(`https://sspl-production-production.up.railway.app/api/admin/blogs/${id}`, {
       method: 'DELETE',
       headers: { 'X-Admin-Token': SESSION_TOKEN }
     });
@@ -1318,7 +1329,7 @@
   window.addEventListener('DOMContentLoaded', () => {
     initDragDrop();
     if (SESSION_TOKEN) {
-      fetch('/api/admin/verify', { headers: { 'X-Admin-Token': SESSION_TOKEN } })
+      fetch('https://sspl-production-production.up.railway.app/api/admin/verify', { headers: { 'X-Admin-Token': SESSION_TOKEN } })
         .then(r => r.ok ? (document.getElementById('login-screen').style.display = 'none', document.getElementById('admin-shell').style.display = 'block', loadConfig()) : null)
         .catch(() => {});
     }
