@@ -44,6 +44,25 @@ function writeBlogs(data) {
 }
 
 // ── Middleware ────────────────────────────────────────────────────
+
+// ── CORS — allow requests from suratsales.in and local dev ───────
+const ALLOWED_ORIGINS = [
+  'https://suratsales.in',
+  'https://www.suratsales.in',
+  'https://sspl-production.pages.dev',
+  'http://localhost:3000'
+];
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (ALLOWED_ORIGINS.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Admin-Token');
+  if (req.method === 'OPTIONS') return res.sendStatus(204);
+  next();
+});
+
 app.use(express.json());
 
 // ── Request logger ────────────────────────────────────────────────
@@ -207,6 +226,13 @@ app.delete('/api/admin/images/:filename', requireAuth, (req, res) => {
 // GET /api/blogs — public list (only published posts)
 app.get('/api/blogs', (req, res) => {
   const blogs = readBlogs().filter(b => b.status === 'published');
+  blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
+  res.json(blogs);
+});
+
+// GET /api/admin/blogs/all - admin list (all posts including drafts)
+app.get('/api/admin/blogs/all', requireAuth, (req, res) => {
+  const blogs = readBlogs();
   blogs.sort((a, b) => new Date(b.date) - new Date(a.date));
   res.json(blogs);
 });
