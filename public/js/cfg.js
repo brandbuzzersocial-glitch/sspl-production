@@ -4,7 +4,7 @@
  * Include this script in every page just before </body>
  */
 (function () {
-  fetch('/api/config')
+  fetch('https://sspl-production-production.up.railway.app/api/config')
     .then(r => r.json())
     .then(cfg => {
       // Helper: deep-get value by dot path e.g. "contact.phone"

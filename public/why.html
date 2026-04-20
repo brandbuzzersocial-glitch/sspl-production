@@ -2630,55 +2630,69 @@
   footer .fb-logo svg { color: #F5C518 !important; }
 </style>
 <style id="marquee-override">
+  .partners-lbl-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px !important;
+  }
+  @media(max-width:600px) {
+    .partners-lbl-wrap {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  }
   .partners-lbl {
     font-size: 28px !important;
     font-weight: 900 !important;
     color: var(--black, #1a1a1a) !important;
-    margin-bottom: 32px !important;
     letter-spacing: 2px !important;
     text-transform: uppercase;
+    margin-bottom: 0 !important;
   }
-  
+  .partners-nav-btns {
+    display: flex;
+    gap: 12px;
+  }
+  .partner-nav-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    transition: all 0.2s ease;
+    color: #1a1a1a;
+  }
+  .partner-nav-btn:hover {
+    background: #F5C518;
+    color: #111;
+    border-color: #F5C518;
+    box-shadow: 0 4px 15px rgba(245, 197, 24, 0.3);
+    transform: translateY(-2px);
+  }
   .partners-wrap {
-    overflow: hidden !important;
     width: 100% !important;
     position: relative;
     padding: 10px 0;
-  }
-  
-  /* Fade edges for the scrolling container */
-  .partners-wrap::before, .partners-wrap::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 100px;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none;
-  }
-  .partners-wrap::before {
-    left: 0;
-    background: linear-gradient(to right, rgba(255,255,255,1), transparent);
-  }
-  .partners-wrap::after {
-    right: 0;
-    background: linear-gradient(to left, rgba(255,255,255,1), transparent);
   }
   
   div.partners-wrap div.partners, div.partners {
     display: flex !important;
     flex-wrap: nowrap !important;
     gap: 30px !important;
-    width: max-content !important;
-    overflow: visible !important;
+    overflow-x: auto !important;
+    scroll-behavior: smooth;
     padding-bottom: 20px !important;
-    animation: partnerScroll 40s linear infinite !important;
+    -ms-overflow-style: none; /* IE/Edge */
+    scrollbar-width: none; /* Firefox */
   }
-  
-  /* Stop animation on hover */
-  div.partners:hover {
-    animation-play-state: paused !important;
-  }
+  div.partners::-webkit-scrollbar { display: none !important; }
 
   div.partners div.partner {
     flex: 0 0 auto !important; 
@@ -2695,19 +2709,11 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     font-weight: 700;
   }
-  
   div.partners div.partner:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(245, 197, 24, 0.2);
     border-color: #F5C518;
   }
-
-  @keyframes partnerScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-50% - 15px)); }
-  }
-  
-  div.partners::-webkit-scrollbar { display: none !important; }
 </style>
 
 
@@ -2886,9 +2892,9 @@
 <footer style="">
     <div class="footer-grid">
       <div>
-        <div class="fb-logo"><img src="images/sspl_logo.webp" alt="SSPL Logo" style="height:44px; width:auto; border-radius:4px;">
+        <a href="surat-sales.html" class="fb-logo" style="display:block; text-decoration:none;"><img src="images/sspl_logo.webp" alt="SSPL Logo" style="height:44px; width:auto; border-radius:4px;">
           <div class="fb-name">Surat Sales<span>Private Limited</span></div>
-        </div>
+        </a>
         <div class="fb-desc">Reliable Yarn Import &amp; Supply Across India from Global Sourcing. Your trusted textile raw material partner for imports and exports globally.</div>
         <div class="fb-socials" style="display:flex; gap:10px;"><a href="https://www.linkedin.com/company/surat-sales-private-limited/" target="_blank" class="social" style="display:flex;align-items:center;justify-content:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://www.instagram.com/surat__sales/" target="_blank" class="social" style="display:flex;align-items:center;justify-content:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a></div>
       </div>
