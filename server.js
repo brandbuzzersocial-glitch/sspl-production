@@ -173,51 +173,77 @@ app.post('/api/admin/password', requireAuth, (req, res) => {
   res.json({ ok: true });
 });
 
-// POST /api/admin/upload — upload a single image (field name: "image")
+// POST /api/admin/upload — upload image to Cloudflare R2
 app.post('/api/admin/upload', requireAuth, (req, res) => {
-  upload.single('image')(req, res, (err) => {
+  upload.single('image')(req, res, async (err) => {
     if (err) return res.status(400).json({ error: err.message });
     if (!req.file) return res.status(400).json({ error: 'No file received.' });
-    const folder = req.query.folder === 'partners' ? 'images/partners/' : 'images/';
-    const url = '/' + folder + req.file.filename;
-    console.log(`\x1b[33m  🖼  Image uploaded: ${req.file.filename}\x1b[0m`);
-    res.json({ ok: true, url, filename: req.file.filename });
-  });
-});
 
-// GET /api/admin/images — list all images in /public/images (and /partners sub-folder)
-app.get('/api/admin/images', requireAuth, (req, res) => {
-  const imgDir     = path.join(__dirname, 'public', 'images');
-  const partnerDir = path.join(__dirname, 'public', 'images', 'partners');
-  const exts = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+    const isPartners = req.query.folder === 'partners';
+    const filename   = req.query.filename || req.file.originalname;
+    const key        = isPartners ? `partners/${filename}` : `images/${filename}`;
 
-  function listDir(dir, prefix) {
     try {
-      return fs.readdirSync(dir)
-        .filter(f => exts.includes(path.extname(f).toLowerCase()))
-        .map(f => ({ filename: f, url: prefix + f, size: fs.statSync(path.join(dir, f)).size }));
-    } catch { return []; }
-  }
-
-  res.json({
-    main:     listDir(imgDir, '/images/'),
-    partners: listDir(partnerDir, '/images/partners/')
+      await r2.send(new PutObjectCommand({
+        Bucket:      R2_BUCKET,
+        Key:         key,
+        Body:        req.file.buffer,
+        ContentType: req.file.mimetype,
+      }));
+      const url = `${R2_PUBLIC_URL}/${key}`;
+      console.log(`\x1b[33m  🖼  Image uploaded to R2: ${key}\x1b[0m`);
+      res.json({ ok: true, url, filename });
+    } catch (e) {
+      console.error('R2 upload error:', e);
+      res.status(500).json({ error: 'Upload to R2 failed.' });
+    }
   });
 });
 
-// DELETE /api/admin/images/:filename — delete an image
-app.delete('/api/admin/images/:filename', requireAuth, (req, res) => {
-  const folder = req.query.folder === 'partners' ? 'partners' : '';
-  const filePath = folder
-    ? path.join(__dirname, 'public', 'images', 'partners', req.params.filename)
-    : path.join(__dirname, 'public', 'images', req.params.filename);
+// GET /api/admin/images — list images from R2
+app.get('/api/admin/images', requireAuth, async (req, res) => {
+  try {
+    const [mainRes, partnerRes] = await Promise.all([
+      r2.send(new ListObjectsV2Command({ Bucket: R2_BUCKET, Prefix: 'images/' })),
+      r2.send(new ListObjectsV2Command({ Bucket: R2_BUCKET, Prefix: 'partners/' })),
+    ]);
 
-  // Safety: don't delete non-image or non-existing files
-  if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'File not found.' });
-  fs.unlinkSync(filePath);
-  console.log(`\x1b[31m  🗑  Image deleted: ${req.params.filename}\x1b[0m`);
-  res.json({ ok: true });
+    const map = (items = []) =>
+      items
+        .filter(o => o.Key && !o.Key.endsWith('/'))
+        .map(o => ({
+          filename: o.Key.split('/').pop(),
+          url:      `${R2_PUBLIC_URL}/${o.Key}`,
+          size:     o.Size,
+        }));
+
+    res.json({
+      main:     map(mainRes.Contents),
+      partners: map(partnerRes.Contents),
+    });
+  } catch (e) {
+    console.error('R2 list error:', e);
+    res.status(500).json({ error: 'Could not list images from R2.' });
+  }
 });
+
+// DELETE /api/admin/images/:filename — delete from R2
+app.delete('/api/admin/images/:filename', requireAuth, async (req, res) => {
+  const isPartners = req.query.folder === 'partners';
+  const key = isPartners
+    ? `partners/${req.params.filename}`
+    : `images/${req.params.filename}`;
+
+  try {
+    await r2.send(new DeleteObjectCommand({ Bucket: R2_BUCKET, Key: key }));
+    console.log(`\x1b[31m  🗑  Image deleted from R2: ${key}\x1b[0m`);
+    res.json({ ok: true });
+  } catch (e) {
+    console.error('R2 delete error:', e);
+    res.status(500).json({ error: 'Delete from R2 failed.' });
+  }
+});
+
 
 
 
