@@ -10,7 +10,7 @@ const footer = baseHtml.substring(footerStartIdx);
 
 const trackingContent = `
   <!-- TRACKING HERO -->
-  <section style="position: relative; padding: 160px 0 100px; background: url('https://images.unsplash.com/photo-1636986056375-184676d8ca14?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat; text-align: center; color: #fff;">
+  <section style="position: relative; padding: 160px 0 100px; background: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2071&auto=format&fit=crop') center/cover no-repeat; text-align: center; color: #fff;">
     <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0.4), rgba(0,0,0,0.85)); z-index: 1;"></div>
     <div class="container" style="position: relative; z-index: 2;">
       <span class="sec-tag" style="color: #F5C518; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Logistics Tools</span>
