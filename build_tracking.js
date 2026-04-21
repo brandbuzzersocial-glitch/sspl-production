@@ -67,6 +67,14 @@ const trackingContent = `
           </div>
         </a>
 
+        <a href="https://www.oocl.com/eng/ourservices/eservices/cargotracking/pages/cargotracking.aspx" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 20px; background: #fff; padding: 24px 30px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--t);">
+          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div>
+            <h3 style="font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px;">OOCL</h3>
+            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment &rarr;</span>
+          </div>
+        </a>
+
       </div>
     </div>
   </section>

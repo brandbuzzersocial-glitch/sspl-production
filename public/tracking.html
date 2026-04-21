@@ -1771,7 +1771,8 @@
     .ms-card-desc {
       font-size: 13px;
       line-height: 1.78;
-      color: #666;
+      color: #fff;
+      font-weight: 500;
       opacity: 0;
       transform: translateY(12px);
       transition: opacity .5s ease .52s, transform .5s ease .52s;
@@ -2534,8 +2535,165 @@
   a.btn-primary, a.btn-outline, a.btn-nav, a.pcard-btn {
       display: inline-block;
   }
-</style>
 
+/* ABSOLUTE OVERRIDE FOR SINGLE LINE PARTNERS */
+div.partners-wrap div.partners, div.partners {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    gap: 20px !important;
+    overflow-x: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-bottom: 20px !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin !important;
+}
+
+div.partners-wrap div.partners::-webkit-scrollbar, div.partners::-webkit-scrollbar {
+    height: 8px !important;
+}
+div.partners-wrap div.partners::-webkit-scrollbar-thumb, div.partners::-webkit-scrollbar-thumb {
+    background-color: #E0E0E0 !important;
+    border-radius: 10px !important;
+}
+
+div.partners-wrap div.partners div.partner, div.partners div.partner {
+    flex: 0 0 auto !important; 
+    width: 180px !important; 
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+</style>
+<style>
+/* Premium Home Overrides Inject */
+.hero-h1 {
+  background: linear-gradient(135deg, var(--black) 0%, #333 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.15;
+}
+.hero-h1 em {
+  background: linear-gradient(135deg, var(--yellow-dark), #FF8C00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 8px 24px rgba(245,197,24,0.35);
+  font-weight: 800;
+}
+.hero-badge {
+  background: linear-gradient(90deg, rgba(255,244,194,0.9), rgba(255,255,255,0.9));
+  box-shadow: 0 4px 20px rgba(245,197,24,0.2);
+  border: 1px solid rgba(245,197,24,0.5);
+  backdrop-filter: blur(4px);
+}
+.hero-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.7);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.15) !important;
+}
+.hero-img {
+  filter: contrast(1.1) brightness(0.95) saturate(1.2) !important;
+  transform: scale(1.02);
+}
+.hero-right {
+  border-radius: 0 0 0 40px;
+  overflow: hidden;
+  box-shadow: inset 20px 0 40px rgba(0,0,0,0.05);
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--yellow), var(--yellow-dark)) !important;
+  box-shadow: 0 8px 24px rgba(245,197,24,0.4) !important;
+  border: none !important;
+}
+.btn-primary:hover {
+  box-shadow: 0 12px 32px rgba(245,197,24,0.65) !important;
+  transform: translateY(-4px) scale(1.02) !important;
+}
+.btn-outline {
+  border-width: 2px !important;
+}
+.btn-outline:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.stat-num {
+  font-size: 42px !important;
+  background: linear-gradient(135deg, var(--black), #444);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+}
+.hero-stats {
+  border-top: 2px solid rgba(0,0,0,0.05) !important;
+  padding-top: 40px !important;
+}
+</style><style>
+/* Phase 2 Aesthetics - Global Yarn Texture & Yellow Stats */
+body {
+  position: relative;
+}
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('images/polyester_poy.webp') center/cover repeat;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+/* Keep sections above the background */
+#intro, #hero, section, footer {
+  position: relative;
+  z-index: 10;
+}
+/* Overriding previous gradient on stats to pure, bold yellow */
+.stat-num {
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  color: var(--yellow-dark) !important;
+  font-weight: 900 !important;
+  text-shadow: 0px 4px 12px rgba(245,197,24,0.2) !important;
+}
+</style><style>
+/* Hero Crossfade Slider Styles */
+.hero-slider {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.hero-slider .slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: heroSlideFade 15s infinite;
+  filter: contrast(1.1) brightness(0.85) saturate(1.2);
+}
+.hero-slider .slide:nth-child(1) { animation-delay: 0s; }
+.hero-slider .slide:nth-child(2) { animation-delay: 5s; }
+.hero-slider .slide:nth-child(3) { animation-delay: 10s; }
+
+@keyframes heroSlideFade {
+  0% { opacity: 0; transform: scale(1.0); }
+  5% { opacity: 1; transform: scale(1.02); }
+  33% { opacity: 1; transform: scale(1.05); }
+  38% { opacity: 0; transform: scale(1.06); }
+  100% { opacity: 0; transform: scale(1.0); }
+}
+</style>
   <style id="tickerCSS">
     .top-ticker {
       background: #F5C518;
@@ -2720,7 +2878,6 @@
 
 
 </head>
-
 <body>
   <div class="top-ticker" id="topTicker">
     <div class="ticker-wrap">
@@ -2741,16 +2898,17 @@
 
 
 
+
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
     <button class="mobile-close" onclick="closeMenu()">×</button>
-    <a href="surat-sales.html" onclick="closeMenu()">Home</a>
+    <a href="#hero" onclick="closeMenu()">Home</a>
     <a href="products.html" onclick="closeMenu()">Products</a>
     <a href="about.html" onclick="closeMenu()">About</a>
     <a href="process.html" onclick="closeMenu()">Process</a>
     <a href="contact.html" onclick="closeMenu()">Contact</a>
-    
-    </div>
+    <a href="tracking.html" onclick="closeMenu()">Tracking</a>
+  </div>
 
   <!-- NAV -->
   <nav id="navbar">
@@ -2759,80 +2917,85 @@
       <div class="nav-logo-name">Surat Sales<span>Private Limited</span></div>
     </a>
     <ul class="nav-links">
-      <li><a href="surat-sales.html">Home</a></li>
+      <li><a href="#hero">Home</a></li>
       <li><a href="products.html">Products</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="process.html">Process</a></li>
       <li><a href="blog.html">Blog</a></li>
     <li><a href="contact.html">Contact</a></li>
-      
-        <li><a href="tracking.html">Tracking</a></li>
-      </ul>
+      <li><a href="tracking.html">Tracking</a></li>
+    </ul>
     <button class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></button>
   </nav>
-  <!-- TRACKING HERO REFINED -->
-  <section style="position: relative; padding: 160px 0 100px; background: url('https://images.unsplash.com/photo-1494412519320-aa613dfb7738?q=80&amp;w=2070&amp;auto=format&amp;fit=crop') center/cover no-repeat; text-align: center; color: #fff;">
-    <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0.35), rgba(0,0,0,0.85)); z-index: 1;"></div>
-    <div class="container" style="position: relative; z-index: 2;">
-      <span class="sec-tag" style="color: #F5C518; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Logistics Tools</span>
-      <h1 class="sec-h2" style="margin-bottom: 20px; color: #fff; text-shadow: 0 4px 10px rgba(0,0,0,0.5);">Vessel &amp; Container <em>Tracking</em></h1>
-      <p class="sec-p" style="margin: 0 auto; color: #eee; max-width: 700px; font-size: 18px; text-shadow: 0 2px 5px rgba(0,0,0,0.3);">Easily track your cargo status in real-time. Please select your shipping line below to access their official tracking portal.</p>
-    </div>
-  </section>
+  <section style="padding-top: 120px; padding-bottom: 80px; background: var(--bg-section); min-height: 80vh;">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 60px;">
+        <span class="sec-tag">Logistics Tools</span>
+        <h1 class="sec-h2" style="font-size: 42px;">Vessel &amp; Container <br><em>Tracking</em></h1>
+        <p class="sec-p" style="margin: 16px auto 0;">Easily track your cargo status in real-time. Please select your shipping line below to access their official tracking portal.</p>
+      </div>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto;">
         
         <a href="https://ct.shipmentlink.com/servlet/TDB1_CargoTracking.do" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 20px; background: #fff; padding: 24px 30px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--t);">
-          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3-9L9 3l-3 9H2"></path><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path><line x1="6" y1="16" x2="6.01" y2="16"></line><line x1="10" y1="16" x2="10.01" y2="16"></line></svg></div>
+          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3-9L9 3l-3 9H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><line x1="6" y1="16" x2="6.01" y2="16"/><line x1="10" y1="16" x2="10.01" y2="16"/></svg></div>
           <div>
             <h3 style="font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px;">Evergreen</h3>
-            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment →</span>
+            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment &rarr;</span>
           </div>
         </a>
 
         <a href="https://www.goldstarline.com/tools/track_shipment" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 20px; background: #fff; padding: 24px 30px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--t);">
-          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"></path><path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path><path d="M4 12v-2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2"></path></svg></div>
+          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M4 12v-2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2"/></svg></div>
           <div>
             <h3 style="font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px;">Goldstar</h3>
-            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment →</span>
+            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment &rarr;</span>
           </div>
         </a>
 
         <a href="https://www.ekmtc.com/index.html#/cargo-tracking" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 20px; background: #fff; padding: 24px 30px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--t);">
-          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg></div>
+          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></div>
           <div>
             <h3 style="font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px;">KMTC</h3>
-            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment →</span>
+            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment &rarr;</span>
           </div>
         </a>
 
         <a href="https://www.emiratesline.com/track/" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 20px; background: #fff; padding: 24px 30px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--t);">
-          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg></div>
+          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg></div>
           <div>
             <h3 style="font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px;">Emirates</h3>
-            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment →</span>
+            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment &rarr;</span>
           </div>
         </a>
 
         <a href="https://www.msc.com/en/track-a-shipment" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 20px; background: #fff; padding: 24px 30px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--t);">
-          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg></div>
+          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
           <div>
             <h3 style="font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px;">MSC</h3>
-            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment →</span>
+            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment &rarr;</span>
           </div>
         </a>
 
         <a href="https://www.cma-cgm.com/ebusiness/tracking" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 20px; background: #fff; padding: 24px 30px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--t);">
-          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m16 12-4-4-4 4"></path><path d="M12 16V8"></path></svg></div>
+          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 12-4-4-4 4"/><path d="M12 16V8"/></svg></div>
           <div>
             <h3 style="font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px;">CMA CGM</h3>
-            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment →</span>
+            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment &rarr;</span>
+          </div>
+        </a>
+
+        <a href="https://www.oocl.com/eng/ourservices/eservices/cargotracking/pages/cargotracking.aspx" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 20px; background: #fff; padding: 24px 30px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); transition: var(--t);">
+          <div style="flex: 0 0 50px; height: 50px; background: var(--yellow-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--yellow-dark);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+          <div>
+            <h3 style="font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 4px;">OOCL</h3>
+            <span style="font-size: 12px; color: var(--yellow-dark); font-weight: 600;">Track Shipment &rarr;</span>
           </div>
         </a>
 
       </div>
-    
-  
+    </div>
+  </section>
 
   <style>
     /* Add specific hover state for cards inside tracking */
@@ -2842,6 +3005,3774 @@
       box-shadow: 0 12px 24px rgba(245,197,24,0.15) !important;
     }
   </style>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surat Sales Private Limited – Reliable Yarn Import &amp; Supply</title>
+  <!-- SEO Metadata -->
+  <meta name="description" content="Surat Sales Private Limited - Reliable Yarn Import & Supply Across India. Delivering premium yarn solutions, POY, FDY, DTY, PSF, connecting global manufacturers with a strong global sourcing network.">
+  <meta name="keywords" content="Surat Sales, yarn import India, textile raw material, POY, FDY, DTY, PSF, polyester yarn, nylon yarn, Wankai PET chips, global yarn sourcing">
+  
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Surat Sales Private Limited – Reliable Yarn Import &amp; Supply">
+  <meta property="og:description" content="Surat Sales Private Limited - Reliable Yarn Import & Supply Across India. Delivering premium yarn solutions, POY, FDY, DTY, PSF, connecting global manufacturers with a strong global sourcing network.">
+  <meta property="og:image" content="https://yourdomain.com/images/sspl_logo.webp">
+  <meta property="og:site_name" content="Surat Sales Private Limited">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Surat Sales Private Limited – Reliable Yarn Import &amp; Supply">
+  <meta name="twitter:description" content="Surat Sales Private Limited - Reliable Yarn Import & Supply Across India. Delivering premium yarn solutions, POY, FDY, DTY, PSF, connecting global manufacturers with a strong global sourcing network.">
+  <meta name="twitter:image" content="https://yourdomain.com/images/sspl_logo.webp">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="images/favicon.jpg" type="image/jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&amp;display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    :root {
+      --yellow: #F5C518;
+      --yellow-dark: #D4A800;
+      --yellow-light: #FFF4C2;
+      --yellow-bg: #FFFBEB;
+      --black: #1A1A1A;
+      --gray-dark: #444;
+      --gray: #6B6B6B;
+      --gray-light: #ABABAB;
+      --border: #E8E8E8;
+      --bg: #FFFFFF;
+      --bg-light: #F9F9F9;
+      --bg-section: #F4F4F4;
+      --radius: 10px;
+      --radius-sm: 6px;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.14);
+      --t: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* SVG Icon sizing */
+    .icon svg,
+    .why-icon svg,
+    .ricon svg,
+    .cd-icon svg,
+    .cl-check svg,
+    .jstep-node svg,
+    .about-feat .icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .why-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .ricon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .cd-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .cl-check svg {
+      width: 11px;
+      height: 11px;
+    }
+
+    .jstep-node svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .about-feat .icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--black);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ─── 3D INTRO ─── */
+    #intro {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      overflow: hidden;
+    }
+
+    #intro-canvas-3d {
+      width: 280px;
+      height: 280px;
+      display: block;
+      opacity: 0;
+      animation: fadeUp .5s ease .1s forwards;
+    }
+
+    .intro-text-wrap {
+      text-align: center;
+      margin-top: -10px;
+      opacity: 0;
+      animation: fadeUp .6s ease .4s forwards;
+    }
+
+    .intro-name {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--black);
+      line-height: 1.1;
+    }
+
+    .intro-name span {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .intro-tag {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-top: 10px;
+      opacity: 0;
+      animation: fadeUp .6s ease .6s forwards;
+    }
+
+    .intro-progress {
+      width: 200px;
+      height: 3px;
+      background: #eee;
+      border-radius: 3px;
+      overflow: hidden;
+      margin: 18px auto 0;
+      opacity: 0;
+      animation: fadeUp .4s ease .8s forwards;
+    }
+
+    .intro-bar {
+      height: 100%;
+      width: 0;
+      background: var(--yellow);
+      animation: barFill 1.8s ease .9s forwards;
+    }
+
+    @keyframes barFill {
+      to {
+        width: 100%
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, .97);
+      border-bottom: 1px solid var(--border);
+      padding: 0 60px;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(10px);
+      transition: box-shadow var(--t);
+    }
+
+    nav.scrolled {
+      box-shadow: 0 2px 20px rgba(0, 0, 0, .08);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--black);
+      line-height: 1.1;
+    }
+
+    .nav-logo-name span {
+      display: block;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-dark);
+      transition: color var(--t);
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--yellow);
+      border-radius: 2px;
+      transition: width var(--t);
+    }
+
+    .nav-links a:hover {
+      color: var(--black);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn-nav {
+      background: var(--yellow);
+      color: var(--black);
+      padding: 9px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 700;
+      transition: var(--t);
+    }
+
+    .btn-nav:hover {
+      background: var(--yellow-dark);
+      box-shadow: 0 4px 14px rgba(245, 197, 24, .4);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      width: 22px;
+      height: 2px;
+      background: var(--black);
+      border-radius: 2px;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 998;
+      background: rgba(255, 255, 255, .99);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .mobile-menu a:hover {
+      color: var(--yellow-dark);
+    }
+
+    .mobile-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      font-size: 32px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      padding-top: 66px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      padding: 80px 60px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--yellow-light);
+      border: 1px solid rgba(245, 197, 24, .5);
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #92700A;
+      margin-bottom: 24px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--yellow-dark);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: .5;
+        transform: scale(1.5)
+      }
+    }
+
+    .hero-h1 {
+      font-size: clamp(34px, 4vw, 56px);
+      font-weight: 800;
+      line-height: 1.12;
+      color: var(--black);
+      margin-bottom: 18px;
+    }
+
+    .hero-h1 em {
+      color: var(--yellow-dark);
+      font-style: normal;
+    }
+
+    .hero-p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--gray);
+      max-width: 460px;
+      margin-bottom: 32px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .btn-primary {
+      background: var(--yellow);
+      color: var(--black);
+      padding: 13px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 700;
+      border: 2px solid var(--yellow);
+      transition: var(--t);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      background: var(--yellow-dark);
+      border-color: var(--yellow-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(245, 197, 24, .35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--black);
+      padding: 13px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      border: 2px solid var(--border);
+      transition: var(--t);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--black);
+      background: var(--black);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 36px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-num {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    .stat-num em {
+      color: var(--yellow-dark);
+      font-style: normal;
+    }
+
+    .stat-lbl {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .hero-right {
+      height: 100%;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(.9);
+    }
+
+    .hero-img-fade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 25%);
+    }
+
+    .hero-card {
+      position: absolute;
+      bottom: 40px;
+      left: -20px;
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      box-shadow: var(--shadow-lg);
+      border-left: 4px solid var(--yellow);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-10px)
+      }
+    }
+
+    .hero-card-t {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
+    }
+
+    .hero-card-v {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--black);
+    }
+
+    .hero-card-s {
+      font-size: 11px;
+      color: var(--yellow-dark);
+      font-weight: 600;
+    }
+
+    section {
+      padding: 88px 60px;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .sec-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--yellow-dark);
+      margin-bottom: 12px;
+    }
+
+    .sec-h2 {
+      font-size: clamp(26px, 3.2vw, 42px);
+      font-weight: 800;
+      color: var(--black);
+      line-height: 1.18;
+    }
+
+    .sec-h2 em {
+      color: var(--yellow-dark);
+      font-style: normal;
+    }
+
+    .sec-p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--gray);
+      max-width: 600px;
+      margin-top: 12px;
+    }
+
+    /* ABOUT */
+    #about {
+      background: var(--bg);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .about-img-wrap {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .about-img-wrap img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: var(--radius);
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      background: var(--yellow);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .15);
+    }
+
+    .about-badge .n {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    .about-badge .l {
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(0, 0, 0, .7);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .about-feats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .about-feat {
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: var(--t);
+    }
+
+    .about-feat:hover {
+      border-color: var(--yellow);
+      background: var(--yellow-bg);
+      transform: translateY(-2px);
+    }
+
+    .about-feat .icon {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .about-feat h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 3px;
+    }
+
+    .about-feat p {
+      font-size: 12px;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    /* ─── PROCESS: VERTICAL SCROLL JOURNEY ─── */
+    #process {
+      background: var(--bg-section);
+      padding: 100px 0;
+    }
+
+    .process-header {
+      text-align: center;
+      padding: 0 60px;
+      margin-bottom: 80px;
+    }
+
+    .process-header .sec-p {
+      margin: 12px auto 0;
+      text-align: center;
+    }
+
+    /* Sticky progress bar */
+    .process-sticky-bar {
+      position: sticky;
+      top: 66px;
+      z-index: 100;
+      background: rgba(255, 255, 255, .97);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      padding: 16px 60px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .psb-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--yellow-dark);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      background: #22C55E;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+      flex-shrink: 0;
+    }
+
+    .psb-track {
+      flex: 1;
+      height: 4px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .psb-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--yellow-dark), var(--yellow));
+      border-radius: 4px;
+      transition: width .4s ease;
+    }
+
+    .psb-step {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--black);
+      white-space: nowrap;
+    }
+
+    /* Journey steps vertical */
+    .journey-steps {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .journey-steps::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--border) 5%, var(--border) 95%, transparent);
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    /* Animated fill line */
+    .journey-line-fill {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 3px;
+      height: 0;
+      background: linear-gradient(to bottom, var(--yellow-dark), var(--yellow));
+      transform: translateX(-50%);
+      border-radius: 2px;
+      z-index: 1;
+      transition: height .6s ease;
+    }
+
+    .jstep {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      align-items: center;
+      min-height: 340px;
+      position: relative;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .jstep.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Alternating: odd = content left, canvas right | even = canvas left, content right */
+    .jstep:nth-child(odd) .jstep-content {
+      order: 1;
+    }
+
+    .jstep:nth-child(odd) .jstep-mid {
+      order: 2;
+    }
+
+    .jstep:nth-child(odd) .jstep-canvas-wrap {
+      order: 3;
+    }
+
+    .jstep:nth-child(even) .jstep-canvas-wrap {
+      order: 1;
+    }
+
+    .jstep:nth-child(even) .jstep-mid {
+      order: 2;
+    }
+
+    .jstep:nth-child(even) .jstep-content {
+      order: 3;
+    }
+
+    .jstep-content {
+      padding: 32px 40px;
+    }
+
+    .jstep:nth-child(odd) .jstep-content {
+      padding-right: 50px;
+      text-align: right;
+    }
+
+    .jstep:nth-child(even) .jstep-content {
+      padding-left: 50px;
+      text-align: left;
+    }
+
+    .jstep-mid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      position: relative;
+    }
+
+    .jstep-node {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: var(--shadow);
+      transition: var(--t);
+      position: relative;
+      z-index: 3;
+      flex-shrink: 0;
+    }
+
+    .jstep.visible .jstep-node {
+      border-color: var(--yellow);
+      background: var(--yellow);
+      box-shadow: 0 0 0 6px rgba(245, 197, 24, .2), 0 4px 16px rgba(245, 197, 24, .4);
+      animation: nodeEnter .5s ease forwards;
+    }
+
+    @keyframes nodeEnter {
+      0% {
+        transform: scale(0)
+      }
+
+      70% {
+        transform: scale(1.15)
+      }
+
+      100% {
+        transform: scale(1)
+      }
+    }
+
+    .jstep-step-num {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--yellow-dark);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .jstep-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .jstep-desc {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--gray);
+    }
+
+    .jstep-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--yellow-light);
+      border: 1px solid rgba(245, 197, 24, .4);
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #7C5700;
+      margin-bottom: 14px;
+    }
+
+    /* Canvas */
+    .jstep-canvas-wrap {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .jstep-canvas {
+      width: 260px;
+      height: 260px;
+      border-radius: var(--radius);
+      display: block;
+      background: #fff;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    /* PRODUCTS */
+    #products {
+      background: var(--bg);
+    }
+
+    .products-top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      max-width: 1240px;
+      margin: 0 auto 32px;
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 7px 16px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray);
+      background: #fff;
+      cursor: pointer;
+      transition: var(--t);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--yellow);
+      border-color: var(--yellow);
+      color: var(--black);
+    }
+
+    .pgrid {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .pcard {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--t);
+    }
+
+    .pcard:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+      border-color: rgba(245, 197, 24, .5);
+    }
+
+    .pcard-img {
+      width: 100%;
+      height: 185px;
+      object-fit: cover;
+    }
+
+    .pcard-body {
+      padding: 22px;
+    }
+
+    .pcard-type {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--yellow-dark);
+      margin-bottom: 5px;
+    }
+
+    .pcard-name {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 9px;
+    }
+
+    .pcard-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--gray);
+      margin-bottom: 14px;
+    }
+
+    .specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .spec {
+      background: var(--bg-light);
+      border-radius: var(--radius-sm);
+      padding: 8px 10px;
+    }
+
+    .spec-l {
+      font-size: 10px;
+      color: var(--gray-light);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .spec-v {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--black);
+      margin-top: 1px;
+    }
+
+    .moq-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .moq {
+      background: var(--yellow-light);
+      border-radius: var(--radius-sm);
+      padding: 5px 11px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #7C5700;
+    }
+
+    .pcard-btn {
+      width: 100%;
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      padding: 11px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: var(--t);
+    }
+
+    .pcard-btn:hover {
+      background: var(--yellow-dark);
+    }
+
+    .bulk-banner {
+      max-width: 1240px;
+      margin: 36px auto 0;
+      background: linear-gradient(135deg, var(--yellow) 0%, #FFDE59 100%);
+      border-radius: var(--radius);
+      padding: 48px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bulk-banner::before {
+      content: '';
+      position: absolute;
+      right: -50px;
+      top: -50px;
+      width: 220px;
+      height: 220px;
+      background: rgba(255, 255, 255, .15);
+      border-radius: 50%;
+    }
+
+    .bulk-banner h3 {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+
+    .bulk-banner p {
+      font-size: 14px;
+      color: rgba(0, 0, 0, .65);
+      max-width: 440px;
+    }
+
+    .btn-dark {
+      background: var(--black);
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 700;
+      transition: var(--t);
+      white-space: nowrap;
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-dark:hover {
+      background: #333;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .3);
+    }
+
+    #why {
+      background: var(--bg-section);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .why-feats {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .why-feat {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px;
+      background: #fff;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      transition: var(--t);
+    }
+
+    .why-feat:hover {
+      border-color: var(--yellow);
+      box-shadow: 0 4px 18px rgba(245, 197, 24, .15);
+      transform: translateX(4px);
+    }
+
+    .why-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      background: var(--yellow-light);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .why-feat h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 3px;
+    }
+
+    .why-feat p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--gray);
+    }
+
+    .why-right {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .stat-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .stat-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      text-align: center;
+      transition: var(--t);
+    }
+
+    .stat-card:hover {
+      border-color: var(--yellow);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-card .big {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--black);
+    }
+
+    .stat-card .big em {
+      color: var(--yellow-dark);
+      font-style: normal;
+    }
+
+    .stat-card .sm {
+      font-size: 12px;
+      color: var(--gray);
+      font-weight: 500;
+      margin-top: 3px;
+    }
+
+    .checklist {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+    }
+
+    .checklist h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 14px;
+    }
+
+    .cl-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--gray-dark);
+    }
+
+    .cl-item:last-child {
+      border-bottom: none;
+    }
+
+    .cl-check {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      background: var(--yellow);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    #sourcing {
+      background: var(--bg);
+    }
+
+    .route-card {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 48px 36px;
+      margin-top: 44px;
+    }
+
+    .route-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .route-row::before {
+      content: '';
+      position: absolute;
+      top: 37px;
+      left: 13%;
+      right: 13%;
+      height: 0;
+      border-top: 2px dashed var(--yellow);
+      z-index: 0;
+    }
+
+    .rnode {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      flex: 1;
+    }
+
+    .ricon {
+      width: 74px;
+      height: 74px;
+      margin: 0 auto 12px;
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: var(--shadow);
+      transition: var(--t);
+    }
+
+    .rnode:hover .ricon {
+      border-color: var(--yellow);
+      background: var(--yellow-bg);
+      transform: scale(1.08);
+    }
+
+    .rcity {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--black);
+    }
+
+    .rsub {
+      font-size: 11px;
+      color: var(--gray);
+      font-weight: 500;
+    }
+
+    .rarrow {
+      flex: 0 0 auto;
+      font-size: 18px;
+      color: var(--yellow-dark);
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .rarrow small {
+      display: block;
+      font-size: 9px;
+      color: var(--gray);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    .partners-wrap {
+      margin-top: 36px;
+    }
+
+    .partners-lbl {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .partners {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .partner {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-dark);
+      transition: var(--t);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      width: 180px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .partner img {
+      height: 60px;
+      width: 100%;
+      object-fit: contain;
+    }
+
+    .partner:hover {
+      border-color: var(--yellow);
+      color: var(--black);
+      background: var(--yellow-bg);
+    }
+
+    /* ─── TIMELINE: DRAMATIC SCROLL REVEAL ─── */
+    #timeline {
+      background: var(--black);
+      padding: 110px 60px;
+      position: relative;
+    }
+
+    .tl-center {
+      text-align: center;
+      margin-bottom: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tl-center .sec-tag {
+      color: var(--yellow);
+    }
+
+    .tl-center .sec-h2 {
+      color: #fff;
+    }
+
+    .tl-center .sec-p {
+      color: #888;
+      margin: 12px auto 0;
+      text-align: center;
+    }
+
+    /* Milestone outer wrapper — holds spine + items */
+    .tl-milestones {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Vertical spine — inside milestones, centered */
+    .tl-spine {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #222;
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    .tl-spine-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 0;
+      background: linear-gradient(to bottom, var(--yellow-dark), var(--yellow));
+      border-radius: 2px;
+    }
+
+    /* Each milestone row — use data-side attribute for direction */
+    .ms-item {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      align-items: center;
+      min-height: 220px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── YEAR BLOCK ── */
+    .ms-year {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      padding-right: 40px;
+      grid-column: 1;
+    }
+
+    /* Right-side items: year goes to column 3, card to column 1 */
+    .ms-item[data-side="right"] .ms-year {
+      grid-column: 3;
+      grid-row: 1;
+      align-items: flex-start;
+      padding-right: 0;
+      padding-left: 40px;
+    }
+
+    .ms-item[data-side="right"] .ms-mid {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .ms-item[data-side="right"] .ms-card {
+      grid-column: 1;
+      grid-row: 1;
+      padding: 0 40px 0 0;
+      transform: translateX(-44px);
+    }
+
+    .ms-year-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(60px, 7.5vw, 108px);
+      font-weight: 800;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 2px #2e2e2e;
+      letter-spacing: -3px;
+      transition:
+        color .6s cubic-bezier(0.16, 1, 0.3, 1),
+        -webkit-text-stroke .6s cubic-bezier(0.16, 1, 0.3, 1),
+        transform .7s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity .7s cubic-bezier(0.16, 1, 0.3, 1),
+        text-shadow .6s ease;
+      transform: translateX(-36px);
+      opacity: 0;
+      user-select: none;
+      will-change: transform, opacity;
+    }
+
+    /* Right-side year slides in from right */
+    .ms-item[data-side="right"] .ms-year-num {
+      transform: translateX(36px);
+    }
+
+    /* Revealed state */
+    .ms-item.tl-visible .ms-year-num {
+      -webkit-text-stroke: 2px var(--yellow-dark);
+      color: transparent;
+      transform: translateX(0) !important;
+      opacity: 1;
+    }
+
+    /* Active — full fill + glow */
+    .ms-item.tl-active .ms-year-num {
+      color: var(--yellow);
+      -webkit-text-stroke: 2px var(--yellow-dark);
+      text-shadow: 0 0 80px rgba(245, 197, 24, .3);
+    }
+
+    .ms-year-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #3a3a3a;
+      margin-top: 8px;
+      transition: color .5s ease .25s;
+    }
+
+    .ms-item.tl-visible .ms-year-label {
+      color: var(--yellow-dark);
+    }
+
+    /* ── CENTER DOT ── */
+    .ms-mid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 3;
+    }
+
+    .ms-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      border: 3px solid #2a2a2a;
+      box-shadow: 0 0 0 4px #1a1a1a;
+      transition: all .55s cubic-bezier(0.16, 1, 0.3, 1) .1s;
+      transform: scale(0);
+      will-change: transform;
+    }
+
+    .ms-item.tl-visible .ms-dot {
+      transform: scale(1);
+      background: var(--yellow);
+      border-color: var(--yellow-dark);
+      box-shadow: 0 0 0 6px rgba(245, 197, 24, .12), 0 0 24px rgba(245, 197, 24, .45);
+    }
+
+    /* ── CARD ── */
+    .ms-card {
+      grid-column: 3;
+      grid-row: 1;
+      padding: 0 0 0 40px;
+      opacity: 0;
+      transform: translateX(44px);
+      transition: opacity .7s cubic-bezier(0.16, 1, 0.3, 1) .15s,
+        transform .7s cubic-bezier(0.16, 1, 0.3, 1) .15s;
+      will-change: transform, opacity;
+    }
+
+    .ms-item.tl-visible .ms-card {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .ms-card-inner {
+      background: #0f0f0f;
+      border: 1px solid #232323;
+      border-radius: var(--radius);
+      padding: 28px 30px;
+      transition: border-color .3s ease, box-shadow .3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated left border accent */
+    .ms-card-inner::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--yellow-dark), var(--yellow));
+      transform: scaleY(0);
+      transform-origin: top center;
+      transition: transform .55s cubic-bezier(0.16, 1, 0.3, 1) .3s;
+    }
+
+    .ms-item.tl-visible .ms-card-inner::after {
+      transform: scaleY(1);
+    }
+
+    .ms-card-inner:hover {
+      border-color: rgba(245, 197, 24, .25);
+      box-shadow: 0 8px 40px rgba(245, 197, 24, .07);
+    }
+
+    /* Ghost year watermark */
+    .ms-ghost-year {
+      position: absolute;
+      right: -10px;
+      bottom: -16px;
+      font-size: 120px;
+      font-weight: 800;
+      color: rgba(255, 255, 255, .025);
+      pointer-events: none;
+      line-height: 1;
+      letter-spacing: -4px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      user-select: none;
+    }
+
+    /* Tag */
+    .ms-milestone-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(245, 197, 24, .1);
+      border: 1px solid rgba(245, 197, 24, .2);
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--yellow);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .4s ease .38s, transform .4s ease .38s;
+    }
+
+    .ms-item.tl-visible .ms-milestone-tag {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Card title */
+    .ms-card-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #f0f0f0;
+      line-height: 1.3;
+      margin-bottom: 10px;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .5s ease .44s, transform .5s ease .44s;
+    }
+
+    .ms-item.tl-visible .ms-card-title {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Card description */
+    .ms-card-desc {
+      font-size: 13px;
+      line-height: 1.78;
+      color: #fff;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .5s ease .52s, transform .5s ease .52s;
+    }
+
+    .ms-item.tl-visible .ms-card-desc {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1024px) {
+      #timeline {
+        padding: 60px 22px;
+      }
+
+      .tl-spine {
+        display: none;
+      }
+
+      .ms-item {
+        display: flex !important;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 20px;
+        border-left: 2px solid #252525;
+        padding-bottom: 44px;
+        min-height: auto;
+        grid-template-columns: unset !important;
+      }
+
+      .ms-item:last-child {
+        padding-bottom: 0;
+      }
+
+      /* Reset all grid column placements */
+      .ms-item .ms-year,
+      .ms-item[data-side="right"] .ms-year,
+      .ms-item .ms-card,
+      .ms-item[data-side="right"] .ms-card,
+      .ms-item .ms-mid,
+      .ms-item[data-side="right"] .ms-mid {
+        grid-column: unset !important;
+        grid-row: unset !important;
+        order: unset !important;
+      }
+
+      .ms-mid {
+        display: none;
+      }
+
+      .ms-year {
+        align-items: flex-start !important;
+        padding: 0 !important;
+        margin-bottom: 10px;
+      }
+
+      .ms-card {
+        padding: 0 !important;
+        transform: translateY(20px) !important;
+        width: 100%;
+      }
+
+      .ms-item[data-side="right"] .ms-card {
+        padding: 0 !important;
+        transform: translateY(20px) !important;
+      }
+
+      .ms-item.tl-visible .ms-card {
+        transform: none !important;
+      }
+
+      .ms-year-num {
+        font-size: clamp(52px, 14vw, 76px) !important;
+        transform: translateX(-20px) !important;
+      }
+
+      .ms-item.tl-visible .ms-year-num {
+        transform: translateX(0) !important;
+      }
+    }
+
+    #contact {
+      background: var(--bg);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      margin-top: 44px;
+      max-width: 1240px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .form-wrap {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 38px;
+      box-shadow: var(--shadow);
+    }
+
+    .form-wrap h3 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 26px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .fg {
+      margin-bottom: 14px;
+    }
+
+    .fg label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gray-dark);
+      margin-bottom: 5px;
+      letter-spacing: .3px;
+    }
+
+    .fg input,
+    .fg textarea {
+      width: 100%;
+      background: var(--bg-light);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--black);
+      padding: 10px 13px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      outline: none;
+      transition: border-color var(--t);
+    }
+
+    .fg input:focus,
+    .fg textarea:focus {
+      border-color: var(--yellow);
+      background: #fff;
+    }
+
+    .fg textarea {
+      resize: vertical;
+      min-height: 105px;
+    }
+
+    .form-submit {
+      width: 100%;
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      padding: 13px;
+      border-radius: var(--radius-sm);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--t);
+      margin-top: 4px;
+    }
+
+    .form-submit:hover {
+      background: var(--yellow-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(245, 197, 24, .35);
+    }
+
+    .cinfo {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .cinfo h3 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--black);
+      line-height: 1.2;
+    }
+
+    .cinfo h3 em {
+      color: var(--yellow-dark);
+      font-style: normal;
+    }
+
+    .cinfo p {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .c-strengths {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .c-strength {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 18px;
+      text-align: center;
+      transition: var(--t);
+    }
+
+    .c-strength:hover {
+      border-color: var(--yellow);
+      background: var(--yellow-bg);
+    }
+
+    .c-strength .n {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--black);
+    }
+
+    .c-strength .n em {
+      color: var(--yellow-dark);
+      font-style: normal;
+    }
+
+    .c-strength .l {
+      font-size: 10px;
+      color: var(--gray);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .cdetails {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cd {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .cd-icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      background: var(--yellow-light);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    .cd-l {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 2px;
+    }
+
+    .cd-v {
+      font-size: 13px;
+      color: var(--black);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    footer {
+      background: var(--black);
+      color: #fff;
+      padding: 56px 60px 28px;
+    }
+
+    .footer-grid {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 56px;
+      margin-bottom: 44px;
+    }
+
+    .fb-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .fb-name {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .fb-name span {
+      display: block;
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: #777;
+      text-transform: uppercase;
+    }
+
+    .fb-desc {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.7;
+      max-width: 250px;
+      margin-bottom: 18px;
+    }
+
+    .fb-socials {
+      display: flex;
+      gap: 8px;
+    }
+
+    .social {
+      width: 34px;
+      height: 34px;
+      border: 1px solid #333;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-size: 12px;
+      transition: var(--t);
+    }
+
+    .social:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+    }
+
+    .fc h5 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #777;
+      margin-bottom: 16px;
+    }
+
+    .fc ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .fc ul li {
+      font-size: 13px;
+      color: #999;
+      line-height: 1.5;
+    }
+
+    .fc ul li a {
+      color: #999;
+      transition: color var(--t);
+    }
+
+    .fc ul li a:hover {
+      color: var(--yellow);
+    }
+
+    .footer-bottom {
+      max-width: 1240px;
+      margin: 0 auto;
+      border-top: 1px solid #222;
+      padding-top: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: #555;
+    }
+
+    .footer-gstin {
+      font-size: 11px;
+      color: #444;
+      letter-spacing: 1px;
+    }
+
+    .wa-float {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      z-index: 9000;
+    }
+
+    .wa-btn {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: #25D366;
+      color: #fff;
+      height: 52px;
+      border-radius: 100px;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(37, 211, 102, .45);
+      transition: var(--t);
+      overflow: hidden;
+      max-width: 52px;
+      position: relative;
+    }
+
+    .wa-btn:hover {
+      max-width: 200px;
+      padding-right: 18px;
+    }
+
+    .wa-icon-box {
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wa-label {
+      white-space: nowrap;
+      font-size: 13px;
+      font-weight: 700;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      opacity: 0;
+      width: 0;
+      overflow: hidden;
+      transition: opacity .25s .1s, width .3s;
+    }
+
+    .wa-btn:hover .wa-label {
+      opacity: 1;
+      width: 134px;
+    }
+
+    .wa-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 100px;
+      background: #25D366;
+      animation: waPulse 2s ease-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes waPulse {
+      0% {
+        transform: scale(1);
+        opacity: .6
+      }
+
+      100% {
+        transform: scale(1.5);
+        opacity: 0
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-l {
+      opacity: 0;
+      transform: translateX(-28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal-l.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-r {
+      opacity: 0;
+      transform: translateX(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal-r.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media(max-width:1024px) {
+      nav {
+        padding: 0 22px;
+      }
+
+      .nav-links,
+      .btn-nav {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      #hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      .hero-left {
+        padding: 56px 22px;
+      }
+
+      section {
+        padding: 60px 22px;
+      }
+
+      #process {
+        padding: 60px 0;
+      }
+
+      .process-header,
+      .journey-steps {
+        padding: 0 22px;
+      }
+
+      .process-sticky-bar {
+        padding: 12px 22px;
+      }
+
+      .about-grid,
+      .why-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pgrid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .tl-wrap::before {
+        display: none;
+      }
+
+      .tl-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .tl-item:nth-child(even) .tl-content:first-child,
+      .tl-item:nth-child(odd) .tl-content:last-child {
+        display: none;
+      }
+
+      .tl-dot-wrap {
+        justify-content: flex-start;
+      }
+
+      .route-row {
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .route-row::before {
+        display: none;
+      }
+
+      /* vertical journey mobile */
+      .journey-steps::before {
+        left: 24px;
+        transform: none;
+      }
+
+      .journey-line-fill {
+        left: 24px;
+        transform: none;
+      }
+
+      .jstep {
+        grid-template-columns: 48px 1fr;
+        min-height: auto;
+      }
+
+      .jstep:nth-child(odd) .jstep-content,
+      .jstep:nth-child(even) .jstep-content {
+        order: 2;
+        grid-column: 2;
+        padding: 16px 0 16px 16px;
+        text-align: left;
+      }
+
+      .jstep:nth-child(odd) .jstep-mid,
+      .jstep:nth-child(even) .jstep-mid {
+        order: 1;
+        grid-column: 1;
+      }
+
+      .jstep-canvas-wrap {
+        display: flex;
+        justify-content: center;
+        grid-column: 1 / -1;
+        order: 3;
+        margin-top: 12px;
+        width: 100%;
+      }
+      .jstep-canvas {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .jstep-node {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+      }
+    }
+
+    @media(max-width:600px) {
+      .pgrid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        gap: 20px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bulk-banner {
+        padding: 32px 22px;
+      }
+
+      .c-strengths {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  
+     Footer Styling Improvements */
+    footer { background: #FFFFFF !important; color: #1a1a1a !important; border-top: 1px solid #E8E8E8 !important; margin-top: 120px !important; padding-top: 80px !important; }
+    footer h5 { color: #F5C518 !important; }
+    footer ul li a { color: #444 !important; }
+    footer ul li span { color: #666 !important; }
+    footer ul li a:hover { color: #000 !important; }
+    .fb-desc { color: #666 !important; }
+    .social { background: #f5f5f5 !important; color: #1a1a1a !important; border: 1px solid #eee !important; }
+    .fb-name { color: #1a1a1a !important; }
+    .fb-name span { color: #666 !important; }
+    .footer-bottom { border-top: 1px solid #eee !important; padding-top: 20px !important; color: #666 !important; }
+     Process Flow Color Tweaks */
+    .psb-fill { background: linear-gradient(90deg, #F5C518, #FF512F) !important; }
+    .journey-line-fill { background: linear-gradient(to bottom, #F5C518, #FF512F) !important; }
+    .jstep-node.active .jstep-icon { background: #F5C518 !important; color: #111 !important; box-shadow: 0 0 15px rgba(245,197,24,0.5) !important; }
+    
+    
+  /* Premium Homepage Enhancements */
+  #hero { position: relative; background: radial-gradient(circle at 80% 20%, rgba(245,197,24,0.05) 0%, transparent 40%), radial-gradient(circle at 20% 80%, rgba(245,197,24,0.05) 0%, transparent 40%); }
+  #hero::before {
+    content: ''; position: absolute; inset: 0; background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" xmlns="http://www.w3.org/2000/svg"%3E%3Ccircle cx="2" cy="2" r="1.5" fill="rgba(0,0,0,0.02)"/%3E%3C/svg%3E');
+    opacity: 0.6; z-index: -1; pointer-events: none;
+  }
+  .hero-card { transform-style: preserve-3d; animation: floatPremium 5s ease-in-out infinite; border-left: 4px solid #D4A800; }
+  @keyframes floatPremium { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-12px) scale(1.02); } }
+
+  
+  /* Process Flow Premium Gradients - Vibrant Sunset */
+  .psb-fill { background: linear-gradient(90deg, #F5C518, #FF512F, #DD2476) !important; box-shadow: 0 0 15px rgba(255,81,47,0.5) !important; }
+  .journey-line-fill { background: linear-gradient(to bottom, #F5C518, #FF512F, #DD2476) !important; box-shadow: 0 0 15px rgba(255,81,47,0.5) !important; }
+  .jstep-node.active { background: linear-gradient(135deg, #F5C518, #FF512F, #DD2476) !important; color: #fff !important; transform: scale(1.15) !important; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; box-shadow: 0 4px 20px rgba(221,36,118,0.6) !important; border: 2px solid rgba(255,255,255,0.2) !important; }
+  .jstep-node.active .jstep-icon { background: transparent !important; color: #fff !important; }
+
+  /* 3D INTERACTIVE BUTTONS */
+  .btn-primary, .btn-nav, .pcard-btn, button[type="submit"] {
+    background: linear-gradient(180deg, #FAD961 0%, #F5C518 100%) !important;
+    color: #1a1a1a !important;
+    border: none !important;
+    box-shadow: 0 4px 0 #C49800, 0 8px 15px rgba(245, 197, 24, 0.3) !important;
+    border-radius: 8px !important;
+    transition: all 0.15s ease-in-out !important;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.4);
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    position: relative;
+    top: 0;
+  }
+  
+  .btn-primary:hover, .btn-nav:hover, .pcard-btn:hover, button[type="submit"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 0 #C49800, 0 12px 20px rgba(245, 197, 24, 0.4) !important;
+    background: linear-gradient(180deg, #FBE283 0%, #F5C518 100%) !important;
+  }
+  
+  .btn-primary:active, .btn-nav:active, .pcard-btn:active, button[type="submit"]:active {
+    transform: translateY(4px) !important;
+    box-shadow: 0 0 0 #C49800, 0 2px 5px rgba(245, 197, 24, 0.2) !important;
+  }
+  
+  .btn-outline {
+    position: relative;
+    background-color: #111 !important;
+    color: #F5C518 !important;
+    border: 2px solid #FAD961 !important;
+    box-shadow: 0 4px 0 #C49800, 0 8px 15px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.15s ease-in-out !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    cursor: pointer !important;
+    top: 0;
+  }
+  
+  .btn-outline:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 0 #C49800, 0 12px 20px rgba(0, 0, 0, 0.4) !important;
+    background-color: #1a1a1a !important;
+    color: #FBE283 !important;
+    border-color: #FBE283 !important;
+  }
+  
+  .btn-outline:active {
+    transform: translateY(4px) !important;
+    box-shadow: 0 0 0 #C49800, 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  /* Prevent outline shifting links strangely */
+  a.btn-primary, a.btn-outline, a.btn-nav, a.pcard-btn {
+      display: inline-block;
+  }
+
+/* ABSOLUTE OVERRIDE FOR SINGLE LINE PARTNERS */
+div.partners-wrap div.partners, div.partners {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    gap: 20px !important;
+    overflow-x: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-bottom: 20px !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: thin !important;
+}
+
+div.partners-wrap div.partners::-webkit-scrollbar, div.partners::-webkit-scrollbar {
+    height: 8px !important;
+}
+div.partners-wrap div.partners::-webkit-scrollbar-thumb, div.partners::-webkit-scrollbar-thumb {
+    background-color: #E0E0E0 !important;
+    border-radius: 10px !important;
+}
+
+div.partners-wrap div.partners div.partner, div.partners div.partner {
+    flex: 0 0 auto !important; 
+    width: 180px !important; 
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+</style>
+<style>
+/* Premium Home Overrides Inject */
+.hero-h1 {
+  background: linear-gradient(135deg, var(--black) 0%, #333 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.15;
+}
+.hero-h1 em {
+  background: linear-gradient(135deg, var(--yellow-dark), #FF8C00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0px 8px 24px rgba(245,197,24,0.35);
+  font-weight: 800;
+}
+.hero-badge {
+  background: linear-gradient(90deg, rgba(255,244,194,0.9), rgba(255,255,255,0.9));
+  box-shadow: 0 4px 20px rgba(245,197,24,0.2);
+  border: 1px solid rgba(245,197,24,0.5);
+  backdrop-filter: blur(4px);
+}
+.hero-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.7);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.15) !important;
+}
+.hero-img {
+  filter: contrast(1.1) brightness(0.95) saturate(1.2) !important;
+  transform: scale(1.02);
+}
+.hero-right {
+  border-radius: 0 0 0 40px;
+  overflow: hidden;
+  box-shadow: inset 20px 0 40px rgba(0,0,0,0.05);
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--yellow), var(--yellow-dark)) !important;
+  box-shadow: 0 8px 24px rgba(245,197,24,0.4) !important;
+  border: none !important;
+}
+.btn-primary:hover {
+  box-shadow: 0 12px 32px rgba(245,197,24,0.65) !important;
+  transform: translateY(-4px) scale(1.02) !important;
+}
+.btn-outline {
+  border-width: 2px !important;
+}
+.btn-outline:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.stat-num {
+  font-size: 42px !important;
+  background: linear-gradient(135deg, var(--black), #444);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+}
+.hero-stats {
+  border-top: 2px solid rgba(0,0,0,0.05) !important;
+  padding-top: 40px !important;
+}
+</style><style>
+/* Phase 2 Aesthetics - Global Yarn Texture & Yellow Stats */
+body {
+  position: relative;
+}
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('images/polyester_poy.webp') center/cover repeat;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+/* Keep sections above the background */
+#intro, #hero, section, footer {
+  position: relative;
+  z-index: 10;
+}
+/* Overriding previous gradient on stats to pure, bold yellow */
+.stat-num {
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  color: var(--yellow-dark) !important;
+  font-weight: 900 !important;
+  text-shadow: 0px 4px 12px rgba(245,197,24,0.2) !important;
+}
+</style><style>
+/* Hero Crossfade Slider Styles */
+.hero-slider {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.hero-slider .slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: heroSlideFade 15s infinite;
+  filter: contrast(1.1) brightness(0.85) saturate(1.2);
+}
+.hero-slider .slide:nth-child(1) { animation-delay: 0s; }
+.hero-slider .slide:nth-child(2) { animation-delay: 5s; }
+.hero-slider .slide:nth-child(3) { animation-delay: 10s; }
+
+@keyframes heroSlideFade {
+  0% { opacity: 0; transform: scale(1.0); }
+  5% { opacity: 1; transform: scale(1.02); }
+  33% { opacity: 1; transform: scale(1.05); }
+  38% { opacity: 0; transform: scale(1.06); }
+  100% { opacity: 0; transform: scale(1.0); }
+}
+</style>
+  <style id="tickerCSS">
+    .top-ticker {
+      background: #F5C518;
+      color: #111;
+      font-weight: 800;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 99999;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .ticker-wrap {
+      width: 100%;
+      overflow: hidden;
+    }
+    .ticker-content {
+      display: inline-block;
+      white-space: nowrap;
+      animation: bannerTicker 50s linear infinite;
+    }
+    .ticker-content span {
+      display: inline-block;
+      padding-right: 50px;
+    }
+    @keyframes bannerTicker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    /* Adjust fixed elements for the 30px ticker */
+    nav#navbar { top: 30px !important; }
+    #hero { padding-top: 96px !important; }
+    .process-sticky-bar { top: 96px !important; }
+    .mobile-menu { top: 30px !important; }
+
+    /* Mobile: slimmer ticker */
+    @media (max-width: 768px) {
+      .top-ticker {
+        padding: 5px 0;
+        font-size: 9px;
+        letter-spacing: 1px;
+      }
+      nav#navbar { top: 24px !important; }
+      #hero { padding-top: 90px !important; }
+      .process-sticky-bar { top: 90px !important; }
+      .mobile-menu { top: 24px !important; }
+    }
+  </style>
+<style id="white-footer">
+  /* White Footer Override */
+  footer { 
+      background-color: #FFFFFF !important; 
+      color: #1a1a1a !important; 
+      border-top: 1px solid #E8E8E8 !important; 
+  }
+  footer * {
+      /* Reset any dark background overrides if there are any inline */
+  }
+  footer .fb-name { color: #1a1a1a !important; }
+  footer .fb-name span { color: #666 !important; }
+  footer .fb-desc { color: #666 !important; }
+  footer .social { 
+      background: #f5f5f5 !important; 
+      color: #1a1a1a !important; 
+      border: 1px solid #ddd !important; 
+  }
+  footer .social:hover {
+      background: #F5C518 !important;
+      color: #111 !important;
+      border-color: #F5C518 !important;
+  }
+  footer .fc h5 { color: #1a1a1a !important; font-weight: 800 !important; }
+  footer .fc ul li, footer .fc ul li a, footer .fc ul li span { color: #555 !important; }
+  footer .fc ul li a:hover { color: #F5C518 !important; }
+  footer .footer-bottom { 
+      border-top: 1px solid #eee !important; 
+      color: #666 !important; 
+  }
+  footer .footer-bottom p { color: #666 !important; }
+  footer .footer-gstin { color: #555 !important; font-weight: 600 !important; }
+  footer svg { color: #1a1a1a !important; }
+  
+  /* Make sure the main phone/email icons in the footer contact list are visible */
+  footer .fc ul li svg { color: #F5C518 !important; } /* Yellow icons */
+  footer .fb-logo svg { color: #F5C518 !important; }
+</style>
+<style id="marquee-override">
+  .partners-lbl-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px !important;
+  }
+  @media(max-width:600px) {
+    .partners-lbl-wrap {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  }
+  .partners-lbl {
+    font-size: 28px !important;
+    font-weight: 900 !important;
+    color: var(--black, #1a1a1a) !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase;
+    margin-bottom: 0 !important;
+  }
+  .partners-nav-btns {
+    display: flex;
+    gap: 12px;
+  }
+  .partner-nav-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    transition: all 0.2s ease;
+    color: #1a1a1a;
+  }
+  .partner-nav-btn:hover {
+    background: #F5C518;
+    color: #111;
+    border-color: #F5C518;
+    box-shadow: 0 4px 15px rgba(245, 197, 24, 0.3);
+    transform: translateY(-2px);
+  }
+  .partners-wrap {
+    width: 100% !important;
+    position: relative;
+    padding: 10px 0;
+  }
+  
+  div.partners-wrap div.partners, div.partners {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 30px !important;
+    overflow-x: auto !important;
+    scroll-behavior: smooth;
+    padding-bottom: 20px !important;
+    -ms-overflow-style: none; /* IE/Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  div.partners::-webkit-scrollbar { display: none !important; }
+
+  div.partners div.partner {
+    flex: 0 0 auto !important; 
+    width: 200px !important; 
+    background: #fff;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    padding: 24px 20px;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-weight: 700;
+  }
+  div.partners div.partner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(245, 197, 24, 0.2);
+    border-color: #F5C518;
+  }
+</style>
+
+
+
+
+</head>
+<body>
+  <div class="top-ticker" id="topTicker">
+    <div class="ticker-wrap">
+      <div class="ticker-content">
+        <span>Global Yarn Sourcing &nbsp;&nbsp;&nbsp; Trusted Quality &amp; Consistent Supply</span>
+        <span>Global Yarn Sourcing &nbsp;&nbsp;&nbsp; Trusted Quality &amp; Consistent Supply</span>
+        <span>Global Yarn Sourcing &nbsp;&nbsp;&nbsp; Trusted Quality &amp; Consistent Supply</span>
+        <span>Global Yarn Sourcing &nbsp;&nbsp;&nbsp; Trusted Quality &amp; Consistent Supply</span>
+        <span>Global Yarn Sourcing &nbsp;&nbsp;&nbsp; Trusted Quality &amp; Consistent Supply</span>
+        <span>Global Yarn Sourcing &nbsp;&nbsp;&nbsp; Trusted Quality &amp; Consistent Supply</span>
+        <span>Global Yarn Sourcing &nbsp;&nbsp;&nbsp; Trusted Quality &amp; Consistent Supply</span>
+        <span>Global Yarn Sourcing &nbsp;&nbsp;&nbsp; Trusted Quality &amp; Consistent Supply</span>
+        <span>Global Yarn Sourcing &nbsp;&nbsp;&nbsp; Trusted Quality &amp; Consistent Supply</span>
+        <span>Global Yarn Sourcing &nbsp;&nbsp;&nbsp; Trusted Quality &amp; Consistent Supply</span>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" onclick="closeMenu()">×</button>
+    <a href="#hero" onclick="closeMenu()">Home</a>
+    <a href="products.html" onclick="closeMenu()">Products</a>
+    <a href="about.html" onclick="closeMenu()">About</a>
+    <a href="process.html" onclick="closeMenu()">Process</a>
+    <a href="contact.html" onclick="closeMenu()">Contact</a>
+    <a href="tracking.html" onclick="closeMenu()">Tracking</a>
+  </div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="surat-sales.html" class="nav-logo">
+      <img src="images/sspl_logo.webp" alt="SSPL Logo" style="height:44px; width:auto; border-radius:4px;">
+      <div class="nav-logo-name">Surat Sales<span>Private Limited</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="process.html">Process</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+      <li><a href="tracking.html">Tracking</a></li>
+    </ul>
+    <button class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></button>
+  </nav>
+
+
+<section id="hero">
+    <div class="hero-left">
+      <div class="hero-badge"><span class="badge-dot"></span>House of Imported Yarns</div>
+      <h1 class="hero-h1">Reliable Yarn <br><em>Import &amp; Export</em><br>Across Globe.</h1>
+      <p class="hero-p">Delivering premium yarn solutions by connecting global manufacturers with the Indian market, backed by a strong global sourcing and export network.</p>
+      <div class="hero-btns">
+        <a href="products.html" class="btn-primary">View Products →</a>
+        <a href="contact.html" class="btn-outline">Contact Us</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num" data-count="300">0<em>+</em></div>
+          <div class="stat-lbl">Containers / Month</div>
+        </div>
+        <div>
+          <div class="stat-num" data-count="43">0<em>+</em></div>
+          <div class="stat-lbl">Years in Business</div>
+        </div>
+        <div>
+          <div class="stat-num" data-count="8">0<em>+</em></div>
+          <div class="stat-lbl">Countries</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="hero-right">
+      <img class="hero-img" src="https://images.unsplash.com/photo-1636986056375-184676d8ca14?q=80&amp;w=2000&amp;auto=format&amp;fit=crop" alt="Modern Yarn Factory">
+      <div class="hero-img-fade"></div>
+    </div>
+    
+  </section>
+
+<section id="process">
+    <div class="process-header reveal">
+      <span class="sec-tag">From Polymer to Excellence</span>
+      <h2 class="sec-h2">The Complete <em>Yarn Journey</em></h2>
+      <p class="sec-p">Scroll through the precision engineering of high-purity virgin polymers into premium textile-ready yarn,
+        delivered to your doorstep in India.</p>
+    </div>
+
+    <!-- Sticky progress bar -->
+    <div class="process-sticky-bar" id="processStickyBar">
+      <div class="psb-label"><span class="live-dot"></span>Journey</div>
+      <div class="psb-track">
+        <div class="psb-fill" id="psbFill"></div>
+      </div>
+      <div class="psb-step" id="psbStep">Step 1 of 7</div>
+    </div>
+
+    <!-- Vertical steps -->
+    <div class="journey-steps" id="journeySteps">
+      <div class="journey-line-fill" id="journeyLineFill"></div>
+
+      <!-- Step 1 -->
+      <div class="jstep" data-step="1">
+        <div class="jstep-content">
+          <div class="jstep-step-num">Step 01</div>
+          <div class="jstep-tag"><span style="display:inline-flex;width:13px;height:13px;color:var(--yellow-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"></path>
+                <path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"></path>
+                <path d="m14 16 3-3-3-3"></path>
+                <path d="m3.5 5.5 2.5 3 3-3"></path>
+                <path d="M11.5 5.5 9.914 7.956A2 2 0 0 1 8.21 9H7"></path>
+                <path d="M21 9h-3"></path>
+                <path d="M17 12h-1"></path>
+              </svg></span> Quality Focus</div>
+          <div class="jstep-title">The Origin:<br>Virgin Purity</div>
+          <div class="jstep-desc">Our process begins with the selection of high-purity virgin polymer chips. Every batch is rigorously inspected to ensure the highest standards of clarity and molecular consistency.</div>
+        </div>
+        <div class="jstep-mid">
+          <div class="jstep-node" data-emoji="quality" style="color:var(--black);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+</svg></div>
+        </div>
+        <div class="jstep-canvas-wrap">
+          <canvas class="jstep-canvas" id="canvas-1" width="260" height="260"></canvas>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="jstep" data-step="2">
+        <div class="jstep-canvas-wrap">
+          <canvas class="jstep-canvas" id="canvas-2" width="260" height="260"></canvas>
+        </div>
+        <div class="jstep-mid">
+          <div class="jstep-node" data-emoji="flame" style="color:var(--black);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+            </svg></div>
+        </div>
+        <div class="jstep-content">
+          <div class="jstep-step-num">Step 02</div>
+          <div class="jstep-tag"><span style="display:inline-flex;width:13px;height:13px;color:var(--yellow-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+              </svg></span> Processing</div>
+          <div class="jstep-title">The Alchemy:<br>Melting &amp; Refining</div>
+          <div class="jstep-desc">The selected polymers are melted and refined through advanced filtration. This creates a high-grade liquid polymer of unmatched purity, optimized for precision spinning.</div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="jstep" data-step="3">
+        <div class="jstep-content">
+          <div class="jstep-step-num">Step 03</div>
+          <div class="jstep-tag"><span style="display:inline-flex;width:13px;height:13px;color:var(--yellow-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg></span> Engineering</div>
+          <div class="jstep-title">The Spin:<br>Extrusion &amp; Filament</div>
+          <div class="jstep-desc">The refined polymer is extruded through precision machinery. Fine filaments are
+            formed, creating the base fibers that will become yarn.</div>
+        </div>
+        <div class="jstep-mid">
+          <div class="jstep-node" data-emoji="gear" style="color:var(--black);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg></div>
+        </div>
+        <div class="jstep-canvas-wrap">
+          <canvas class="jstep-canvas" id="canvas-3" width="260" height="260"></canvas>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="jstep" data-step="4">
+        <div class="jstep-canvas-wrap">
+          <canvas class="jstep-canvas" id="canvas-4" width="260" height="260"></canvas>
+        </div>
+        <div class="jstep-mid">
+          <div class="jstep-node" data-emoji="spool" style="color:var(--black);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="3"></circle>
+              <line x1="12" y1="9" x2="12" y2="2"></line>
+              <line x1="12" y1="15" x2="12" y2="22"></line>
+              <line x1="9" y1="12" x2="2" y2="12"></line>
+              <line x1="15" y1="12" x2="22" y2="12"></line>
+            </svg></div>
+        </div>
+        <div class="jstep-content">
+          <div class="jstep-step-num">Step 04</div>
+          <div class="jstep-tag"><span style="display:inline-flex;width:13px;height:13px;color:var(--yellow-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="3"></circle>
+                <line x1="12" y1="9" x2="12" y2="2"></line>
+                <line x1="12" y1="15" x2="12" y2="22"></line>
+                <line x1="9" y1="12" x2="2" y2="12"></line>
+                <line x1="15" y1="12" x2="22" y2="12"></line>
+              </svg></span> Craftsmanship</div>
+          <div class="jstep-title">The Craft:<br>Texturizing &amp; Winding</div>
+          <div class="jstep-desc">The filaments are texturized to add softness, strength, and volume. They are then
+            wound carefully into uniform yarn spools ready for shipping.</div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="jstep" data-step="5">
+        <div class="jstep-content">
+          <div class="jstep-step-num">Step 05</div>
+          <div class="jstep-tag"><span style="display:inline-flex;width:13px;height:13px;color:var(--yellow-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16.5 9.4 7.55 4.24"></path>
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.29 7 12 12 20.71 7"></polyline>
+                <line x1="12" y1="22" x2="12" y2="12"></line>
+              </svg></span> Logistics</div>
+          <div class="jstep-title">Packing &amp;<br>Preparation</div>
+          <div class="jstep-desc">The finished yarn is packed securely into boxes and pallets, ensuring maximum
+            protection during transit from factory to your warehouse.</div>
+        </div>
+        <div class="jstep-mid">
+          <div class="jstep-node" data-emoji="package" style="color:var(--black);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16.5 9.4 7.55 4.24"></path>
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.29 7 12 12 20.71 7"></polyline>
+              <line x1="12" y1="22" x2="12" y2="12"></line>
+            </svg></div>
+        </div>
+        <div class="jstep-canvas-wrap">
+          <canvas class="jstep-canvas" id="canvas-5" width="260" height="260"></canvas>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="jstep" data-step="6">
+        <div class="jstep-canvas-wrap">
+          <canvas class="jstep-canvas" id="canvas-6" width="260" height="260"></canvas>
+        </div>
+        <div class="jstep-mid">
+          <div class="jstep-node" data-emoji="ship" style="color:var(--black);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1 .6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+              <path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"></path>
+              <path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"></path>
+              <path d="M12 10v4"></path>
+              <path d="M12 3v4"></path>
+            </svg></div>
+        </div>
+        <div class="jstep-content">
+          <div class="jstep-step-num">Step 06</div>
+          <div class="jstep-tag"><span style="display:inline-flex;width:13px;height:13px;color:var(--yellow-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1 .6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+                <path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"></path>
+                <path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"></path>
+                <path d="M12 10v4"></path>
+                <path d="M12 3v4"></path>
+              </svg></span> Shipping</div>
+          <div class="jstep-title">Shipping<br>to India</div>
+          <div class="jstep-desc">The packed yarn is shipped via containers, moving across oceans to reach India.
+            End-to-end logistics managed by our experienced team.</div>
+        </div>
+      </div>
+
+      <!-- Step 7 -->
+      <div class="jstep" data-step="7">
+        <div class="jstep-content">
+          <div class="jstep-step-num">Step 07</div>
+          <div class="jstep-tag"><span style="display:inline-flex;width:13px;height:13px;color:var(--yellow-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"></path>
+                <path d="M17 18h1"></path>
+                <path d="M12 18h1"></path>
+                <path d="M7 18h1"></path>
+              </svg></span> Delivered</div>
+          <div class="jstep-title">Ready<br>to Weave</div>
+          <div class="jstep-desc">Our first-grade yarn arrives at its destination — ready to be woven into premium high-end textiles and high-quality products across India's textile industry.</div>
+        </div>
+        <div class="jstep-mid">
+          <div class="jstep-node" data-emoji="factory" style="color:var(--black);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"></path>
+              <path d="M17 18h1"></path>
+              <path d="M12 18h1"></path>
+              <path d="M7 18h1"></path>
+            </svg></div>
+        </div>
+        <div class="jstep-canvas-wrap">
+          <canvas class="jstep-canvas" id="canvas-7" width="260" height="260"></canvas>
+        </div>
+      </div>
+
+    </div>
+  </section>
+<section id="why">
+    <div class="why-grid">
+      <div class="reveal-l">
+        <span class="sec-tag">Why Choose Us</span>
+        <h2 class="sec-h2">Why Choose <em>Surat Sales</em></h2>
+        <p class="sec-p">We don't just supply yarn — we deliver confidence, consistency, and value at every step of your
+          supply chain.</p>
+        <div class="why-feats">
+          <div class="why-feat">
+            <div class="why-icon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg></div>
+            <div>
+              <h4>Consistent Quality</h4>
+              <p>Rigorous multi-stage quality control ensures every batch meets international standards.</p>
+            </div>
+          </div>
+          <div class="why-feat">
+            <div class="why-icon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path>
+                <path d="M12 18V6"></path>
+              </svg></div>
+            <div>
+              <h4>Competitive Pricing</h4>
+              <p>Benefit from our efficient direct sourcing to get the best value for your investment.</p>
+            </div>
+          </div>
+          <div class="why-feat">
+            <div class="why-icon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11v14H5z"></path>
+                <rect x="13" y="8" width="8" height="11" rx="1"></rect>
+                <circle cx="7.5" cy="17" r="1.5"></circle>
+                <circle cx="17.5" cy="17" r="1.5"></circle>
+                <path d="M13 10h4.5l1.5 3"></path>
+              </svg></div>
+            <div>
+              <h4>Reliable Supply</h4>
+              <p>Strong logistics and inventory management guarantee on-time delivery across India.</p>
+            </div>
+          </div>
+          <div class="why-feat">
+            <div class="why-icon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M2 12h20"></path>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg></div>
+            <div>
+              <h4>Strong Sourcing Network</h4>
+              <p>Direct partnerships with top manufacturers in China for diverse and quality products.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal-r">
+        <div class="stat-cards">
+          <div class="stat-card">
+            <div class="big">300<em>+</em></div>
+            <div class="sm">Containers / Month</div>
+          </div>
+          <div class="stat-card">
+            <div class="big">43<em>+</em></div>
+            <div class="sm">Years in Business</div>
+          </div>
+          <div class="stat-card">
+            <div class="big">8<em>+</em></div>
+            <div class="sm">Countries Sourced</div>
+          </div>
+          <div class="stat-card">
+            <div class="big">7–10</div>
+            <div class="sm">Day Lead Time</div>
+          </div>
+        </div>
+        <div class="checklist" style="margin-top:14px;">
+          <h4>Our Commitment to Quality &amp; Consistency</h4>
+          
+          <div class="cl-item">
+            <div class="cl-check" style="display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg></div>Rigorous Multi-Stage Quality Checks
+          </div>
+          <div class="cl-item">
+            <div class="cl-check" style="display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg></div>Consistent Yarn Denier &amp; Luster
+          </div>
+          <div class="cl-item">
+            <div class="cl-check" style="display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg></div>Traceable Supply Chain Transparency
+          </div>
+          <div class="cl-item">
+            <div class="cl-check" style="display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg></div>Adherence to International Standards
+          </div>
+          <div class="cl-item">
+            <div class="cl-check" style="display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg></div>Sustainable &amp; Ethical Sourcing Practices
+          </div>
+        </div>
+      
+    
+  </div></div></section>
+<section id="products">
+    <div class="products-top reveal">
+      <div><span class="sec-tag">Our Products</span>
+        <h2 class="sec-h2">Our Core <em>Products</em></h2>
+      </div>
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterP(this,'all')">All</button>
+        <button class="filter-btn" onclick="filterP(this,'polyester')">Polyester</button>
+        <button class="filter-btn" onclick="filterP(this,'nylon')">Nylon</button>
+        <button class="filter-btn" onclick="filterP(this,'specialty')">Specialty</button>
+      </div>
+    </div>
+    <div class="pgrid" id="pgrid">
+      <div class="pcard reveal" data-cat="polyester"><img class="pcard-img" src="images/polyester_poy.webp" alt="POY">
+        <div class="pcard-body">
+          <div class="pcard-type">Polyester · POY (SD, FD, Bright)</div>
+          <div class="pcard-name">Polyester Partially Oriented Yarn</div>
+          <div class="pcard-desc">Versatile raw material for texturizing, suitable for DTY production. Available in Semi Dull and Bright lusters.</div>
+          <div class="specs">
+            <div class="spec">
+              <div class="spec-l">Denier</div>
+              <div class="spec-v">75D – 600D</div>
+            </div>
+            <div class="spec">
+              <div class="spec-l">Filament</div>
+              <div class="spec-v">36F – 288F</div>
+            </div>
+            <div class="spec">
+              <div class="spec-l">Luster</div>
+              <div class="spec-v">Semi Dull, Full Dull, Bright</div>
+            </div>
+            <div class="spec">
+              <div class="spec-l">Intermingle</div>
+              <div class="spec-v">NIM, LIM, HIM</div>
+            </div>
+          </div>
+          <div class="moq-row"><span class="moq">MOQ: 5 Tons</span><span class="moq">Palletized, Cartons</span></div>
+          <button class="pcard-btn" onclick="goContact()">Request Quote →</button>
+        </div>
+      </div>
+      <div class="pcard reveal" data-cat="polyester" style="transition-delay:.08s"><img class="pcard-img" src="images/polyester_fdy.webp" alt="FDY">
+        <div class="pcard-body">
+          <div class="pcard-type">Polyester · FDY (SD, FD, Bright)</div>
+          <div class="pcard-name">Polyester Fully Drawn Yarn</div>
+          <div class="pcard-desc">Ready-to-use yarn for weaving and knitting. Excellent strength and uniformity. Available in Semi Dull, Full Dull, and Bright lusters.</div>
+          <div class="specs">
+            <div class="spec">
+              <div class="spec-l">Denier</div>
+              <div class="spec-v">50D – 300D</div>
+            </div>
+            <div class="spec">
+              <div class="spec-l">Filament</div>
+              <div class="spec-v">24F – 144F</div>
+            </div>
+            <div class="spec">
+              <div class="spec-l">Luster</div>
+              <div class="spec-v">Semi Dull, Full Dull, Bright</div>
+            </div>
+            <div class="spec">
+              <div class="spec-l">Type</div>
+              <div class="spec-v">Flat, Dope Dyed</div>
+            </div>
+          </div>
+          <div class="moq-row"><span class="moq">MOQ: 5 Tons</span><span class="moq">Palletized, Cartons</span></div>
+          <button class="pcard-btn" onclick="goContact()">Request Quote →</button>
+        </div>
+      </div>
+      <div class="pcard reveal" data-cat="polyester" style="transition-delay:.16s"><img class="pcard-img" src="images/polyester_dty.webp" alt="DTY">
+        <div class="pcard-body">
+          <div class="pcard-type">Polyester · DTY</div>
+          <div class="pcard-name">Polyester Drawn Textured Yarn</div>
+          <div class="pcard-desc">Texturized yarn with high elasticity and soft feel. Ideal for apparel and home textiles. Available in Semi Dull, Full Dull, and Bright lusters.</div>
+          <div class="specs">
+            <div class="spec">
+              <div class="spec-l">Denier</div>
+              <div class="spec-v">75D – 300D</div>
+            </div>
+            <div class="spec">
+              <div class="spec-l">Filament</div>
+              <div class="spec-v">36F – 288F</div>
+            </div>
+            <div class="spec">
+              <div class="spec-l">Luster</div>
+              <div class="spec-v">Semi Dull, Full Dull, Bright</div>
+            </div>
+            <div class="spec">
+              <div class="spec-l">Set</div>
+              <div class="spec-v">NIM, HIM, Set</div>
+            </div>
+          </div>
+          <div class="moq-row"><span class="moq">MOQ: 5 Tons</span><span class="moq">Palletized, Cartons</span></div>
+          <button class="pcard-btn" onclick="goContact()">Request Quote →</button>
+        </div>
+      </div>
+      <div class="pcard reveal" data-cat="specialty" style="transition-delay:.24s"><img class="pcard-img" src="images/fake_cotton_yarn.webp" alt="Fake Cotton">
+        <div class="pcard-body">
+          <div class="pcard-type">Specialty · Fake Cotton</div>
+          <div class="pcard-name">Fake Cotton Yarn</div>
+          <div class="pcard-desc">Premium texturized polyester yarn with a soft, natural hand-feel. Superior durability and easy-care, ideal for elite sportswear and fashion. Available in Semi Dull and Full Dull lusters.</div>
+          <div class="specs">
+            <div class="spec">
+              <div class="spec-l">Denier</div>
+              <div class="spec-v">75D – 150D</div>
+            </div>
+            <div class="spec">
+              <div class="spec-l">Filament</div>
+              <div class="spec-v">72F – 144F</div>
+            </div>
+            <div class="spec">
+              <div class="spec-l">Handfeel</div>
+              <div class="spec-v">Cotton-like</div>
+            </div>
+            <div class="spec">
+              <div class="spec-l">Application</div>
+              <div class="spec-v">Sportswear, Casual</div>
+            </div>
+            <div class="spec">
+              <div class="spec-l">Variants</div>
+              <div class="spec-v">32s FD, 40s, 50s, 60s FD (Stretch &amp; Non-Stretch)</div>
+            </div>
+          </div>
+          <div class="moq-row"><span class="moq">MOQ: 3 Tons</span><span class="moq">Cartons</span></div><button class="pcard-btn" onclick="goContact()">Request Quote →</button>
+        </div>
+      </div>
+      <div class="pcard reveal" data-cat="nylon" style="transition-delay:.32s"><img class="pcard-img" src="images/mother_yarn.webp" alt="Mother Yarn">
+        <div class="pcard-body">
+          <div class="pcard-type">Specialty · Nylon Mother Yarn (SD, Bright)</div>
+          <div class="pcard-name">Mother Yarn (POY Micro-Filament)</div>
+          <div class="pcard-desc">Micro-filament yarn for producing ultra-fine fibers. Used in high-end textiles for
+            softness and drape.</div>
+          <div class="specs">
+            <div class="spec">
+              <div class="spec-l">Denier</div>
+              <div class="spec-v">100D – 300D</div>
+            </div>
+            <div class="spec">
+              <div class="spec-l">Filament</div>
+              <div class="spec-v">200F – 400F</div>
+            </div>
+            <div class="spec">
+              <div class="spec-l">Section</div>
+              <div class="spec-v">Orange Peel</div>
+            </div>
+            <div class="spec">
+              <div class="spec-l">Use</div>
+              <div class="spec-v">Split into Microfibers</div>
+            </div>
+          </div>
+          <div class="moq-row"><span class="moq">MOQ: 5 Tons</span><span class="moq">Palletized, Cartons</span></div>
+          <button class="pcard-btn" onclick="goContact()">Request Quote →</button>
+        </div>
+      </div>
+      
+    
+<div class="pcard reveal" data-cat="specialty"><img class="pcard-img" src="images/pet_chips.webp" alt="pet chips (wankai)">
+  <div class="pcard-body">
+    <div class="pcard-type">Raw Material · PET Chips</div>
+    <div class="pcard-name">PET Chips (Wankai)</div>
+    <div class="pcard-desc">Premium quality PET Chips for varied textile and packaging applications.</div>
+    <button class="pcard-btn" onclick="window.location.href='contact.html'">Request Quote →</button>
+  </div>
+</div>
+<div class="pcard reveal" data-cat="specialty"><img class="pcard-img" src="images/pta.webp" alt="pta (purified terephthalic acid)">
+  <div class="pcard-body">
+    <div class="pcard-type">Raw Material · PTA</div>
+    <div class="pcard-name">PTA (Purified Terephthalic Acid)</div>
+    <div class="pcard-desc">Essential raw material for producing high-quality polyester.</div>
+    <button class="pcard-btn" onclick="window.location.href='contact.html'">Request Quote →</button>
+  </div>
+</div>
+<div class="pcard reveal" data-cat="polyester"><img class="pcard-img" src="images/psf_yarn.webp" alt="psf yarn">
+  <div class="pcard-body">
+    <div class="pcard-type">Polyester · PSF Yarn</div>
+    <div class="pcard-name">PSF Yarn</div>
+    <div class="pcard-desc">Polyester Staple Fiber Yarn for blending and general applications.</div>
+    <button class="pcard-btn" onclick="window.location.href='contact.html'">Request Quote →</button>
+  </div>
+</div></div>
+    
+  <div class="matrix-wrap reveal" style="margin-top: 60px;">
+    <div class="matrix-header" style="text-align: center; margin-bottom: 40px;">
+      <span class="sec-tag">Technical Specifications</span>
+      <h2 class="sec-h2">Yarn Luster &amp; <em>Availability Matrix</em></h2>
+      <p class="sec-p" style="text-align:center; margin-left: auto; margin-right: auto;">A quick reference guide for luster availability across our core product range.</p>
+    </div>
+    <div style="overflow-x: auto; background: #fff; border-radius: 12px; box-shadow: var(--shadow); border: 1px solid #eee;">
+      <table style="width: 100%; border-collapse: collapse; min-width: 600px; font-family: 'Plus Jakarta Sans', sans-serif;">
+        <thead>
+          <tr style="background: var(--bg-section); text-align: left;">
+            <th style="padding: 20px; border-bottom: 2px solid #eee; color: var(--black); font-weight: 700;">Yarn Type</th>
+            <th style="padding: 20px; border-bottom: 2px solid #eee; color: var(--black); font-weight: 700;">Semi Dull</th>
+            <th style="padding: 20px; border-bottom: 2px solid #eee; color: var(--black); font-weight: 700;">Full Dull</th>
+            <th style="padding: 20px; border-bottom: 2px solid #eee; color: var(--black); font-weight: 700;">Bright</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 18px 20px; font-weight: 600; color: var(--black);">POY</td>
+            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
+            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
+            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 18px 20px; font-weight: 600; color: var(--black);">Mother Yarn</td>
+            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
+            <td style="padding: 18px 20px; color: var(--gray); font-size: 13px;">❌ (generally not made)</td>
+            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 18px 20px; font-weight: 600; color: var(--black);">FDY</td>
+            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
+            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
+            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #eee;">
+            <td style="padding: 18px 20px; font-weight: 600; color: var(--black);">DTY</td>
+            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
+            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
+            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
+          </tr>
+          <tr>
+            <td style="padding: 18px 20px; font-weight: 600; color: var(--black);">Fake Cotton (DTY type)</td>
+            <td style="padding: 18px 20px; color: #22C55E;">✅ <span style="font-size: 12px; color: var(--gray);">(most common)</span></td>
+            <td style="padding: 18px 20px; color: #22C55E;">✅</td>
+            <td style="padding: 18px 20px; color: var(--gray); font-size: 13px;">❌ (rare)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+    <div class="bulk-banner reveal">
+      <div>
+        <h3>Looking for Large Volume Orders?</h3>
+        <p>Surat Sales specializes in global sourcing and reliable supply of yarn for industrial-scale demands. Partner
+          with us for competitive pricing and consistent quality.</p>
+      </div><a href="contact.html" class="btn-dark">Contact Us for Bulk Orders →</a>
+    </div>
+  </section>
+<section id="sourcing">
+    <div class="container">
+      <div class="reveal" style="text-align: center;"><span class="sec-tag">Global Sourcing</span>
+        <h2 class="sec-h2">Our Global <em>Sourcing Route</em></h2>
+        <p class="sec-p" style="margin-left: auto; margin-right: auto;">We procure premium yarn from top-tier international manufacturers directly, ensuring high standards for global supply and exports worldwide.</p>
+      </div>
+      <div class="route-card reveal">
+        <div class="route-row">
+          <div class="rnode">
+            <div class="ricon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"></path>
+                <path d="M17 18h1"></path>
+                <path d="M12 18h1"></path>
+                <path d="M7 18h1"></path>
+              </svg></div>
+            <div class="rcity">China</div>
+            <div class="rsub">Manufacturing Hub</div>
+          </div>
+          <div class="rarrow"><span style="display:inline-flex;width:18px;height:18px;color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-2-5.5-.5L10 5 1.8 6.2a1 1 0 0 0-.6 1.7l2.3 2.3a1 1 0 0 0 1.1.2l2-1 1.1 2.9-2 2-1-.4a1 1 0 0 0-1.3 1.3l.4 1-2 2a1 1 0 0 0 .2 1.5l2.2 1.3a1 1 0 0 0 1.4-.4l1-2"></path>
+              </svg></span><small>Air Freight</small></div>
+          <div class="rnode">
+            <div class="ricon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1 .6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+                <path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"></path>
+                <path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"></path>
+                <path d="M12 10v4"></path>
+                <path d="M12 3v4"></path>
+              </svg></div>
+            <div class="rcity">Ocean Transit</div>
+            <div class="rsub">Container Shipping</div>
+          </div>
+          <div class="rarrow"><span style="display:inline-flex;width:18px;height:18px;color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="5" r="3"></circle>
+                <line x1="12" y1="22" x2="12" y2="8"></line>
+                <path d="M5 12H2a10 10 0 0 0 20 0h-3"></path>
+              </svg></span><small>Logistics</small></div>
+          <div class="rnode">
+            <div class="ricon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg></div>
+            <div class="rcity">Surat, India</div>
+            <div class="rsub">Gujarat HQ</div>
+          </div>
+          <div class="rarrow"><span style="display:inline-flex;width:18px;height:18px;color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11v14H5z"></path>
+                <rect x="13" y="8" width="8" height="11" rx="1"></rect>
+                <circle cx="7.5" cy="17" r="1.5"></circle>
+                <circle cx="17.5" cy="17" r="1.5"></circle>
+                <path d="M13 10h4.5l1.5 3"></path>
+              </svg></span><small>Distribution</small></div>
+          <div class="rnode">
+            <div class="ricon" style="color:var(--yellow-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg></div>
+            <div class="rcity">Your Mill</div>
+            <div class="rsub">Pan-India</div>
+          </div>
+        </div>
+      </div>
+      <div class="partners-wrap reveal">
+        <div class="partners-lbl">Our Valued Sourcing Partners</div>
+        <div class="partners">
+          <div class="partner"><img src="images/partners/Tongkun.webp" alt="Tongkun Group">Tongkun Group</div>
+          <div class="partner"><img src="images/partners/Hengyi.webp" alt="Hengyi Petrochemical">Hengyi Petrochemical</div>
+          <div class="partner"><img src="images/partners/Hengli.webp" alt="Hengli Group">Hengli Group</div>
+          <div class="partner"><img src="images/partners/XFM.webp" alt="Xinfengming Group">Xinfengming Group</div>
+          <div class="partner"><img src="images/partners/Wankai.webp" alt="Wankai">Wankai</div>
+          <div class="partner"><img src="images/partners/Billion.webp" alt="Billion">Billion</div>
+          <div class="partner"><img src="images/partners/Highsun.webp" alt="Highsun">Highsun</div>
+          
+          <div class="partner"><img src="images/partners/Jinlun.webp" alt="Jinlun">Jinlun</div>
+        
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="timeline">
+    <div class="container">
+      <div class="tl-center reveal">
+        <span class="sec-tag">Our Journey &amp; Milestones</span>
+        <h2 class="sec-h2">Journey of <em>Surat Sales Pvt. Ltd.</em></h2>
+        <p class="sec-p">The foundation of the business was laid in 1984, when the promoters moved to Surat and started Surat Sales Corporation, primarily engaged in textile trading.</p>
+      </div>
+
+      <div class="tl-milestones" id="tlMilestones">
+        <div class="tl-spine">
+          <div class="tl-spine-fill" id="tlSpineFill"></div>
+        </div>
+
+        <!-- 1984 — year LEFT, card RIGHT -->
+        <div class="ms-item" data-year="1984" data-side="left">
+          <div class="ms-year">
+            <div class="ms-year-num">1984</div>
+            <div class="ms-year-label">Foundation</div>
+          </div>
+          <div class="ms-mid">
+            <div class="ms-dot"></div>
+          </div>
+          <div class="ms-card">
+            <div class="ms-card-inner">
+              <div class="ms-ghost-year">1984</div>
+              <div class="ms-milestone-tag"><span style="display:inline-flex;width:12px;height:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                  </svg></span> Establishment</div>
+              <div class="ms-card-title">Surat Sales Corporation</div>
+              <div class="ms-card-desc">The foundation was laid in 1984, when the promoters moved to Surat and started Surat Sales Corporation, primarily engaged in textile trading.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2005 — card LEFT, year RIGHT -->
+        <div class="ms-item" data-year="2005" data-side="right">
+          <div class="ms-year">
+            <div class="ms-year-num">2005</div>
+            <div class="ms-year-label">Expansion</div>
+          </div>
+          <div class="ms-mid">
+            <div class="ms-dot"></div>
+          </div>
+          <div class="ms-card">
+            <div class="ms-card-inner">
+              <div class="ms-ghost-year">2005</div>
+              <div class="ms-milestone-tag"><span style="display:inline-flex;width:12px;height:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="9" y1="3" x2="9" y2="21"></line>
+                  </svg></span> Markets</div>
+              <div class="ms-card-title">Real Estate &amp; Trading</div>
+              <div class="ms-card-desc">Business expanded into real estate while simultaneously building a strong presence in suit and dress material trading, with products reaching a wide domestic market.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2008 — year LEFT, card RIGHT -->
+        <div class="ms-item" data-year="2008" data-side="left">
+          <div class="ms-year">
+            <div class="ms-year-num">2008</div>
+            <div class="ms-year-label">Growth</div>
+          </div>
+          <div class="ms-mid">
+            <div class="ms-dot"></div>
+          </div>
+          <div class="ms-card">
+            <div class="ms-card-inner">
+              <div class="ms-ghost-year">2008</div>
+              <div class="ms-milestone-tag"><span style="display:inline-flex;width:12px;height:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                  </svg></span> Portfolio</div>
+              <div class="ms-card-title">Fabric Trading</div>
+              <div class="ms-card-desc">Recognizing market demands, fabrics were strategically added to our product portfolio, further strengthening our foothold in the textile industry.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2012 — card LEFT, year RIGHT -->
+        <div class="ms-item" data-year="2012" data-side="right">
+          <div class="ms-year">
+            <div class="ms-year-num">2012</div>
+            <div class="ms-year-label">Diversifying</div>
+          </div>
+          <div class="ms-mid">
+            <div class="ms-dot"></div>
+          </div>
+          <div class="ms-card">
+            <div class="ms-card-inner">
+              <div class="ms-ghost-year">2012</div>
+              <div class="ms-milestone-tag"><span style="display:inline-flex;width:12px;height:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                    <path d="M3 6h18"></path>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                  </svg></span> Apparel</div>
+              <div class="ms-card-title">Saree Trading</div>
+              <div class="ms-card-desc">The company entered the saree trading segment, identifying key opportunities in ethnic wear and catering to a massive nationwide customer base.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2016 — year LEFT, card RIGHT -->
+        <div class="ms-item" data-year="2016" data-side="left">
+          <div class="ms-year">
+            <div class="ms-year-num">2016</div>
+            <div class="ms-year-label">Launch</div>
+          </div>
+          <div class="ms-mid">
+            <div class="ms-dot"></div>
+          </div>
+          <div class="ms-card">
+            <div class="ms-card-inner">
+              <div class="ms-ghost-year">2016</div>
+              <div class="ms-milestone-tag"><span style="display:inline-flex;width:12px;height:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.62 1.96V17a2 2 0 002 2h16a2 2 0 002-2V5.42a2 2 0 00-1.62-1.96z"></path>
+                    <path d="M12 5v14"></path>
+                  </svg></span> Apparel</div>
+              <div class="ms-card-title">Shirting Business</div>
+              <div class="ms-card-desc">The shirting business was successfully launched, adding another vital dimension to our textile operations and market presence.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2018 — card LEFT, year RIGHT -->
+        <div class="ms-item" data-year="2018" data-side="right">
+          <div class="ms-year">
+            <div class="ms-year-num">2018</div>
+            <div class="ms-year-label">Innovation</div>
+          </div>
+          <div class="ms-mid">
+            <div class="ms-dot"></div>
+          </div>
+          <div class="ms-card">
+            <div class="ms-card-inner">
+              <div class="ms-ghost-year">2018</div>
+              <div class="ms-milestone-tag"><span style="display:inline-flex;width:12px;height:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v20"></path>
+                    <path d="M5 12h14"></path>
+                  </svg></span> Pharma</div>
+              <div class="ms-card-title">Veterinary Medicines</div>
+              <div class="ms-card-desc">The company diversified into veterinary medicines trading, showcasing our ability to navigate and succeed in entirely new and dynamic sectors.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2022-Present — year LEFT, card RIGHT -->
+        <div class="ms-item" data-year="2024" data-side="left">
+          <div class="ms-year">
+            <div class="ms-year-num">2024</div>
+            <div class="ms-year-label">Market Leaders</div>
+          </div>
+          <div class="ms-mid">
+            <div class="ms-dot"></div>
+          </div>
+          <div class="ms-card">
+            <div class="ms-card-inner">
+              <div class="ms-ghost-year">2024</div>
+              <div class="ms-milestone-tag"><span style="display:inline-flex;width:12px;height:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M2 12h20"></path>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg></span> Leadership</div>
+              <div class="ms-card-title">Yarn Import &amp; Export</div>
+              <div class="ms-card-desc">Established a strong foothold in the import and export of yarns with AEO T1 certification. Emerging as a significant player committed to quality and reliability.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
 <footer style="">
     <div class="footer-grid">
       <div>
@@ -3273,6 +7204,8 @@
       }, 5000);
     }
   </script>
+
+
 
 
 <script src="/js/cfg.js"></script></body></html>
