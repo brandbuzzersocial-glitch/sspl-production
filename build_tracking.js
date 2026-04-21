@@ -3,7 +3,7 @@ const fs = require('fs');
 const baseHtml = fs.readFileSync('c:/sspl website/public/surat-sales.html', 'utf8');
 
 const navEndIdx = baseHtml.indexOf('</nav>') + 6;
-const footerStartIdx = baseHtml.indexOf('<footer>');
+const footerStartIdx = baseHtml.indexOf('<footer');
 
 const headAndNav = baseHtml.substring(0, navEndIdx);
 const footer = baseHtml.substring(footerStartIdx);
