@@ -3,9 +3,12 @@ const fs = require('fs');
 const baseHtml = fs.readFileSync('c:/sspl website/public/surat-sales.html', 'utf8');
 
 const navEndIdx = baseHtml.indexOf('</nav>') + 6;
-const footerStartIdx = baseHtml.indexOf('<footer');
+let headAndNav = baseHtml.substring(0, navEndIdx);
 
-const headAndNav = baseHtml.substring(0, navEndIdx);
+// Fix navigation links for the standalone tracking page
+headAndNav = headAndNav.replace(/href="#hero"/g, 'href="surat-sales.html"');
+
+const footerStartIdx = baseHtml.indexOf('<footer');
 const footer = baseHtml.substring(footerStartIdx);
 
 const trackingContent = `
