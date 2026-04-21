@@ -9,13 +9,18 @@ const headAndNav = baseHtml.substring(0, navEndIdx);
 const footer = baseHtml.substring(footerStartIdx);
 
 const trackingContent = `
-  <section style="padding-top: 120px; padding-bottom: 80px; background: var(--bg-section); min-height: 80vh;">
+  <!-- TRACKING HERO -->
+  <section style="position: relative; padding: 160px 0 100px; background: url('https://images.unsplash.com/photo-1586528116311-ad8ed7c15437?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat; text-align: center; color: #fff;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0.4), rgba(0,0,0,0.85)); z-index: 1;"></div>
+    <div class="container" style="position: relative; z-index: 2;">
+      <span class="sec-tag" style="color: #F5C518; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Logistics Tools</span>
+      <h1 class="sec-h2" style="margin-bottom: 20px; color: #fff; text-shadow: 0 4px 10px rgba(0,0,0,0.5);">Vessel &amp; Container <br><em>Tracking</em></h1>
+      <p class="sec-p" style="margin: 0 auto; color: #eee; max-width: 700px; font-size: 18px; text-shadow: 0 2px 5px rgba(0,0,0,0.3);">Easily track your cargo status in real-time. Select your shipping line below to access their official tracking portal.</p>
+    </div>
+  </section>
+
+  <section style="padding-top: 80px; padding-bottom: 80px; background: var(--bg-section); min-height: 50vh;">
     <div class="container">
-      <div style="text-align: center; margin-bottom: 60px;">
-        <span class="sec-tag">Logistics Tools</span>
-        <h1 class="sec-h2" style="font-size: 42px;">Vessel &amp; Container <br><em>Tracking</em></h1>
-        <p class="sec-p" style="margin: 16px auto 0;">Easily track your cargo status in real-time. Please select your shipping line below to access their official tracking portal.</p>
-      </div>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto;">
         
